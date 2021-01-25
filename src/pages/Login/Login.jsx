@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Input, Button,Form,Checkbox} from "antd"
-// import Icon from '@ant-design/icons';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined,LockOutlined } from '@ant-design/icons';
 import './Login.less';
+
 class Login extends Component {
-   render() {
+    render() {
        return (
            <div className="login">
                <header className="login-header">
@@ -12,14 +12,14 @@ class Login extends Component {
                </header>
                <section className="login-content">
                    <h2>用户登陆</h2>
-                   <Form className="login-form">
+                   <Form className="login-form" >
                        <Form.Item>
                            <Input  prefix={<UserOutlined />} placeholder="用户名"/>
                        </Form.Item>
 
                        <Form.Item>
                            <Input.Password
-                               prefix={<UserOutlined />} placeholder="密码"/>
+                               prefix={<LockOutlined />} placeholder="密码"/>
                        </Form.Item>
 
                        <Form.Item>
