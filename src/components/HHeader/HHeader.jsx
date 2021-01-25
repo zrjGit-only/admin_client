@@ -28,8 +28,8 @@ export default function HHeader() {
                 <div className="left">title</div>
                 <div className="right">
                     <span className="time">{currentTime}</span>
-                    {/*<img src={weather_icon} alt=""/>*/}
-                    {/*<span>{weather_curr}</span>*/}
+                    <img src={weather_icon} alt=""/>
+                    <span>{weather_curr}</span>
                 </div>
             </div>
             <span className="iconfont icon-jiantou-drop-down-kuai jiantou"> </span>

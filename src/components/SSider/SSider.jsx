@@ -1,62 +1,62 @@
-import React,{useState} from 'react'
-import { Layout, Menu, Switch } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import React, {useState, useEffect} from 'react'
+import {withRouter, NavLink} from "react-router-dom"
+import {Layout, Menu, Switch} from 'antd';
+import {MailOutlined, AppstoreOutlined, SettingOutlined} from '@ant-design/icons';
+import menuList from '../../config/menuConfig'
 
-const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
-export default function SSider() {
-    const [theme,setTheme] = useState('dark')
-    const [current,setCurrent] = useState('1')
+const {SubMenu} = Menu;
+const {Header, Content, Footer, Sider} = Layout;
 
+function SSider(props) {
 
-   const changeTheme = value => {
-        value ? setTheme('dark') : setTheme('light')
-    };
+    let openKey
+    const path = props.history.location.pathname
 
-   const handleClick = e => {
-        console.log('click ', e);
-        setCurrent(e.key)
-    };
-    return (
-        <Sider
-            breakpoint="lg"
-            collapsedWidth="0"
-            onBreakpoint={broken => {
-                console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-                console.log(collapsed, type);
-            }}
-        >
-            <div className="logo" />
-            <Menu
-                theme={theme}
-                onClick={handleClick}
-                defaultOpenKeys={['sub1']}
-                selectedKeys={[current]}
-                mode="inline"
-            >
-                <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-                    <Menu.Item key="1">Option 1</Menu.Item>
-                    <Menu.Item key="2">Option 2</Menu.Item>
-                    <Menu.Item key="3">Option 3</Menu.Item>
-                    <Menu.Item key="4">Option 4</Menu.Item>
-                </SubMenu>
-                <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Navigation Two">
-                    <Menu.Item key="5">Option 5</Menu.Item>
-                    <Menu.Item key="6">Option 6</Menu.Item>
-                    <SubMenu key="sub3" title="Submenu">
-                        <Menu.Item key="7">Option 7</Menu.Item>
-                        <Menu.Item key="8">Option 8</Menu.Item>
+    const list = (menuList) => {
+        //获取当前url
+        // const path =
+        return menuList.reduce((pre, item) => {
+            if (item.children) {//有children,是嵌套的
+                const c = item.children.find(i => i.key === path)
+                if (c) {
+                    openKey = item.key
+                    console.log(c,item.key);
+                    // console.log(openKey,path)
+                }
+
+                pre.push(
+                    <SubMenu key={item.key} icon={item.icon} title={item.title}>
+                        {list(item.children)}
                     </SubMenu>
-                </SubMenu>
-                <SubMenu key="sub4" icon={<SettingOutlined />} title="Navigation Three">
-                    <Menu.Item key="9">Option 9</Menu.Item>
-                    <Menu.Item key="10">Option 10</Menu.Item>
-                    <Menu.Item key="11">Option 11</Menu.Item>
-                    <Menu.Item key="12">Option 12</Menu.Item>
-                </SubMenu>
+                )
+            } else {
+                pre.push(
+                    <Menu.Item key={item.key} icon={item.icon}>
+                        <NavLink to={item.key}>
+                            {item.title}
+                        </NavLink>
+                    </Menu.Item>
+                )
+            }
+            return pre
+        }, [])
+    }
+
+    let menu = list(menuList)
+    return (
+        <Sider>
+            <div className="logo"/>
+            <Menu
+                theme="dark"
+                mode="inline"
+                selectedKeys={[path]}
+                defaultOpenKeys={[openKey]}>
+                {
+                    menu
+                }
             </Menu>
         </Sider>
     )
 }
+
+export default withRouter(SSider);
