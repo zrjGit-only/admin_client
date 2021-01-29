@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './HHeader.less'
-import {Button, Form,Icon} from 'antd';
+import {Button, Form} from 'antd';
 import {withRouter} from 'react-router-dom'
 
 import {formateDate} from '../../utils/dateUtils'
@@ -91,14 +91,13 @@ function HHeader(props) {
                         style={{padding: 24, float: 'right'}}
                     >
                         {/* 数据绑定 拿到的city字段是城市编码  getSelectedValues监听可以拿到选择的数据对象 */}
-                        <FormItem label="城市选择："
-                                  rules={[{required: true, message: "请选择城市查看天气"}]}>
+                        <FormItem label="选择城市查看天气："
+                                  rules={[{required: true, message: "请选择城市"}]}>
                             <CitySelect getSelectedValues={getSelectedValues}/>
                         </FormItem>
                         <FormItem style={{paddingBottom: 0}}>
                             <Button type="primary" htmlType="submit">
-                                <Icon type="arrow-up"/>
-                                保存
+                                查看
                             </Button>
                         </FormItem>
                     </Form>

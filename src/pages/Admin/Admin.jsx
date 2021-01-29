@@ -5,7 +5,7 @@ import { Layout} from 'antd';
 import SSider from '../../components/SSider/SSider'
 import HHeader from '../../components/HHeader/HHeader'
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer} = Layout;
 
 
 const Home = lazy(() => import(/*webpackChunkName:"Home"*/"../Home/Home"));
@@ -23,7 +23,7 @@ export default function Admin() {
                 <SSider />
                 <Layout>
                     <HHeader/>
-                    <Content style={{ margin: '24px 16px 0' }}>
+                    <Content style={{ margin: '24px 16px 0' ,background:'#fff'}}>
                         <Suspense fallback={<h1>加载中……</h1>}>
                             <Switch>
                                 <Route path='/home' component={Home}/>

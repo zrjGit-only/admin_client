@@ -6,11 +6,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/weather.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/weather.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CitySelect/CitySelect.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CitySelect/data.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/HHeader/HHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HHeader/HHeader.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/HHeader/HHeader.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HHeader/HHeader.less" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SSider/SSider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SSider/SSider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin/Admin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Admin.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin/Admin.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Admin.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Role/Role.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Role/Role.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +217,7 @@
       <workItem from="1611534572625" duration="9267000" />
       <workItem from="1611544236080" duration="12865000" />
       <workItem from="1611737523105" duration="17000" />
-      <workItem from="1611880466296" duration="6047000" />
+      <workItem from="1611880466296" duration="9213000" />
     </task>
     <servers />
   </component>
