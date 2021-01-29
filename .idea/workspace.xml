@@ -4,7 +4,7 @@
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/Product.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +16,7 @@
       <list>
         <option value="Less File" />
         <option value="JavaScript File" />
+        <option value="React Component" />
       </list>
     </option>
   </component>
@@ -106,7 +107,7 @@
       <workItem from="1611534548760" duration="7000" />
       <workItem from="1611534572625" duration="9267000" />
       <workItem from="1611544236080" duration="12111000" />
-      <workItem from="1611885923360" duration="8163000" />
+      <workItem from="1611885923360" duration="9842000" />
     </task>
     <servers />
   </component>
