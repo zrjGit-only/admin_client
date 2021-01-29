@@ -45,7 +45,9 @@ function SSider(props) {
     let menu = list(menuList)
     return (
         <Sider>
-            <div className="logo"/>
+            <h2 className="logo">
+                React后台管理
+            </h2>
             <Menu
                 theme="dark"
                 mode="inline"

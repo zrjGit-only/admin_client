@@ -10,8 +10,22 @@
 
 ### 2 . 项目启动
 
+开发环境运行
+
 ```javascript
 npm start
+```
+
+生产环境运行
+
+```
+npm run build
+```
+
+测试环境
+
+```
+npm run test
 ```
 
 ### 3 . 技术选型
@@ -31,13 +45,13 @@ postman
 模拟数据工具
 
 ```javascript
-json-server mock
+json-server mock-js
 ```
 
 项目构建/工程化
 
 ```javascript
-webpack creat-react-app aslint
+webpack creat-react-app eslint
 ```
 
 富文本编辑器
@@ -52,3 +66,12 @@ react-draft-wysiwyg draft-js draft-to-html
 echarts
 ```
 
+### 4 . 开发日志
+
+#### 2021.01.29
+
+1>完成登录静态页面以及表单前端验证
+
+2> 完成侧边栏及路由搭建(使用递归)
+
+3> 完成头部静态组件

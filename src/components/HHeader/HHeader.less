@@ -1,58 +1,68 @@
 
-  .container {
-    position: relative;
+.container {
+  position: relative;
 
-    .admin {
-      height: 40px;
-      font-size: 12px;
-      line-height: 40px;
-      border-bottom: 1px solid #1DA57A;
+  .admin {
+    height: 40px;
+    font-size: 12px;
+    line-height: 40px;
+    border-bottom: 1px solid #1DA57A;
 
-      p {
-        float: right;
-        margin-right: 30px;
-        margin-bottom: 0;
+    p {
+      float: right;
+      margin-right: 30px;
+      margin-bottom: 0;
 
-        .btn {
-          font-size: 12px;
-          color:#1DA57A;
-        }
-
+      .btn {
+        font-size: 12px;
+        color: #1DA57A;
       }
-    }
 
-    .weather {
-      height: 40px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      width:100%;
-      .left{
-        flex:1;
-        text-align:center;
-        font-size:16px;
-      }
-      .right{
-        flex:5;
-        text-align:right;
-        padding-right: 40px;
-        font-size:12px;
-        img{
-          width:30px;
-          height:20px;
-          margin:0 15px;
-        }
-      }
-    }
-
-    .jiantou {
-      color: #fff;
-      position: absolute;
-      font-size: 14px;
-      top: 56px;
-      left: 88px;
     }
   }
 
+  .weather {
+    height: 40px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
 
+    .left {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+    }
 
+    .right {
+      flex: 5;
+      text-align: right;
+      padding-right: 40px;
+      font-size: 12px;
+
+      img {
+        width: 30px;
+        height: 20px;
+        margin: 0 15px;
+      }
+    }
+  }
+
+  .jiantou {
+    color: #fff;
+    position: absolute;
+    font-size: 14px;
+    top: 56px;
+    left: 88px;
+  }
+}
+
+:global(.custom-vertical-hotel-form .ant-form-item-label) {
+  width: 90px;
+  vertical-align: top;
+}
+
+:global(.custom-vertical-hotel-form .ant-form-item-control-wrapper) {
+  width: 340px;
+  display: inline-block;
+}

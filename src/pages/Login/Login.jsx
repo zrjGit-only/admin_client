@@ -10,20 +10,7 @@ import './Login.less';
 class Login extends Component {
 
     handleSubmit = (e) => {
-        console.log(1)
-        // 阻止事件默认行为(不提交表单)
-        e.preventDefault()
-        // 进行表单所有控件的校验
-        this.props.form.validateFields(async (err, values) => {
-            if (!err) {
-                // 校验成功
-                const {username, password} = values
-                console.log('提交登陆请求', username, password)
-            } else {
-                // 校验失败
-                console.log(err)
-            }
-        })
+        console.log(e);
     }
 
     render() {
