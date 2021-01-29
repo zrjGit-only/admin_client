@@ -8,5 +8,6 @@ export default function (prevState = role, action) {
             prevState.roleInfo = action.payload;
             break;
     }
+    // console.log(prevState,'prevState');
     return prevState
 }
