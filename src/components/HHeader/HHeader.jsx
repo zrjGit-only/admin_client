@@ -20,7 +20,7 @@ function HHeader(props) {
     //获取头部信息
     const getTitle = () => {
         const path = props.location.pathname
-        console.log(path);
+        // console.log(path);
         let title=''
         menuList.forEach(item => {
             if (item.children) {
