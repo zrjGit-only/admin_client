@@ -76,6 +76,8 @@ echarts
 
 3> 搭建redux仓库,使用异步中间件 (redux-thunk)
 
+4> category 和 product 静态页面搭建
+
 #### 2021.01.25
 
 1>完成登录静态页面以及表单前端验证
