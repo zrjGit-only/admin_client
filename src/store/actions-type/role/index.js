@@ -1,0 +1,1 @@
+export const GET_ROLE_INFO = 'get_role_info'
