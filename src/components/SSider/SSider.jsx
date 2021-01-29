@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {withRouter, NavLink} from "react-router-dom"
-import {Layout, Menu, Switch} from 'antd';
-import {MailOutlined, AppstoreOutlined, SettingOutlined} from '@ant-design/icons';
+import {Layout, Menu} from 'antd';
 import menuList from '../../config/menuConfig'
 
 const {SubMenu} = Menu;
-const {Header, Content, Footer, Sider} = Layout;
+const {Sider} = Layout;
 
 function SSider(props) {
 
@@ -14,7 +13,6 @@ function SSider(props) {
 
     const list = (menuList) => {
         //获取当前url
-        // const path =
         return menuList.reduce((pre, item) => {
             if (item.children) {//有children,是嵌套的
                 const c = item.children.find(i => i.key === path)
