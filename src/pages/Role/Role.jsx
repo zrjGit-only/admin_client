@@ -14,6 +14,7 @@ function Role(props) {
     const [isDisabled, setIsDisabled] = useState(true)          //控制设置角色权限按钮是否禁用
     const [isModalVisible, setIsModalVisible] = useState(0) //控制model是否显示
     const [selectedKeys, setSelectedKeys] = useState([]) //defaultCheckedKeys
+    const [roleName, setRoleName] = useState('') //收集增加角色的信息
 
     const [refresh, setRefresh] = useState(false)
     useEffect(() => {
@@ -47,6 +48,15 @@ function Role(props) {
                 auth_name: 'admin'
             }
             res = await updateRoleInfo(roleInfo)
+        }
+        if (flag === 2) {
+            if (!roleName) {
+                message.warning('请输入用户名称')
+                return
+            } else {
+                res = await addRoleInfo(roleName)
+                console.log(res.msg);
+            }
         }
         if (res.status === 0) {
             message.success('成功')
@@ -106,7 +116,7 @@ function Role(props) {
             </Modal>
             <Modal title="创建角色" visible={isModalVisible === 2} onOk={() => handleOk(2)} onCancel={handleCancel}>
                 <Form.Item label='角色名称'>
-                    <Input placeholder="请输入角色名称r" />
+                    <Input placeholder="请输入角色名称r" value={roleName} onChange={e => setRoleName(e.target.value)}/>
                 </Form.Item>
             </Modal>
         </Card>
