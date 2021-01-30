@@ -47,7 +47,7 @@ function User(props) {
                 <Column title="所属角色" dataIndex="role" key="role"/>
                 <Column
                     title="操作"
-                    key="caozuo"
+                    key="_id"
                     render={(text, record) => (
                         <Space size="middle">
                             <a onClick={() => {
