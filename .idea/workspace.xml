@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/AddForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/AddForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,13 +71,6 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\pages\Products\Category" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\14012\Desktop\admin_client\src\pages\Charts" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\components" />
@@ -84,6 +78,13 @@
       <recent name="C:\Users\14012\Desktop\admin_client\src\utils" />
       <recent name="C:\Users\14012\Desktop\admin_client\public" />
       <recent name="C:\Users\14012\Desktop\admin_client" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\pages\Products\Category" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
     </key>
   </component>
   <component name="RunManager">
@@ -123,18 +124,11 @@
       <workItem from="1611544236080" duration="12111000" />
       <workItem from="1611885923360" duration="9842000" />
       <workItem from="1611987161084" duration="7179000" />
-      <workItem from="1612009401500" duration="3740000" />
+      <workItem from="1612009401500" duration="4195000" />
+      <workItem from="1612015951384" duration="590000" />
+      <workItem from="1612018124208" duration="2202000" />
     </task>
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />

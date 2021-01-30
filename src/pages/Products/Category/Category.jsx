@@ -11,7 +11,7 @@ import { PlusOutlined ,ArrowRightOutlined} from '@ant-design/icons';
 import LinkButton from "../../../components/LinkButton/LinkButton"
 import {reqCategorys} from "../../../api/http"
 import AddForm from './AddForm'
-import UpdateForm from './UpdateForm'
+// import UpdateForm from './UpdateForm'
 export default class Category extends Component {
     state={
         loading: false, // 是否正在获取数据中
@@ -163,21 +163,17 @@ export default class Category extends Component {
                     visible={showStatus===1}
                     onOk={this.addCategory}
                     onCancel={this.handleCancel}>
-                    <AddForm
-                        categorys={categorys}
-                        parentId={parentId}
-                        setForm={(form) => {this.form = form}}
-                    />
+                    <AddForm/>
                 </Modal>
                 <Modal
                     title="更新分类"
                     visible={showStatus===2}
                     onOk={this.updateCategory}
                     onCancel={this.handleCancel}>
-                    <UpdateForm
+                    {/*<UpdateForm*/}
 
-                        setForm={(form) => {this.form = form}}
-                    />
+                    {/*    setForm={(form) => {this.form = form}}*/}
+                    {/*/>*/}
                 </Modal>
             </Card>
 
