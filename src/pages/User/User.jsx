@@ -10,6 +10,7 @@ const {Column} = Table;
 function User(props) {
     const [isAddOrUpData, setIsAddOrUpData] = useState(0)     //显示增加/修改界面
     const [isRefresh, setIsRefresh] = useState(false)    //重新获取列表信息
+    const [user, setUser] = useState([])    //重新获取列表信息
     useEffect(() => {
         const getUserInfo = async () => {
             await props.getUserInfoStore()
@@ -33,6 +34,7 @@ function User(props) {
     }
 
     const title = <Button type="primary" onClick={() => {
+        setUser([])
         setIsAddOrUpData(1)
     }}>创建用户</Button>
     return (
@@ -49,7 +51,7 @@ function User(props) {
                     render={(text, record) => (
                         <Space size="middle">
                             <a onClick={() => {
-                                console.log(11);
+                                setUser(text)
                                 setIsAddOrUpData(2)
                             }}>修改</a>
                             <Popconfirm
@@ -67,7 +69,7 @@ function User(props) {
                    visible={isAddOrUpData !==0 }
                    onOk={handleOk}
                    onCancel={handleCancel}>
-                <AddOrUpDataUser/>
+                <AddOrUpDataUser user={user}/>
             </Modal>
         </Card>
 
@@ -75,7 +77,6 @@ function User(props) {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         userInfo: state.user.userInfo,
     }

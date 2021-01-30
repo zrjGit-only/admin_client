@@ -8,16 +8,22 @@ function AddOrUpDataUser(props) {
     const onGenderChange = () => {
     }
     const layout = {
-        labelCol: {span:6},
+        labelCol: {span: 6},
         wrapperCol: {span: 14},
     };
+    console.log(props.user, 'props.userInfo');
     return (
-        <Form {...layout}>
+        <Form {...layout}
+              initialValues={{
+                  'password': props.user.password,
+                  'username': props.user.username,
+                  'phone': props.user.phone,
+                  'email': props.user.email
+              }}>
             <Form.Item
                 label="用户名"
                 name="username"
-                rules={[{required: true, message: '请输入用户名'}]}
-            >
+                rules={[{required: true, message: '请输入用户名'}]}>
                 <Input placeholder="请输入用户名"/>
             </Form.Item>
             <Form.Item
@@ -36,14 +42,13 @@ function AddOrUpDataUser(props) {
                 label="邮箱"
                 name="email"
                 rules={[{required: true, message: '请输入邮箱'}]}>
-                <Input placeholder="请输入密码"/>
+                <Input placeholder="请输入邮箱"/>
             </Form.Item>
             <Form.Item name="role_id" label="角色" rules={[{required: true}]}>
                 <Select
                     placeholder="请选择角色"
                     onChange={onGenderChange}
-                    allowClear
-                >
+                    allowClear>
                     <Option value="male">male</Option>
                     <Option value="female">female</Option>
                     <Option value="other">other</Option>
@@ -54,7 +59,6 @@ function AddOrUpDataUser(props) {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         userInfo: state.user.userInfo,
     }
