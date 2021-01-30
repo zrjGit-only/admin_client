@@ -22,7 +22,6 @@ function Role(props) {
             await props.getRoleInfoStore()
         }
         getRoleInfo()
-        console.log(21);
     }, [refresh])
     //收集选中的表格项
     const rowSelection = {
@@ -41,14 +40,16 @@ function Role(props) {
     const handleOk = async () => {
         //关闭复选框
         setIsModalVisible(false)
+        const auth_time =dayjs().format("YYYY-MM-DD, HH:mm:ss").toString();
         //保存选中的权限 发送请求
         let roleInfo = {
             _id: selectedRows[0]._id,
             menus: selectedKeys,
-            auth_time: Date.now(),
+            auth_time:"111",
             auth_name: 'admin'
         }
         await updateRoleInfo(roleInfo)
+        console.log(handleOk);
         setRefresh(!refresh)
 
     }
@@ -60,6 +61,7 @@ function Role(props) {
     const onCheck = (checkedKeys) => {
         setSelectedKeys(checkedKeys);
     }
+
     const title = (
         <div>
             <Button type="primary" style={{marginRight: 10}}>创建角色</Button>

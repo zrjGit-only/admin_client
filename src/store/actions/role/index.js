@@ -18,7 +18,8 @@ export default {
             const productInfo = await getRoleInfo()
             productInfo.data = productInfo.data.map(item=>({
                 ...item,
-                auth_time:item.auth_time?dayjs().format("YYYY-MM-DD, HH:mm:ss"):null,
+                create_time:dayjs(item.create_time).format("YYYY-MM-DD, HH:mm:ss"),
+                auth_time:item.auth_time?dayjs(item.auth_time).format("YYYY-MM-DD, HH:mm:ss"):null,
                 key:item._id
             }))
             dispatch(get_role_info(productInfo.data))

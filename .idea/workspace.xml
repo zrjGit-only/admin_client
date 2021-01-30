@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/actions/role/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/reducers/role/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/axiosApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axiosApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Role/Role.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Role/Role.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/Product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/role/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/role/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,8 +78,8 @@
   <component name="PropertiesComponent">
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/state" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -160,6 +152,7 @@
       <workItem from="1611880466296" duration="22241000" />
       <workItem from="1611544236080" duration="12111000" />
       <workItem from="1611885923360" duration="9842000" />
+      <workItem from="1611967331102" duration="1019000" />
     </task>
     <servers />
   </component>
