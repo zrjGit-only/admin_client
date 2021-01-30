@@ -1,5 +1,5 @@
 import {GET_USER_INFO} from '../../actions-type/user'
-import {} from '../../../api/http'
+import {getUserInfo} from '../../../api/http'
 
 export const get_user_info = function (payload) {
     return {
@@ -14,8 +14,8 @@ export default {
     getUserInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {
-
-            // dispatch(get_user_info(productInfo.data))
+           const userInfo =  await getUserInfo()
+            dispatch(get_user_info(userInfo.data.users))
         }
     }
 }
