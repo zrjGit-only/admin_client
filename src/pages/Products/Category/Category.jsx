@@ -6,7 +6,7 @@ import {
     message,
     Modal,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined ,ArrowRightOutlined} from '@ant-design/icons';
 
 import LinkButton from "../../../components/LinkButton/LinkButton"
 import {reqCategorys} from "../../../api/http"
@@ -33,7 +33,7 @@ export default class Category extends Component {
                 render: (category) => ( // 返回需要显示的界面标签
                     <span>
                         <LinkButton >修改分类</LinkButton>
-                        <LinkButton onClick={this.showsubCategorys(category)}>查看子分类</LinkButton>
+                        {this.state.parentId==="0"?<LinkButton onClick={this.showsubCategorys(category)}>查看子分类</LinkButton>:null}
                     </span>
                 )
             }
@@ -50,6 +50,16 @@ export default class Category extends Component {
             console.log('parentId', this.state.parentId) // '0'
             // 获取二级分类列表显示
             this.getCategorys()
+        })
+    }
+
+    /*显示一级分类列表*/
+    showCategorys=()=>{
+        //更新显示一级分类列表
+        this.setState({
+            parentId:"0",
+            parentName: "",
+            subCategorys: []
         })
     }
 
@@ -84,8 +94,15 @@ export default class Category extends Component {
     }
 
     render(){
-        const {categorys} =this.state
-        const title="一级分类列表"
+        const {categorys,loading,subCategorys, parentId,parentName} =this.state
+        // card的左侧
+        const title = parentId === '0' ? '一级分类列表' : (
+            <span>
+                <LinkButton onClick={this.showCategorys}>一级分类列表</LinkButton>
+                <ArrowRightOutlined style={{marginRight: 5}}/>
+                <span>{parentName}</span>
+            </span>
+        )
         const extra=(
             <Button type='primary'>
                 <PlusOutlined/>
@@ -114,7 +131,8 @@ export default class Category extends Component {
             <Card title={title} extra={extra}>
                 <Table
                     rowkey="_id"
-                    dataSource={categorys}
+                    loading={loading}
+                    dataSource={parentId==='0' ? categorys : subCategorys}
                     columns={this.columns}
                     bordered={true}></Table>
             </Card>
