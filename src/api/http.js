@@ -8,3 +8,5 @@ export const addRoleInfo = (roleName) => axiosApi.post('/manage/role/add', {role
 
 //获取用户列表
 export const getUserInfo = () => axiosApi.get('/manage/user/list')
+//删除用户
+export const delUserInfo = (userId) => axiosApi.post('/manage/user/delete',{userId})

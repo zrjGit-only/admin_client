@@ -1,5 +1,6 @@
 import {GET_USER_INFO} from '../../actions-type/user'
 import {getUserInfo} from '../../../api/http'
+import dayjs from 'dayjs'
 
 export const get_user_info = function (payload) {
     return {
@@ -15,7 +16,11 @@ export default {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {
            const userInfo =  await getUserInfo()
-            dispatch(get_user_info(userInfo.data.users))
+           const res =  userInfo.data.users.map(item=>({
+                ...item,
+                create_time:dayjs().format("YYYY-MM-DD, HH:mm:ss")
+            }))
+            dispatch(get_user_info(res))
         }
     }
 }

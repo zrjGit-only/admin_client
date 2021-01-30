@@ -1,18 +1,26 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useState} from 'react'
 import {connect} from 'react-redux'
 import userAction from '../../store/actions/user'
-import {Button, Card, Form, Input, Modal, Table, Space} from "antd";
+import {delUserInfo} from '../../api/http'
+import {Button, Card, Popconfirm, Input, Modal, Table, Space,message} from "antd";
 
 const {Column} = Table;
 
 function User(props) {
+    const [isRefresh,setIsRefresh] = useState(false)
     useEffect(() => {
         const getUserInfo = async () => {
             await props.getUserInfoStore()
         }
         getUserInfo()
-    }, [])
-    console.log(props);
+    }, [isRefresh])
+
+    const confirm=async (text)=> {
+        // console.log(text);
+        await delUserInfo(text._id)
+        message.success('删除成功');
+        setIsRefresh(!isRefresh)
+    }
     const title = <Button type="primary">创建用户</Button>
     return (
         <Card title={title} style={{width: '100%'}}>
@@ -28,7 +36,13 @@ function User(props) {
                     render={(text, record) => (
                         <Space size="middle">
                             <a>修改</a>
-                            <a>删除</a>
+                            <Popconfirm
+                                title="确定删除此用户吗？"
+                                onConfirm={()=>confirm(text)}
+                                okText="Yes"
+                                cancelText="No">
+                                <a href="#">删除</a>
+                            </Popconfirm>
                         </Space>
                     )}
                 />
