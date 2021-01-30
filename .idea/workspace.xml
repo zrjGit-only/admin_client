@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User/User.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +78,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/state" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -95,16 +94,12 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\14012\Desktop\admin_client\src\pages\Charts" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\components" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions" />
       <recent name="C:\Users\14012\Desktop\admin_client\src" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\14012\Desktop\admin_client\src\pages\Charts" />
@@ -151,7 +146,7 @@
       <workItem from="1611880466296" duration="22241000" />
       <workItem from="1611544236080" duration="12111000" />
       <workItem from="1611885923360" duration="9842000" />
-      <workItem from="1611967331102" duration="6176000" />
+      <workItem from="1611967331102" duration="6363000" />
     </task>
     <servers />
   </component>
