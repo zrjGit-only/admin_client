@@ -17,6 +17,7 @@ export default class Category extends Component {
         subCategorys: [], // 二级分类列表
         parentId: '0', // 当前需要显示的分类列表的父分类ID
         parentName: '', // 当前需要显示的分类列表的父分类名称
+        showStatus:0,
     }
 
 
@@ -32,7 +33,7 @@ export default class Category extends Component {
                 width: 300,
                 render: (category) => ( // 返回需要显示的界面标签
                     <span>
-                        <LinkButton >修改分类</LinkButton>
+                        <LinkButton onClick={() => this.showUpdate(category)}>修改分类</LinkButton>
                         {this.state.parentId==="0"?<LinkButton onClick={this.showsubCategorys(category)}>查看子分类</LinkButton>:null}
                     </span>
                 )
@@ -60,6 +61,40 @@ export default class Category extends Component {
             parentId:"0",
             parentName: "",
             subCategorys: []
+        })
+    }
+
+    //隐藏确定框
+    handleCancel=()=>{
+        this.setState({
+            showStatus:0
+        })
+    }
+    //添加分类
+    addCategory=()=>{
+
+    }
+    //更新分类
+    updateCategory=()=>{
+
+    }
+    /*
+  显示添加的确认框
+   */
+    showAdd = () => {
+        this.setState({
+            showStatus: 1
+        })
+    }
+    /*
+  显示修改的确认框
+   */
+    showUpdate = (category) => {
+        // 保存分类对象
+        this.category = category
+        // 更新状态
+        this.setState({
+            showStatus: 2
         })
     }
 
@@ -94,7 +129,7 @@ export default class Category extends Component {
     }
 
     render(){
-        const {categorys,loading,subCategorys, parentId,parentName} =this.state
+        const {categorys,loading,subCategorys, parentId,parentName,showStatus} =this.state
         // card的左侧
         const title = parentId === '0' ? '一级分类列表' : (
             <span>
@@ -104,7 +139,7 @@ export default class Category extends Component {
             </span>
         )
         const extra=(
-            <Button type='primary'>
+            <Button type='primary' onClick={this.showAdd}>
                 <PlusOutlined/>
                 添加
             </Button>
@@ -135,7 +170,27 @@ export default class Category extends Component {
                     dataSource={parentId==='0' ? categorys : subCategorys}
                     columns={this.columns}
                     bordered={true}></Table>
+                <Modal
+                    title="添加分类"
+                    visible={showStatus===1}
+                    onOk={this.addCategory}
+                    onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
+                <Modal
+                    title="更新分类"
+                    visible={showStatus===2}
+                    onOk={this.updateCategory}
+                    onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
             </Card>
+
+
         )
     }
 
