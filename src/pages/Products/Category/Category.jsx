@@ -120,7 +120,7 @@ export default class Category extends Component {
         }
     }
 
-    /*为第一次render准备数据*/
+    /*为第一次render准备数据 */
     componentDidMount() {
         this.initColumns()
     }
