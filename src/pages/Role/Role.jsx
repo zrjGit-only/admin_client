@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
-import {Card, Button, Table, Modal, Form, Input, Tree} from 'antd';
+import {Card, Button, Table, Modal, Form, Input, Tree, message} from 'antd';
 import roleAction from "../../store/actions/role";
 import menuList from '../../config/menuConfig'
-import {updateRoleInfo} from '../../api/http'
-import dayjs from 'dayjs'
+import {updateRoleInfo, addRoleInfo} from '../../api/http'
 
 
 const {Column} = Table;
@@ -13,7 +12,7 @@ function Role(props) {
     const [selectedRowKeys, setSelectedRowKeys] = useState([])  //table内选中项 只有id
     const [selectedRows, setSelectedRows] = useState([])        //table内选中项 有详细的内容
     const [isDisabled, setIsDisabled] = useState(true)          //控制设置角色权限按钮是否禁用
-    const [isModalVisible, setIsModalVisible] = useState(false) //控制model是否显示
+    const [isModalVisible, setIsModalVisible] = useState(0) //控制model是否显示
     const [selectedKeys, setSelectedKeys] = useState([]) //defaultCheckedKeys
 
     const [refresh, setRefresh] = useState(false)
@@ -37,25 +36,33 @@ function Role(props) {
         },
     };
     //点击model确认按钮
-    const handleOk = async () => {
-        //关闭复选框
-        setIsModalVisible(false)
-        const auth_time =dayjs().format("YYYY-MM-DD, HH:mm:ss").toString();
-        //保存选中的权限 发送请求
-        let roleInfo = {
-            _id: selectedRows[0]._id,
-            menus: selectedKeys,
-            auth_time:"111",
-            auth_name: 'admin'
+    const handleOk = async (flag) => {
+        let res
+        if (flag === 1) {
+            //保存选中的权限 发送请求
+            let roleInfo = {
+                _id: selectedRows[0]._id,
+                menus: selectedKeys,
+                auth_time: "111",
+                auth_name: 'admin'
+            }
+            res = await updateRoleInfo(roleInfo)
         }
-        await updateRoleInfo(roleInfo)
-        console.log(handleOk);
+        if (res.status === 0) {
+            message.success('成功')
+        } else {
+            message.error('网络抖动')
+            return
+        }
+        //关闭复选框
+        setIsModalVisible(0)
         setRefresh(!refresh)
+
 
     }
     //点击model内的取消按钮
     const handleCancel = () => {
-        setIsModalVisible(false)
+        setIsModalVisible(0)
     }
     //点击model内的复选框时触发
     const onCheck = (checkedKeys) => {
@@ -64,12 +71,15 @@ function Role(props) {
 
     const title = (
         <div>
-            <Button type="primary" style={{marginRight: 10}}>创建角色</Button>
+            <Button type="primary" style={{marginRight: 10}} onClick={() => {
+                //打开创建角色复选框
+                setIsModalVisible(2)
+            }}>创建角色</Button>
             <Button type="primary" disabled={isDisabled} onClick={() => {
                 //设置选中项的menus
                 setSelectedKeys(() => selectedRows[0].menus)
-                //打开复选框
-                setIsModalVisible(true)
+                //打开修改角色复选框
+                setIsModalVisible(1)
             }}>设置角色权限</Button>
         </div>
     )
@@ -81,7 +91,7 @@ function Role(props) {
                 <Column title="授权时间" dataIndex="auth_time" key="auth_time"/>
                 <Column title="授权人" dataIndex="auth_name" key="auth_name"/>
             </Table>
-            <Modal title="设置角色权限" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <Modal title="设置角色权限" visible={isModalVisible === 1} onOk={() => handleOk(1)} onCancel={handleCancel}>
                 <Form.Item label='角色名称'>
                     <Input value={selectedRows.length === 1 && selectedRows[0].name} disabled/>
                 </Form.Item>
@@ -93,6 +103,11 @@ function Role(props) {
                     treeData={menuList}
                     checkedKeys={selectedKeys}
                 />
+            </Modal>
+            <Modal title="创建角色" visible={isModalVisible === 2} onOk={() => handleOk(2)} onCancel={handleCancel}>
+                <Form.Item label='角色名称'>
+                    <Input placeholder="请输入角色名称r" />
+                </Form.Item>
             </Modal>
         </Card>
 
