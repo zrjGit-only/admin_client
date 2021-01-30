@@ -26,7 +26,7 @@ export default class ProductHome extends Component {
     };
 
     /*
-    初始化table的列的数组
+    初始化 table的列的数组
      */
     initColumns = () => {
         this.columns = [
