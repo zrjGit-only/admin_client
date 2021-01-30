@@ -113,14 +113,14 @@ export default class Category extends Component {
             //取出分类数组(一级或者二级)
             const categorys = result.data
             if (parentId===0){
-                this.setState({categorys})//更新一级分类状态
+                this.setState({categorys})// 更新一级分类状态
             }else{this.setState({subCategorys: categorys})}// 更新二级分类状态
         }else{
             message.error("获取分类列表失败")
         }
     }
 
-    /*为第一次render准备数据 */
+    /*为第一次render准备数据*/
     componentDidMount() {
         this.initColumns()
     }
