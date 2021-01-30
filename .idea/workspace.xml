@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User/User.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,30 +36,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/pages/Login/Login.less" />
-        <option value="$PROJECT_DIR$/src/store/store.js" />
-        <option value="$PROJECT_DIR$/src/store/reducers/index.js" />
-        <option value="$PROJECT_DIR$/src/api/http.js" />
-        <option value="$PROJECT_DIR$/src/api/axiosApi.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/pages/Admin/Admin.js" />
-        <option value="$PROJECT_DIR$/src/pages/Login/Login.jsx" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/components/Sider/Sider.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Sider/Sider.less" />
-        <option value="$PROJECT_DIR$/src/components/HHeader/HHeader.js" />
-        <option value="$PROJECT_DIR$/src/components/App.js" />
-        <option value="$PROJECT_DIR$/src/components/SSider/SSider.jsx" />
-        <option value="$PROJECT_DIR$/src/pages/Admin/Admin.jsx" />
-        <option value="$PROJECT_DIR$/src/pages/Admin/Admin.less" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
       <list>
@@ -80,6 +57,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/state" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -96,6 +74,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
@@ -149,6 +128,8 @@
       <workItem from="1611885923360" duration="9842000" />
       <workItem from="1611967331102" duration="14907000" />
       <workItem from="1612004306787" duration="114000" />
+      <workItem from="1611987161084" duration="7179000" />
+      <workItem from="1612009401500" duration="2495000" />
     </task>
     <servers />
   </component>
@@ -163,6 +144,12 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611988276744">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1611988276744" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
