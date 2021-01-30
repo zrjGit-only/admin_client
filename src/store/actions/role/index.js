@@ -12,7 +12,6 @@ export const get_role_info = function (payload) {
 
 
 export default {
-    //获取商品分页列表
     getRoleInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {

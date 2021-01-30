@@ -1,24 +1,31 @@
-import React, {useEffect, useState} from 'react'
+import React,{useEffect} from 'react'
 import {connect} from 'react-redux'
+import roleAction from '../../../store/actions/role'
 import {Input, Form, Select} from "antd";
 
 const {Option} = Select;
 
 function AddOrUpDataUser(props) {
+    useEffect(()=>{
+        const getRoleInfo = async ()=>{
+            await props.getRoleInfoStore()
+        }
+        getRoleInfo()
+    },[])
     const onGenderChange = () => {
     }
     const layout = {
         labelCol: {span: 6},
         wrapperCol: {span: 14},
     };
-    console.log(props.user, 'props.userInfo');
     return (
         <Form {...layout}
               initialValues={{
                   'password': props.user.password,
                   'username': props.user.username,
                   'phone': props.user.phone,
-                  'email': props.user.email
+                  'email': props.user.email,
+                  'role_id':props.user.role_id
               }}>
             <Form.Item
                 label="用户名"
@@ -48,10 +55,13 @@ function AddOrUpDataUser(props) {
                 <Select
                     placeholder="请选择角色"
                     onChange={onGenderChange}
-                    allowClear>
-                    <Option value="male">male</Option>
-                    <Option value="female">female</Option>
-                    <Option value="other">other</Option>
+                    allowClear
+                    >
+                    {
+                        props.roleInfo.map(item=>(
+                            <Option value={item._id} key={item._id}>{item.name}</Option>
+                        ))
+                    }
                 </Select>
             </Form.Item>
         </Form>
@@ -61,13 +71,14 @@ function AddOrUpDataUser(props) {
 function mapStateToProps(state) {
     return {
         userInfo: state.user.userInfo,
+        roleInfo: state.role.roleInfo,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        async getUserInfoStore(parentId) {
-            // await dispatch(userAction.getUserInfo(parentId))
+        async getRoleInfoStore() {
+            await dispatch(roleAction.getRoleInfo())
         }
     }
 }

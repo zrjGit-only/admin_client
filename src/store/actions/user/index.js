@@ -15,11 +15,15 @@ export default {
     getUserInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {
-           const userInfo =  await getUserInfo()
-           const res =  userInfo.data.users.map(item=>({
-                ...item,
-                create_time:dayjs().format("YYYY-MM-DD, HH:mm:ss")
-            }))
+            const userInfo = await getUserInfo()
+            const res = userInfo.data.users.map(item => {
+                const role = userInfo.data.roles.find(i => i._id === item.role_id)
+                return {
+                    ...item,
+                    create_time: dayjs().format("YYYY-MM-DD, HH:mm:ss"),
+                    role: role ? role.name : ''
+                }
+            })
             dispatch(get_user_info(res))
         }
     }
