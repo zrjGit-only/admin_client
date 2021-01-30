@@ -129,7 +129,7 @@ export default class Category extends Component {
     }
 
     render(){
-        const {categorys,loading,subCategorys, parentId,parentName,showStatus} =this.state
+        const {categorys,loading,subCategorys, parentId,parentName,showStatus,handleCancel} =this.state
         // card的左侧
         const title = parentId === '0' ? '一级分类列表' : (
             <span>
@@ -146,20 +146,6 @@ export default class Category extends Component {
         )
 
 
-        const dataSource = [
-            {
-                key: '1',
-                name: '胡彦斌',
-                age: 32,
-                address: '西湖区湖底公园1号',
-            },
-            {
-                key: '2',
-                name: '胡彦祖',
-                age: 42,
-                address: '西湖区湖底公园1号',
-            },
-        ];
 
 
         return (
@@ -174,19 +160,15 @@ export default class Category extends Component {
                     title="添加分类"
                     visible={showStatus===1}
                     onOk={this.addCategory}
-                    onCancel={handleCancel}>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    onCancel={this.handleCancel}>
+                    <p>添加分类界面</p>
                 </Modal>
                 <Modal
                     title="更新分类"
                     visible={showStatus===2}
                     onOk={this.updateCategory}
-                    onCancel={handleCancel}>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    onCancel={this.handleCancel}>
+                    <p>更新修改分类界面</p>
                 </Modal>
             </Card>
 
