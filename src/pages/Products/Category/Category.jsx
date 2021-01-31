@@ -10,6 +10,8 @@ import { PlusOutlined ,ArrowRightOutlined} from '@ant-design/icons';
 
 import LinkButton from "../../../components/LinkButton/LinkButton"
 import {reqCategorys} from "../../../api/http"
+import AddForm from './AddForm'
+// import UpdateForm from './UpdateForm'
 export default class Category extends Component {
     state={
         loading: false, // 是否正在获取数据中
@@ -111,7 +113,7 @@ export default class Category extends Component {
             //取出分类数组(一级或者二级)
             const categorys = result.data
             if (parentId===0){
-                this.setState({categorys})//更新一级分类状态
+                this.setState({categorys})// 更新一级分类状态
             }else{this.setState({subCategorys: categorys})}// 更新二级分类状态
         }else{
             message.error("获取分类列表失败")
@@ -158,14 +160,17 @@ export default class Category extends Component {
                     visible={showStatus===1}
                     onOk={this.addCategory}
                     onCancel={this.handleCancel}>
-                    <p>添加分类界面</p>
+                    <AddForm/>
                 </Modal>
                 <Modal
                     title="更新分类"
                     visible={showStatus===2}
                     onOk={this.updateCategory}
                     onCancel={this.handleCancel}>
-                    <p>更新修改分类界面</p>
+                    {/*<UpdateForm*/}
+
+                    {/*    setForm={(form) => {this.form = form}}*/}
+                    {/*/>*/}
                 </Modal>
             </Card>
 

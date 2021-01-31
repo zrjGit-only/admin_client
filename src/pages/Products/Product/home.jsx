@@ -19,14 +19,14 @@ export default class ProductHome extends Component {
 
     state = {
         total: 0, // 商品的总数量
-        products: [], // 商品的数组
+        products: [], // 商品 的数组
         loading: false, // 是否正在加载中
         searchName: '', // 搜索的关键字
         searchType: 'productName', // 根据哪个字段搜索
     };
 
     /*
-    初始化table的列的数组
+    初始化 table的列的数组
      */
     initColumns = () => {
         this.columns = [
