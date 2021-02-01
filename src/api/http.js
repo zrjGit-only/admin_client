@@ -11,8 +11,10 @@ export const getUserInfo = () => axiosApi.get('/manage/user/list')
 //删除用户
 export const delUserInfo = (userId) => axiosApi.post('/manage/user/delete',{userId})
 
+
 //登录
 export const login = (username, password) => axiosApi.post('/login', {username, password})
+
 
 //获取一二级列表
 export const getCategory = (parentId) => axiosApi.get(' /manage/category/list', {params: {parentId}})
@@ -20,3 +22,11 @@ export const getCategory = (parentId) => axiosApi.get(' /manage/category/list', 
 export const addCategory = (parentId, categoryName) => axiosApi.post('/manage/category/add', {parentId, categoryName})
 //更新一级/二级分类
 export const upDataCategory = (categoryId, categoryName) => axiosApi.post('/manage/category/update', {categoryId, categoryName})
+
+
+//获取商品分页列表
+export const getProductLimit = (pageNum,pageSize) => axiosApi.get('/manage/product/list', {params: {pageNum, pageSize}})
+
+//根据ID/Name搜索产品分页列表
+export const getSearchProductName = (pageNum,pageSize,productName) => axiosApi.get('/manage/product/search', {params: {pageNum, pageSize,productName}})
+export const getSearchProductDesc = (pageNum,pageSize,productDesc) => axiosApi.get('/manage/product/search', {params: {pageNum, pageSize,productDesc}})

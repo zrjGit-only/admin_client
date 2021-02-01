@@ -1,12 +1,16 @@
-import React, {Component} from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
 
-import ProductHome from './home'
+import React, {Component} from 'react';
+import {Route, Switch,Redirect} from "react-router-dom";
+// import AddupdateProduct from "./addupdateProduct/addupdateProduct";
+import HomeProduct from "./HomeProduct/HomeProduct";
+//import DetailProduct from "./DetailProduct/DetailProduct";
 
 export default function Product() {
     return (
         <Switch>
-            <Route path='/product' component={ProductHome} exact/> {/*路径完全匹配*/}
+            <Route path='/product' exact component={HomeProduct}/>
+            {/*<Route path='/product/addupdate' component={AddupdateProduct}/>*/}
+            {/*<Route path='/product/detail' component={DetailProduct}/>*/}
             <Redirect to='/product'/>
         </Switch>
 

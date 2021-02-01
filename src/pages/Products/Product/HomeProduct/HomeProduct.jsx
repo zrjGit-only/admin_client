@@ -8,14 +8,16 @@ import {
     message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
-import LinkButton from '../../../components/LinkButton/LinkButton'
-
+import LinkButton from '../../../../components/LinkButton/LinkButton'
+import {getProductLimit} from "../../../../api/http"
+import productAction from "../../../../store/actions/product";
+import {connect} from "react-redux";
 const Option = Select.Option
 
 /*
 Product的默认子路由组件
  */
-export default class ProductHome extends Component {
+class HomeProduct extends Component {
 
     state = {
         total: 0, // 商品的总数量
@@ -74,13 +76,18 @@ export default class ProductHome extends Component {
         ];
     }
 
+    //获取分页列表
+    async getProduct() {
+        const {pageNum, pageSize} = this.state
+        await this.props.getProductStore(pageNum, pageSize)
+    }
 
     componentWillMount () {
         this.initColumns()
     }
 
     componentDidMount () {
-        //this.getProducts(1)
+        this.getProduct(1)
     }
 
     render() {
@@ -129,3 +136,19 @@ export default class ProductHome extends Component {
         )
     }
 }
+function mapStateToProps(state) {
+    return {
+        productList: state.product.productInfo,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async getProductStore(pageNum, pageSize) {
+            await dispatch(productAction.addProduct(pageNum, pageSize))
+        },
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeProduct);

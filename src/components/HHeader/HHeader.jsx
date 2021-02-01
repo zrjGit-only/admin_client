@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './HHeader.less'
-import {Button, Form} from 'antd';
+import {Button, Form,message,Modal} from 'antd';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
 import {withRouter} from 'react-router-dom'
-
+import {SPH_ADMIN_LOGIN} from '../../utils/localStorageType'
 import {formateDate} from '../../utils/dateUtils'
 import CitySelect from "../CitySelect/CitySelect";
 import menuList from '../../config/menuConfig'
@@ -17,7 +18,18 @@ function HHeader(props) {
     const [selectedValues, setSelectedValues] = useState('')//天气
 
     const confirm = () => {
-
+        Modal.confirm({
+            icon: <ExclamationCircleOutlined/>,
+            content: '是否退出登录?',
+            okText: '确认',
+            cancelText: '取消',
+            onOk:()=>{
+                console.log(this)
+                localStorage.removeItem(SPH_ADMIN_LOGIN)
+                message.success('退出成功');
+                this.props.history.replace('/login')
+            }
+        });
     }
     //获取头部信息
     const getTitle = () => {
@@ -65,6 +77,7 @@ function HHeader(props) {
             clearInterval(inter)
         }
     }, [])
+
 
 
     return (
