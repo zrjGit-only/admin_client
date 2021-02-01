@@ -30,3 +30,5 @@ export const getProductLimit = (pageNum,pageSize) => axiosApi.get('/manage/produ
 //根据ID/Name搜索产品分页列表
 export const getSearchProductName = (pageNum,pageSize,productName) => axiosApi.get('/manage/product/search', {params: {pageNum, pageSize,productName}})
 export const getSearchProductDesc = (pageNum,pageSize,productDesc) => axiosApi.get('/manage/product/search', {params: {pageNum, pageSize,productDesc}})
+//根据分类ID获取分类
+export const getCategoryInfo = (categoryId) => axiosApi.get(`/manage/category/info?categoryId=${categoryId}`)
