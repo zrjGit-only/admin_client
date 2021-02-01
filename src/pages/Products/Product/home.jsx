@@ -5,7 +5,6 @@ import {
     Input,
     Button,
     Table,
-    message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 import LinkButton from '../../../components/LinkButton/LinkButton'

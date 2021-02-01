@@ -32,7 +32,7 @@ class Login extends Component {
     }
 
     render() {
-        const {bgUrl, opacity} = this.state
+        const {bgUrl} = this.state
         return (
             <div className="login">
                 <header className="login-header">

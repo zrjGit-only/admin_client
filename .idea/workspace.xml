@@ -2,26 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/bgConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/images/bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/Product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Products.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/role/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/role/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/user/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +135,7 @@
       <workItem from="1612009401500" duration="4195000" />
       <workItem from="1612015951384" duration="590000" />
       <workItem from="1612018124208" duration="4513000" />
-      <workItem from="1612138983581" duration="20825000" />
+      <workItem from="1612138983581" duration="21173000" />
     </task>
     <servers />
   </component>
