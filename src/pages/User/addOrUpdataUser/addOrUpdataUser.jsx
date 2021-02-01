@@ -7,6 +7,7 @@ import {addOrUpDataUserInfo} from '../../../api/http'
 const {Option} = Select;
 
 function AddOrUpDataUser(props) {
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
@@ -31,12 +32,15 @@ function AddOrUpDataUser(props) {
 
     //确认增加用户
     const handleOk = async (e) => {
-        console.log(username,'username' , password,'password' , phone ,'phone', email ,'email', roleId,'roleId');
+        if(!(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4-12}$/.test(username)|| /^\d{4-12}$/.test(password)|| /^1[3456789]d{9}$/.test(phone) || /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email))){
+            message.warn('请输入正确内容')
+            return
+        }
         if (!(username && password && phone && email && roleId)) {
             message.warn('请不要输入空内容')
             return
         }
-        const userInfo = {username, password, phone, email, role_id:roleId}
+        const userInfo = {username, password, phone, email, role_id: roleId}
         userInfo._id = props.user._id ? props.user._id : null
         const {status} = await addOrUpDataUserInfo(userInfo)
         if (status !== 0) {
@@ -64,32 +68,44 @@ function AddOrUpDataUser(props) {
             <Form {...layout}>
                 <Form.Item
                     label="用户名"
-                    name="username"
-                    rules={[{required: true, message: '请输入用户名'}]}>
-                    <Input placeholder="请输入用户名" onChange={(e) => setUsername(e.target.value)} value={username}/> <br/>
+                    name='username'
+                    rules={[
+                        {required: true, message: '用户名不能为空'},
+                        {min: 4, message: '用户名至少4位'},
+                        {max: 12, message: '用户名最多12位'},
+                        {pattern: /^[A-z0-9_]+$/, message: '用户名必须是英文、数字或者下划线组成'},
+                        {whitespace: true}]} >
+                        <Input name='username' placeholder="请输入用户名" onChange={(e) => setUsername(e.target.value)} value={username}/>
+                        <br name="br"/>
                 </Form.Item>
                 <Form.Item
                     label="密码"
                     name="password"
-                    rules={[{required: true, message: '请输入密码'}]}>
-                    <Input.Password placeholder="请输入密码" onChange={(e) => setPassword(e.target.value)} value={password}/> <br/>
+                    rules={[{required: true, message: '请输入密码'},
+                        {min: 4, message: '用户名至少4位'},
+                        {max: 12, message: '用户名最多12位'},]}>
+                    <Input.Password placeholder="请输入密码" onChange={(e) => setPassword(e.target.value)} value={password}/>
+                    <br name="br"/>
                 </Form.Item>
                 <Form.Item
                     label="手机号"
                     name="phone"
-                    rules={[{required: true, message: '请输入手机号'}]}>
-                    <Input placeholder="请输入密码" onChange={(e) => setPhone(e.target.value)} value={phone}/> <br/>
+                    rules={[{required: true, message: '请输入手机号'},
+                        {pattern: /^1[3456789]d{9}$/, message: '请输入正确手机号'},]}>
+                    <Input name="password" placeholder="请输入密码" onChange={(e) => setPhone(e.target.value)} value={phone}/>
+                    <br name="br"/>
                 </Form.Item>
                 <Form.Item
                     label="邮箱"
                     name="email"
-                    rules={[{required: true, message: '请输入邮箱'}]}>
-                    <Input placeholder="请输入邮箱" onChange={(e) => setEmail(e.target.value)} value={email}/> <br/>
+                    rules={[{required: true, message: '请输入邮箱'},
+                        {pattern: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/, message: '请输入正确手机号'}]}>
+                    <Input name="email" placeholder="请输入邮箱" onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <br name="br"/>
                 </Form.Item>
                 <Form.Item name="role_id" label="角色" rules={[{required: true}]}>
                     <Select
                         placeholder="请选择角色"
-                        allowClear
                         value={roleId}
                         onSelect={(v) => {
                             setRoleId(v)
@@ -99,7 +115,8 @@ function AddOrUpDataUser(props) {
                                 <Option value={item._id} key={item._id}>{item.name}</Option>
                             ))
                         }
-                    </Select> <br/>
+                    </Select>
+                    <br name="br"/>
                 </Form.Item>
             </Form>
         </Modal>
