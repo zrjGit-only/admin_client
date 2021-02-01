@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from 'antd'
 import './NotFound.less'
 
 function NotFound(props) {
@@ -8,6 +9,9 @@ function NotFound(props) {
     return (
         <div className='not-found'>
             <img src="./404.jpg" className="img"/>
+            <div>
+                <Button type='primary' onClick={goHome}> 回到首页 </Button>
+            </div>
         </div>
     )
 
