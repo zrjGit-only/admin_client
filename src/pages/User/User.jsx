@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import userAction from '../../store/actions/user'
 import {delUserInfo} from '../../api/http'
-import {Button, Card, Popconfirm, Input, Modal, Table, Space, message} from "antd";
+import {Button, Card, Popconfirm, Table, Space, message} from "antd";
 import AddOrUpDataUser from './addOrUpdataUser/addOrUpdataUser'
 
 const {Column} = Table;

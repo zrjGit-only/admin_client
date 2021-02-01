@@ -10,7 +10,7 @@ export const get_role_info = function (payload) {
     }
 }
 
-
+//eslint-disable-next-line
 export default {
     getRoleInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数

@@ -9,7 +9,7 @@ export const get_user_info = function (payload) {
     }
 }
 
-
+//eslint-disable-next-line
 export default {
     //获取商品分页列表
     getUserInfo() {

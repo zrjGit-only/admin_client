@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Role/Role.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Role/Role.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User/User.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/role/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/role/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/user/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/role/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/role/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/user/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/state/role/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state/role/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/state/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state/user/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +62,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -72,12 +79,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\14012\Desktop\admin_client\src\utils" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\pages\Products\Category" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\14012\Desktop\admin_client\src\pages\Charts" />
@@ -86,13 +92,6 @@
       <recent name="C:\Users\14012\Desktop\admin_client\src\utils" />
       <recent name="C:\Users\14012\Desktop\admin_client\public" />
       <recent name="C:\Users\14012\Desktop\admin_client" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\pages\Products\Category" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
     </key>
   </component>
   <component name="RunManager">
@@ -137,18 +136,12 @@
       <workItem from="1612009401500" duration="4195000" />
       <workItem from="1612015951384" duration="590000" />
       <workItem from="1612018124208" duration="4513000" />
-      <workItem from="1612138983581" duration="11563000" />
+      <workItem from="1612138983581" duration="13260000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611988276744">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1611988276744" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
