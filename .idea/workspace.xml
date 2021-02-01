@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions-type/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions-type/user/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/user/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/reducers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -80,11 +82,11 @@
       <recent name="C:\Users\14012\Desktop\admin_client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\utils" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\reducers" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\state" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\actions-type" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\actions" />
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
     </key>
   </component>
   <component name="RunManager">
