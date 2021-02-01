@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './HHeader.less'
 import {Button, Form,message,Modal} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
-import {withRouter} from 'react-router-dom'
+import {withRouter,Redirect} from 'react-router-dom'
 import {SPH_ADMIN_LOGIN} from '../../utils/localStorageType'
 import {formateDate} from '../../utils/dateUtils'
 import CitySelect from "../CitySelect/CitySelect";
@@ -17,6 +17,7 @@ function HHeader(props) {
     const [weather_temp, setWeatherTemp] = useState('')//气温
     const [selectedValues, setSelectedValues] = useState('')//天气
 
+
     const confirm = () => {
         Modal.confirm({
             icon: <ExclamationCircleOutlined/>,
@@ -27,7 +28,7 @@ function HHeader(props) {
                 console.log(this)
                 localStorage.removeItem(SPH_ADMIN_LOGIN)
                 message.success('退出成功');
-                this.props.history.replace('/login')
+                props.history.replace('/login')
             }
         });
     }
