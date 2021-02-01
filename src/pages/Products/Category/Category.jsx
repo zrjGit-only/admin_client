@@ -65,6 +65,7 @@ class Category extends Component {
         const {parentId} = this.state
 
         if (flag === 'add') { //添加操作
+            console.log(1)
             const {categoryId, categoryName} = this.state.form
             //添加一级分类
             await this.props.addCategoryStore(categoryId, categoryName)
