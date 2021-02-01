@@ -1,6 +1,9 @@
 import {GET_USER_INFO} from '../../actions-type/user'
 import {getUserInfo} from '../../../api/http'
 import dayjs from 'dayjs'
+import {LOGIN} from '../../actions-type/user'
+import {login} from '../../../api/http'
+import {SPH_ADMIN_LOGIN} from '../../../utils/localStorageType'
 
 export const get_user_info = function (payload) {
     return {
@@ -9,9 +12,16 @@ export const get_user_info = function (payload) {
     }
 }
 
+export const user_info = function (payload) {
+    return {
+        type: LOGIN,
+        payload
+    }
+}
+
 //eslint-disable-next-line
 export default {
-    //获取商品分页列表
+    //获取用户信息
     getUserInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {
@@ -26,5 +36,21 @@ export default {
             })
             dispatch(get_user_info(res))
         }
-    }
+    },
+
+    //登录
+    userLogin(username, password) {
+        //因为要传参所以返回需要的函数,外部函数用来接收参数
+        return async (dispatch) =>{
+            try {
+                const loginInfo = await login(username, password)
+                dispatch(user_info(loginInfo))
+                //下次可以自动登录
+                localStorage.setItem(SPH_ADMIN_LOGIN,JSON.stringify(loginInfo))
+                return loginInfo
+            } catch (e) {
+                console.log('请求失败', e);
+            }
+        }
+    },
 }

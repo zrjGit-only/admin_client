@@ -80,7 +80,7 @@ function User(props) {
 
 function mapStateToProps(state) {
     return {
-        userInfo: state.user.userInfo,
+        userInfo: state.user.user,
     }
 }
 

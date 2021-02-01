@@ -6,7 +6,7 @@ export default function (prevState = user, action) {
     //eslint-disable-next-line
     switch (action.type) {
         case GET_USER_INFO:
-            prevState.userInfo = action.payload;
+            prevState.user = action.payload;
             break;
     }
     // console.log(prevState,'prevState');

@@ -1,5 +1,5 @@
 import React,{Suspense,lazy} from 'react';
-import {Route,Switch,Redirect} from "react-router-dom"
+import {Route,Switch} from "react-router-dom"
 import './Admin.less'
 import { Layout} from 'antd';
 import SSider from '../../components/SSider/SSider'
@@ -27,7 +27,6 @@ export default function Admin() {
                     <Content style={{ margin: '24px 16px 0' ,background:'#fff'}}>
                         <Suspense fallback={<h1>加载中……</h1>}>
                             <Switch>
-                                <Route path='/home' component={Home}/>
                                 <Route path='/category' component={Category}/>
                                 <Route path='/product' component={Product}/>
                                 <Route path='/user' component={User}/>
@@ -35,6 +34,7 @@ export default function Admin() {
                                 <Route path='/charts/bar' component={Bar}/>
                                 <Route path='/charts/pie' component={Pie}/>
                                 <Route path='/charts/line' component={Line}/>
+                                <Route path='/' component={Home}/>
                                 <Route component={NotFound}/>
                             </Switch>
                         </Suspense>

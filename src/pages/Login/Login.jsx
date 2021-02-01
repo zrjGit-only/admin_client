@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
-import {
-    Form,
-    Input,
-    Button,
-} from 'antd'
+import {connect} from 'react-redux'
+import {Form, Input, Button, message} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
+import userAction from '../../store/actions/user'
+import {SPH_ADMIN_LOGIN} from '../../utils/localStorageType'
 import './Login.less';
 import bg from '../../config/bgConfig'
+//必须在所有import之后
+const Item = Form.Item
 
 class Login extends Component {
     state = {
         bgUrl: '/images/1.jpg'
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        // 判断是否已登录
+        if (localStorage.getItem(SPH_ADMIN_LOGIN)) {
+            this.props.history.replace('/');
+        }
         let i = 0
         this.timer = setInterval(() => {
             i++
@@ -27,8 +32,15 @@ class Login extends Component {
         }, 5000)
     }
 
-    handleSubmit = (e) => {
-        console.log(e);
+    async login(values) {
+        const {username, password} = values
+        const {status, msg} = await this.props.userLoginStore(username, password)
+        if (status === 0) {
+            message.success('登陆成功');
+            this.props.history.replace('/');
+        } else {
+            message.error(msg);
+        }
     }
 
     render() {
@@ -43,22 +55,23 @@ class Login extends Component {
                     <h2>用户登陆</h2>
                     <Form className="login-form" onFinish={this.handleSubmit.bind(this)}
                           initialValues={{"username": "admin", "password": "admin"}}>
-                        <Form.Item rules={[
+                        <Item rules={[
+                            //前端验证
                             {required: true, message: '用户名不能为空'},
                             {min: 4, message: '用户名至少4位'},
                             {max: 12, message: '用户名最多12位'},
                             {pattern: /^[A-z0-9_]+$/, message: '用户名必须是英文、数字或者下划线组成'},
                             {whitespace: true}]} name='username'>
                             <Input prefix={<UserOutlined/>} placeholder="用户名"/>
-                        </Form.Item>
+                        </Item>
 
-                        <Form.Item rules={[
+                        <Item rules={[
                             {required: true, message: '密码不能为空'},
                             {min: 4, message: '用户名至少4位'},
                             {max: 12, message: '用户名最多12位'},
                             {whitespace: true}]} name='password'>
                             <Input.Password prefix={<LockOutlined/>} placeholder="密码"/>
-                        </Form.Item>
+                        </Item>
 
                         <Form.Item>
                             <Button type="primary" htmlType="submit" className="login-form-button">
@@ -76,4 +89,13 @@ class Login extends Component {
     }
 }
 
-export default Login
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async userLoginStore(username, password) {
+            return await dispatch(userAction.userLogin(username, password))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login)

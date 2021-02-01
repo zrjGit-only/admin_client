@@ -1,48 +1,64 @@
-import React, {Component} from 'react'
-import {
-    Form,
-    Select,
-    Input
-} from 'antd'
-// import {UserOutlined} from "@ant-design/icons";
+import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {Form, Input, Select} from "antd";
+import PubSub from 'pubsub-js'
 
-const Item = Form.Item
-const Option = Select.Option
 
-/*
-添加分类的form组件
- */
-export default class AddForm extends Component {
+const {Option} = Select;
+const {Item} = Form;
 
-    // static propTypes = {
-    //   setForm: PropTypes.func.isRequired, // 用来传递form对象的函数
-    //   categorys: PropTypes.array.isRequired, // 一级分类的数组
-    //   parentId: PropTypes.string.isRequired, // 父分类的ID
-    // }
+class AddFrom extends Component {
+    constructor(props) {
+        super(props);
+        //订阅事件,因为所有修改的操作公用一个输入框
+        //如果不清空,下次还是会显示上次的数据,且显示的数据没有被收集
+        PubSub.subscribe('addChild', () => {
+            this.setState({value: ''})
+        })
+    }
+    state = {
+        value: ''
+    }
 
-    // componentWillMount () {
-    //   this.props.setForm(this.props.form)
-    // }
+    //收集表单的数据
+    async onFormChange(e) {
+        this.props.onFormChange(e)
+        if (e.target) {
+            this.setState({value: e.target.value})
+        }
+    }
 
     render() {
-        // const {categorys, parentId} = this.props
-
-
+        const {value} = this.state
+        const {parentId} = this.props
         return (
-            <Form >
-                <Item>
-                    <Select>
-                        <Option value='0'>一级分类</Option>
-                        <Option value='1'>电脑</Option>
-                        {/*{*/}
-                        {/*  categorys.map(c => <Option value={c._id}>{c.name}</Option>)*/}
-                        {/*}*/}
+            <Form>
+                <Item label="所属分类" rules={[{required: true, message: '请选择属性分类'}]}>
+                    <Select placeholder="请选择分类"
+                            onChange={this.onFormChange.bind(this)}
+                            name="categoryId">
+                        {
+                            parentId === '0'
+                                ? (<Option value="0">一级分类</Option>)
+                                : this.props.category1.map(item => (
+                                    <Option value={item._id} key={item._id}>{item.name}</Option>
+                                ))
+                        }
                     </Select>
                 </Item>
-                <Item>
-                    <Input placeholder='请输入分类名称'/>
+                <br/>
+                <Item label="分类名称" rules={[{required: true, message: '请输入分类名称'}]}>
+                    <Input onChange={this.onFormChange.bind(this)} name="categoryName" value={value} />
                 </Item>
             </Form>
-        )
+        );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        category1: state.category.category1,
+    }
+}
+
+export default connect(mapStateToProps, null)(AddFrom)

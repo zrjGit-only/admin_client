@@ -5,24 +5,32 @@ import {
     Input,
     Button,
     Table,
+    message,
+    Pagination
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
-import LinkButton from '../../../components/LinkButton/LinkButton'
-
+import LinkButton from '../../../../components/LinkButton/LinkButton'
+import productAction from "../../../../store/actions/product";
+import {connect} from "react-redux";
 const Option = Select.Option
 
 /*
 Product的默认子路由组件
  */
-export default class ProductHome extends Component {
-
+class HomeProduct extends Component {
     state = {
-        total: 0, // 商品的总数量
-        products: [], // 商品 的数组
-        loading: false, // 是否正在加载中
-        searchName: '', // 搜索的关键字
-        searchType: 'productName', // 根据哪个字段搜索
-    };
+        pageNum: 1,
+        pageSize: 3,
+        search: '',
+        content: ''
+    }
+    // state = {
+    //     total: 0, // 商品的总数量
+    //     products: [], // 商品 的数组
+    //     loading: false, // 是否正在加载中
+    //     searchName: '', // 搜索的关键字
+    //     searchType: 'productName', // 根据哪个字段搜索
+    // };
 
     /*
     初始化 table的列的数组
@@ -73,19 +81,51 @@ export default class ProductHome extends Component {
         ];
     }
 
+    //获取分页列表
+    async getProduct() {
+        const {pageNum, pageSize} = this.state
+        await this.props.getProductStore(pageNum, pageSize)
+    }
+    //页码改变的回调，参数是改变后的页码及每页条数
+    onChange(pageNum, pageSize) {
+        this.setState({pageNum: pageNum}, async () => {
+            await this.getProduct()
+        })
+    }
+    //pageSize 变化的回调
+    onShowSizeChange(current, size) {
+        this.setState({pageSize: size}, async () => {
+            await this.getProduct()
+        })
+    }
+
+    //按条件搜索
+    async getSearchProduct() {
+        const {search, content, pageNum, pageSize} = this.state
+        if (!content) {
+            message.warning('搜索值不能为空');
+            return
+        }
+        await this.props.getSearchProductStore(pageNum, pageSize, content, search)
+        //搜索数据重置
+        this.setState({
+            search: '',
+            content: ''
+        })
+    }
 
     componentWillMount () {
         this.initColumns()
     }
 
     componentDidMount () {
-        //this.getProducts(1)
+        this.getProduct(1)
     }
 
     render() {
 
         // 取出状态数据
-        const {products, total, loading, searchType, searchName} = this.state
+        const {products, total, loading, searchType, searchName,pageSize,pageNum} = this.state
 
         const title = (
             <span>
@@ -101,7 +141,7 @@ export default class ProductHome extends Component {
                     style={{width: 150, margin: '0 15px'}}
                     value={searchName}
                     onChange={event => this.setState({searchName:event.target.value})}/>
-                <Button type='primary' >搜索</Button>
+                <Button type='primary' onClick={this.getSearchProduct.bind(this)}>搜索</Button>
             </span>
         )
 
@@ -124,7 +164,36 @@ export default class ProductHome extends Component {
                         showQuickJumper: true,
                     }}
                 />
+                <Pagination
+                    defaultCurrent={1}
+                    current={pageNum}
+                    total={total}
+                    pageSize={pageSize}
+                    pageSizeOptions={[3, 5, 8]}
+                    style={{marginTop: 20, float: "right"}}
+                    onChange={this.onChange.bind(this)}
+                    onShowSizeChange={this.onShowSizeChange.bind(this)}
+                    showSizeChanger
+                />
             </Card>
         )
     }
 }
+function mapStateToProps(state) {
+    return {
+        productList: state.product.productInfo,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async getProductStore(pageNum, pageSize) {
+            await dispatch(productAction.addProduct(pageNum, pageSize))
+        },
+        async getSearchProductStore(pageNum, pageSize, content, search) {
+            await dispatch(productAction.getSearchProduct(pageNum, pageSize, content, search))
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeProduct);
