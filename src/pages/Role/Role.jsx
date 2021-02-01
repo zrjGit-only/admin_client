@@ -38,6 +38,10 @@ function Role(props) {
     };
     //点击model确认按钮
     const handleOk = async (flag) => {
+        if(!roleName){
+            message.warn('请输入正确内容')
+            return
+        }
         let res
         if (flag === 1) {
             //保存选中的权限 发送请求
@@ -67,12 +71,14 @@ function Role(props) {
         //关闭复选框
         setIsModalVisible(0)
         setRefresh(!refresh)
+        setRoleName('')
 
 
     }
     //点击model内的取消按钮
     const handleCancel = () => {
         setIsModalVisible(0)
+        setRoleName('')
     }
     //点击model内的复选框时触发
     const onCheck = (checkedKeys) => {
@@ -115,9 +121,18 @@ function Role(props) {
                 />
             </Modal>
             <Modal title="创建角色" visible={isModalVisible === 2} onOk={() => handleOk(2)} onCancel={handleCancel}>
-                <Form.Item label='角色名称'>
-                    <Input placeholder="请输入角色名称r" value={roleName} onChange={e => setRoleName(e.target.value)}/>
-                </Form.Item>
+                <Form>
+                    <Form.Item label='角色名称'
+                               name="roleName"
+                               rules={[
+                                   {required: true, message: '角色名称不能为空'},
+                                   {min: 4, message: '角色名称至少4位'},
+                                   {max: 12, message: '角色名称最多12位'},
+                                   {whitespace: true}]}>
+                        <Input  name="roleName" placeholder="请输入角色名称" value={roleName} onChange={e => setRoleName(e.target.value)}/>
+                    </Form.Item>
+                </Form>
+
             </Modal>
         </Card>
 
