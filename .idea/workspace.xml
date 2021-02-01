@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +54,6 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/state" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -140,6 +136,7 @@
       <workItem from="1612009401500" duration="4195000" />
       <workItem from="1612015951384" duration="590000" />
       <workItem from="1612018124208" duration="4513000" />
+      <workItem from="1612144774147" duration="2933000" />
     </task>
     <servers />
   </component>
