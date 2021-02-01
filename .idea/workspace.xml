@@ -55,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/Products/Product" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -80,8 +80,8 @@
       <recent name="C:\Users\14012\Desktop\admin_client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\utils" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\pages\Products\Product" />
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\utils" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\state" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\reducers" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\actions-type" />
