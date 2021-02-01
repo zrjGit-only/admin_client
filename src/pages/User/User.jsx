@@ -25,11 +25,17 @@ function User(props) {
         // console.log(text);
         await delUserInfo(text._id)
         message.success('删除成功');
-        setIsRefresh(!isRefresh)
+        refresh()
     }
-
-    const handleCancel = () => {
+    //刷新页面
+    const refresh=()=>{
+        setIsRefresh(!isRefresh)
         setIsAddOrUpData(0)
+    }
+    //关闭修改/添加框
+    const closeModal = () => {
+        setIsAddOrUpData(0)
+        setUser([])
     }
 
     const title = <Button type="primary" onClick={() => {
@@ -65,7 +71,7 @@ function User(props) {
                 />
             </Table>
 
-            <AddOrUpDataUser user={user} isAddOrUpData={isAddOrUpData} handleCancel={handleCancel}/>
+            <AddOrUpDataUser user={user} isAddOrUpData={isAddOrUpData} closeModal={closeModal} refresh={refresh}/>
 
         </Card>
 

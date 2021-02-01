@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Card, Button, Table, Modal, Form, Input, Tree, message} from 'antd';
 import roleAction from "../../store/actions/role";
 import menuList from '../../config/menuConfig'
-import {updateRoleInfo, addRoleInfo} from '../../api/http'
+import {upDataRoleInfo, addRoleInfo} from '../../api/http'
 
 
 const {Column} = Table;
@@ -47,7 +47,7 @@ function Role(props) {
                 auth_time: "111",
                 auth_name: 'admin'
             }
-            res = await updateRoleInfo(roleInfo)
+            res = await upDataRoleInfo(roleInfo)
         }
         if (flag === 2) {
             if (!roleName) {

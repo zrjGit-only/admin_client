@@ -2,16 +2,17 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import roleAction from '../../../store/actions/role'
 import {Input, Form, Select, Modal, message} from "antd";
+import {addOrUpDataUserInfo} from '../../../api/http'
 
 const {Option} = Select;
 
 function AddOrUpDataUser(props) {
-    console.log(props.user);
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [roleId, setRoleId] = useState('')
+
     //获取角色
     useEffect(() => {
         const getRoleInfo = async () => {
@@ -26,19 +27,30 @@ function AddOrUpDataUser(props) {
         setPhone(props.user.phone)
         setEmail(props.user.email)
         setRoleId(props.user.roleId)
-        console.log(2);
     }, [props.user])
-    const onGenderChange = () => {
-    }
+
     //确认增加用户
-    const handleOk = (e) => {
-        if (!(username && password && phone && email && roleId)){
+    const handleOk = async (e) => {
+        console.log(username,'username' , password,'password' , phone ,'phone', email ,'email', roleId,'roleId');
+        if (!(username && password && phone && email && roleId)) {
             message.warn('请不要输入空内容')
+            return
         }
-            }
+        const userInfo = {username, password, phone, email, role_id:roleId}
+        userInfo._id = props.user._id ? props.user._id : null
+        const {status} = await addOrUpDataUserInfo(userInfo)
+        if (status !== 0) {
+            message.error('网络抖动')
+        } else {
+            message.success(props.user._id ? '修改成功' : '添加成功')
+            props.refresh()
+        }
+
+
+    }
     //确认取消添加
     const handleCancel = () => {
-        props.handleCancel()
+        props.closeModal()
     }
     const layout = {
         labelCol: {span: 6},
@@ -54,30 +66,29 @@ function AddOrUpDataUser(props) {
                     label="用户名"
                     name="username"
                     rules={[{required: true, message: '请输入用户名'}]}>
-                    <Input placeholder="请输入用户名" onChange={(v) => setUsername(v)} value={username}/><br/>
+                    <Input placeholder="请输入用户名" onChange={(e) => setUsername(e.target.value)} value={username}/> <br/>
                 </Form.Item>
                 <Form.Item
                     label="密码"
                     name="password"
                     rules={[{required: true, message: '请输入密码'}]}>
-                    <Input.Password placeholder="请输入密码" onChange={(v) => setPassword(v)} value={password}/><br/>
+                    <Input.Password placeholder="请输入密码" onChange={(e) => setPassword(e.target.value)} value={password}/> <br/>
                 </Form.Item>
                 <Form.Item
                     label="手机号"
                     name="phone"
                     rules={[{required: true, message: '请输入手机号'}]}>
-                    <Input placeholder="请输入密码" onChange={(v) => setPhone(v)} value={phone}/><br/>
+                    <Input placeholder="请输入密码" onChange={(e) => setPhone(e.target.value)} value={phone}/> <br/>
                 </Form.Item>
                 <Form.Item
                     label="邮箱"
                     name="email"
                     rules={[{required: true, message: '请输入邮箱'}]}>
-                    <Input placeholder="请输入邮箱" onChange={(v) => setEmail(v)} value={email}/><br/>
+                    <Input placeholder="请输入邮箱" onChange={(e) => setEmail(e.target.value)} value={email}/> <br/>
                 </Form.Item>
                 <Form.Item name="role_id" label="角色" rules={[{required: true}]}>
                     <Select
                         placeholder="请选择角色"
-                        onChange={onGenderChange}
                         allowClear
                         value={roleId}
                         onSelect={(v) => {
@@ -88,7 +99,7 @@ function AddOrUpDataUser(props) {
                                 <Option value={item._id} key={item._id}>{item.name}</Option>
                             ))
                         }
-                    </Select><br/>
+                    </Select> <br/>
                 </Form.Item>
             </Form>
         </Modal>
