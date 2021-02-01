@@ -11,6 +11,12 @@ export const getUserInfo = () => axiosApi.get('/manage/user/list')
 //删除用户
 export const delUserInfo = (userId) => axiosApi.post('/manage/user/delete',{userId})
 
-// 获取一级/二级分类的列表
-export const reqCategorys = (parentId) => axiosApi.get('/manage/category/list', {parentId})
+//登录
+export const login = (username, password) => axiosApi.post('/login', {username, password})
 
+//获取一二级列表
+export const getCategory = (parentId) => axiosApi.get(' /manage/category/list', {params: {parentId}})
+//添加一级/二级分类
+export const addCategory = (parentId, categoryName) => axiosApi.post('/manage/category/add', {parentId, categoryName})
+//更新一级/二级分类
+export const upDataCategory = (categoryId, categoryName) => axiosApi.post('/manage/category/update', {categoryId, categoryName})

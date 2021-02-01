@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8d47a52f-67d2-4b68-a957-4322f1eeca82" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/AddForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/AddForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Category/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/reducers" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -70,14 +75,6 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\14012\Desktop\admin_client\src\pages\Charts" />
       <recent name="C:\Users\14012\Desktop\admin_client\src\components" />
@@ -87,11 +84,11 @@
       <recent name="C:\Users\14012\Desktop\admin_client" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\reducers" />
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\state" />
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\actions-type" />
+      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\store\actions" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client" />
-      <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\pages\Products\Category" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
-      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
     </key>
   </component>
   <component name="RunManager">
