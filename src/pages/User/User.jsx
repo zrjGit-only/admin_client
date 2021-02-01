@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {connect} from 'react-redux'
 import userAction from '../../store/actions/user'
 import {delUserInfo} from '../../api/http'
@@ -11,6 +11,9 @@ function User(props) {
     const [isAddOrUpData, setIsAddOrUpData] = useState(0)     //显示增加/修改界面
     const [isRefresh, setIsRefresh] = useState(false)    //重新获取列表信息
     const [user, setUser] = useState([])    //重新获取列表信息
+
+    // const commit = useRef(null)
+
     useEffect(() => {
         const getUserInfo = async () => {
             await props.getUserInfoStore()
@@ -24,11 +27,7 @@ function User(props) {
         message.success('删除成功');
         setIsRefresh(!isRefresh)
     }
-    //确认增加用户
-    const handleOk = () => {
 
-    }
-    //确认取消添加
     const handleCancel = () => {
         setIsAddOrUpData(0)
     }
@@ -65,12 +64,9 @@ function User(props) {
                     )}
                 />
             </Table>
-            <Modal title={isAddOrUpData === 1 ? '添加用户' : '修改用户'}
-                   visible={isAddOrUpData !==0 }
-                   onOk={handleOk}
-                   onCancel={handleCancel}>
-                <AddOrUpDataUser user={user}/>
-            </Modal>
+
+            <AddOrUpDataUser user={user} isAddOrUpData={isAddOrUpData} handleCancel={handleCancel}/>
+
         </Card>
 
     )
