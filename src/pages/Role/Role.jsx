@@ -130,6 +130,7 @@ function Role(props) {
                                    {max: 12, message: '角色名称最多12位'},
                                    {whitespace: true}]}>
                         <Input  name="roleName" placeholder="请输入角色名称" value={roleName} onChange={e => setRoleName(e.target.value)}/>
+                        <br name='br'/>
                     </Form.Item>
                 </Form>
 
