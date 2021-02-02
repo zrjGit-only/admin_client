@@ -1,58 +1,50 @@
-import React,{useState} from 'react'
+import React, {useState} from 'react'
 import {Card, Button} from 'antd';
 import ReactEcharts from 'echarts-for-react'
 import './Bar.less'
 
 export default function Bar() {
+    const [sales, setSales] = useState([50, 200, 360, 100, 100, 200])//销售
+    const [stores, setStores] = useState([60, 100, 250, 200, 150, 100])//库存
 
+    //更新库存
     const update = () => {
 
     }
     const getOption = () => {
         return {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
+            tooltip: {},
+            legend: {
+                data: ['销量', '库存']
             },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
             },
-            xAxis: [
-                {
-                    type: 'category',
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    axisTick: {
-                        alignWithLabel: true
-                    }
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: sales,
+                itemStyle: {
+                    color: '#91CC75'
                 }
-            ],
-            yAxis: [
-                {
-                    type: 'value'
+            }, {
+                name: '库存',
+                type: 'bar',
+                data: stores,
+                itemStyle: {
+                    color: '#FAC858'
                 }
-            ],
-            series: [
-                {
-                    name: '直接访问',
-                    type: 'bar',
-                    barWidth: '60%',
-                    data: [10, 52, 200, 334, 390, 330, 220]
-                }
-            ]
+            }]
         }
     }
     return (
         <>
-            <Card  style={{width: "100%"}}>
+            <Card style={{width: "100%"}}>
                 <Button type='primary' onClick={update}>更新</Button>
             </Card>
             <Card title='柱状图一'>
-                <ReactEcharts option={getOption()} />
+                <ReactEcharts option={getOption()}/>
             </Card>
         </>
     )
