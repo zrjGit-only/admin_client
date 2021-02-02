@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Card, Button} from 'antd';
 import ReactEcharts from 'echarts-for-react'
-import './Bar.less'
 
 export default function Bar() {
     const [sales, setSales] = useState([500, 200, 360, 100, 100, 200])//销售

@@ -1,4 +1,4 @@
-
+// eslint-disable-next-line
 export default {
     category1:[],//一级分类列表
     category2:[],//二级分类列表

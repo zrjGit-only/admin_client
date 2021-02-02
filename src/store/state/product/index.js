@@ -1,5 +1,4 @@
-import {GET_SEARCH_PRODUCT} from "../../actions-type/product";
-
+// eslint-disable-next-line
 export default {
     productInfo:[],
 }

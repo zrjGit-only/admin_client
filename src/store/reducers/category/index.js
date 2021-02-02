@@ -1,6 +1,5 @@
 import category from '../../state/category'
-import {ADD_CATEGORY,GET_CATEGORY1,GET_CATEGORY2,GET_CATEGORY_ALL} from '../../actions-type/category'
-
+import {GET_CATEGORY1,GET_CATEGORY2,GET_CATEGORY_ALL} from '../../actions-type/category'
 export default function (prevState = category, action) {
     prevState = JSON.parse(JSON.stringify(prevState));
     switch (action.type) {

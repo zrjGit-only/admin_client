@@ -1,6 +1,5 @@
 import category from '../../state/product'
 import {GET_PRODUCT,GET_SEARCH_PRODUCT} from '../../actions-type/product'
-
 export default function (prevState = category, action) {
     prevState = JSON.parse(JSON.stringify(prevState));
     switch (action.type) {
