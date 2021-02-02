@@ -83,7 +83,7 @@ class AddupdateProduct extends Component {
     onChange = (a,b) => {
         console.log(a, b);
     }
-    //表单验证成功后的回调
+    // 表单验证成功后的回调
     onFinish = () => {
 
     }
