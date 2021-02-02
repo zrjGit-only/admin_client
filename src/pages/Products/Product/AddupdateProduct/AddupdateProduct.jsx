@@ -8,6 +8,7 @@ import {NavLink} from "react-router-dom";
 import categoryAction from "../../../../store/actions/category";
 import './AddupdateProduct.less'
 import PicturesWall  from "../PicturesWall/PicturesWall";
+import RichTextEditor from "../RichTextEditor/RichTextEditor";
 /*|categoryId    |Y       |string   |分类ID
   |pCategoryId   |Y       |string   |父分类ID
   |name          |Y       |string   |商品名称
@@ -143,6 +144,9 @@ class AddupdateProduct extends Component {
                     </Form.Item>
                     <Form.Item label="上传图片">
                         <PicturesWall ref={this.pw} imgs={imgs}/>
+                    </Form.Item>
+                    <Form.Item label="商品详情" labelCol={{span: 2}} wrapperCol={{span: 20}}>
+                        <RichTextEditor ref={this.editor} detail={detail}/>
                     </Form.Item>
                     <Button type="primary" htmlType='submit'>提交</Button>
                 </Form>
