@@ -4,14 +4,15 @@ import ReactEcharts from 'echarts-for-react'
 import './Bar.less'
 
 export default function Bar() {
-    const [sales, setSales] = useState([50, 200, 360, 100, 100, 200])//销售
-    const [stores, setStores] = useState([60, 100, 250, 200, 150, 100])//库存
+    const [sales, setSales] = useState([500, 200, 360, 100, 100, 200])//销售
+    const [stores, setStores] = useState([1000, 2000, 2500, 2000, 1500, 1000])//库存
 
     //更新库存
     const update = () => {
-
+        setSales(sales.map(item => item + 30))
+        setStores(stores.map(item => item - 30))
     }
-    const getOption = () => {
+    const getOption = (sales,stores) => {
         return {
             tooltip: {},
             legend: {
@@ -44,7 +45,7 @@ export default function Bar() {
                 <Button type='primary' onClick={update}>更新</Button>
             </Card>
             <Card title='柱状图一'>
-                <ReactEcharts option={getOption()}/>
+                <ReactEcharts option={getOption(sales,stores)}/>
             </Card>
         </>
     )
