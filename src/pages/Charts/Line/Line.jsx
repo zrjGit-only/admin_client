@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, {useState} from 'react'
 import {Button, Card} from "antd";
 import ReactEcharts from "echarts-for-react";
 
@@ -11,7 +11,7 @@ export default function Line() {
         setSales(sales.map(item => item + 30))
         setStores(stores.map(item => item - 30))
     }
-    const getOption = (sales,stores) => {
+    const getOption = (sales, stores) => {
         return {
             tooltip: {},
             legend: {
@@ -38,13 +38,35 @@ export default function Line() {
             }]
         }
     }
+    const getOption2 = () => {
+        return {
+            legend: {
+                data: ['销售量']
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {type: 'value'},
+            series: [{
+                name:'销售量',
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                type: 'line'
+            }]
+        };
+    }
+
     return (
         <>
             <Card style={{width: "100%"}}>
                 <Button type='primary' onClick={update}>更新</Button>
             </Card>
-            <Card title='折线图一'>
-                <ReactEcharts option={getOption(sales,stores)}/>
+            <Card title='销量及库存'>
+                <ReactEcharts option={getOption(sales, stores)}/>
+            </Card>
+            <Card title='销售情况'>
+                <ReactEcharts option={getOption2()}/>
             </Card>
         </>
     )
