@@ -69,7 +69,7 @@ class AddupdateProduct extends Component {
                     item.children = category2.map(i=>({
                         label: i.name,
                         value:i._id,
-                        isLeaf: true
+                        isLeaf:true
                     }))
                 }
             }
