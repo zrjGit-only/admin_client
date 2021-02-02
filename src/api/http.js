@@ -37,3 +37,6 @@ export const getCategoryInfo = (categoryId) => axiosApi.get(`/manage/category/in
 
 // 删除指定名称的图片
 export const reqDeleteImg = (name) => axiosApi.post(  '/manage/img/delete', {name}, )
+
+//对商品进行上架/下架处理http://localhost:5000/manage/product/updateStatus
+export const ProductUpOrDown = (productId,status) => axiosApi.post('/manage/product/updateStatus', {productId,status})

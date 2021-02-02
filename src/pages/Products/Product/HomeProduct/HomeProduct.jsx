@@ -14,6 +14,7 @@ import LinkButton from '../../../../components/LinkButton/LinkButton'
 import productAction from "../../../../store/actions/product";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
+import {ProductUpOrDown as ProductUpOrDownApi} from '../../../../api/http'
 const Option = Select.Option
 const {Column,} = Table;
 
@@ -82,6 +83,15 @@ class HomeProduct extends Component {
                 }
             },
         ];
+    }
+    //对商品上下架处理
+    async ProductUpOrDown(product) {
+        let {_id, status} = product
+        status = status === 1 ? 0 : 1
+        //status ==== 1 说明商品正在卖 要下架
+        await ProductUpOrDownApi(_id, status)
+        await this.getProduct()
+        //强制更新界面
     }
 
     //获取分页列表
