@@ -40,3 +40,5 @@ export const reqDeleteImg = (name) => axiosApi.post(  '/manage/img/delete', {nam
 
 //对商品进行上架/下架处理http://localhost:5000/manage/product/updateStatus
 export const ProductUpOrDown = (productId,status) => axiosApi.post('/manage/product/updateStatus', {productId,status})
+// 添加/修改商品
+export const reqAddOrUpdateProduct = (product) => axiosApi.post('/manage/product/' + ( product._id?'update':'add'), product)

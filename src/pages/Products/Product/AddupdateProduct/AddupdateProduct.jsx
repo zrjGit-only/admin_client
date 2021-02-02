@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Form, Input, Upload,  Cascader, Button} from "antd";
+import {Card, Form, Input, Upload,  Cascader, Button,message} from "antd";
 import {
     ArrowLeftOutlined, LoadingOutlined, PlusOutlined
 } from '@ant-design/icons';
@@ -9,6 +9,7 @@ import categoryAction from "../../../../store/actions/category";
 import './AddupdateProduct.less'
 import PicturesWall  from "../PicturesWall/PicturesWall";
 import RichTextEditor from "../RichTextEditor/RichTextEditor";
+import {reqAddOrUpdateProduct} from "../../../../api/http"
 /*|categoryId    |Y       |string   |分类ID
   |pCategoryId   |Y       |string   |父分类ID
   |name          |Y       |string   |商品名称
@@ -20,6 +21,41 @@ class AddupdateProduct extends Component {
     state = {
         productInfo: {},
         category: [],//二级商品分类
+        options
+    }
+    initOptions = async (categorys) => {
+        // 根据categorys生成options数组
+        const options = categorys.map(c => ({
+            value: c._id,
+            label: c.name,
+            isLeaf: false, // 不是叶子
+        }))
+
+        // 如果是一个二级分类商品的更新
+        const {isUpdate, product} = this
+        const {pCategoryId} = product
+        if(isUpdate && pCategoryId!=='0') {
+            // 获取对应的二级分类列表
+            const subCategorys = await this.getCategorys(pCategoryId)
+            // 生成二级下拉列表的options
+            const childOptions = subCategorys.map(c => ({
+                value: c._id,
+                label: c.name,
+                isLeaf: true
+            }))
+
+            // 找到当前商品对应的一级option对象
+            const targetOption = options.find(option => option.value===pCategoryId)
+
+            // 关联对应的一级option上
+            targetOption.children = childOptions
+        }
+
+
+        // 更新options状态
+        this.setState({
+            options
+        })
     }
     constructor (props) {
         super(props)
@@ -92,12 +128,46 @@ class AddupdateProduct extends Component {
         console.log(a, b);
     }
     // 表单验证成功后的回调
-    onFinish = () => {
-        const imgs = this.pw.current.getImgs()
-    }
-    handleCancel = () => {
+     async onFinish (values)  {
 
+        // 进行表单验证, 如果通过了, 才发送请求
+        // this.props.form.validateFields(async (error, values) => {
+        //     if (!error) {
+
+                // 1. 收集数据, 并封装成product对象
+                const {name, desc, price, categoryIds} = values
+                let pCategoryId, categoryId
+                if (categoryIds.length===1) {
+                    pCategoryId = '0'
+                    categoryId = categoryIds[0]
+                } else {
+                    pCategoryId = categoryIds[0]
+                    categoryId = categoryIds[1]
+                }
+                const imgs = this.pw.current.getImgs()
+                const detail = this.editor.current.getDetail()
+
+                const product = {name, desc, price, imgs, detail, pCategoryId, categoryId}
+
+                // 如果是更新, 需要添加_id
+                if(this.isUpdate) {
+                    product._id = this.product._id
+                }
+
+                // 2. 调用接口请求函数去添加/更新
+                const result = await reqAddOrUpdateProduct(product)
+
+                // 3. 根据结果提示
+                if (result.status===0) {
+                    message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
+                    this.props.history.goBack()
+                } else {
+                    message.error(`${this.isUpdate ? '更新' : '添加'}商品失败!`)
+                }
+        //     }
+        // })
     }
+
 
     handleChange = () => {
 
@@ -105,10 +175,25 @@ class AddupdateProduct extends Component {
 
 
     render() {
+        const {isUpdate, product} = this
         const {category} = this.state
         if (this.props.location.state) {
-            var {desc, imgs, name, price, detail} = this.state.productInfo
+            var {desc, imgs, name, price, detail,pCategoryId, categoryId} = this.state.productInfo
         }
+        //const {pCategoryId, categoryId} = product
+        // 用来接收级联分类ID的数组
+        const categoryIds = []
+        if(isUpdate) {
+            // 商品是一个一级分类的商品
+            if(pCategoryId==='0') {
+                categoryIds.push(categoryId)
+            } else {
+                // 商品是一个二级分类的商品
+                categoryIds.push(pCategoryId)
+                categoryIds.push(categoryId)
+            }
+        }
+
         //头部添加商品
         const title = (<NavLink to="/product"><ArrowLeftOutlined/>
             &nbsp;&nbsp;添加商品</NavLink>)
@@ -117,13 +202,7 @@ class AddupdateProduct extends Component {
             labelCol: {span: 1.5},
             wrapperCol: {span: 8},
         };
-        //上传按钮
-        const uploadButton = (
-            <div className="LoadingOutlined">
-                {0 ? <LoadingOutlined/> : <PlusOutlined/>}
-                <div style={{marginTop: 8}}>Upload</div>
-            </div>
-        );
+
         return (
             <Card title={title} extra={<a href="#">More</a>}>
                 <Form {...formItemLayout} onFinish={this.onFinish}>
@@ -138,7 +217,7 @@ class AddupdateProduct extends Component {
                         {required: true, message: '请填写商品价格'}, this.validator]} name="price">
                         <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={price && price} name="price"/>
                     </Form.Item>
-                    <Form.Item label="商品分类" rules={[{required: true, message: '请选择商品分类'}]} name="categoryId">
+                    <Form.Item label="商品分类"  rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
                         <Cascader options={category} loadData={this.loadData} onChange={this.onChange} changeOnSelect
                                   name="categoryId"/>
                     </Form.Item>
