@@ -68,6 +68,18 @@ echarts
 
 ### 4 . 开发日志
 
+#### 2021.02.02
+
+1> product页面调转到addupdateProduct页面，product跳转到商品详情页
+
+2> addupdateProduct页面表单验证及商品分类异步获取商品一二级列表
+
+3> pictureswall组件图片上传
+
+4> RichTextEditor组件富文本编辑器 (react-draft-wysiwyg)
+
+5> echarts 图表(柱状图 折线图 饼状图)数据展现 
+
 ### 2021.02.01
 
 1> 添加角色管理和用户管理的添加修改组件的校验功能
