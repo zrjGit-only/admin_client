@@ -13,12 +13,11 @@ export default function Line() {
     }
     const getOption = (sales, stores) => {
         return {
-            tooltip: {},
             legend: {
-                data: ['销量', '库存']
+                data: ['销量', '库存']//图例的数据数组。数组项通常为一个字符串，每一项代表一个系列的 name
             },
             xAxis: {
-                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]//直角坐标系 grid 中的 x 轴
             },
             yAxis: {},
             series: [{

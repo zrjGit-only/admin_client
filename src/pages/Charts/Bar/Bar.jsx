@@ -14,7 +14,6 @@ export default function Bar() {
     }
     const getOption = (sales,stores) => {
         return {
-            tooltip: {},
             legend: {
                 data: ['销量', '库存']
             },
