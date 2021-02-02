@@ -34,3 +34,6 @@ export const getSearchProductName = (pageNum,pageSize,productName) => axiosApi.g
 export const getSearchProductDesc = (pageNum,pageSize,productDesc) => axiosApi.get('/manage/product/search', {params: {pageNum, pageSize,productDesc}})
 //根据分类ID获取分类
 export const getCategoryInfo = (categoryId) => axiosApi.get(`/manage/category/info?categoryId=${categoryId}`)
+
+// 删除指定名称的图片
+export const reqDeleteImg = (name) => axiosApi.post(  '/manage/img/delete', {name}, )

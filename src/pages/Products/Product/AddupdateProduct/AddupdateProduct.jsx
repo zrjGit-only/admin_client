@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import categoryAction from "../../../../store/actions/category";
 import './AddupdateProduct.less'
+import PicturesWall  from "../PicturesWall/PicturesWall";
 /*|categoryId    |Y       |string   |分类ID
   |pCategoryId   |Y       |string   |父分类ID
   |name          |Y       |string   |商品名称
@@ -19,7 +20,13 @@ class AddupdateProduct extends Component {
         productInfo: {},
         category: [],//二级商品分类
     }
+    constructor (props) {
+        super(props)
 
+        // 创建用来保存ref标识的标签对象的容器
+        this.pw = React.createRef()
+        this.editor = React.createRef()
+    }
     async componentDidMount() {
         //获取路由传过来的数据
         if (this.props.location.state) {
@@ -85,7 +92,7 @@ class AddupdateProduct extends Component {
     }
     // 表单验证成功后的回调
     onFinish = () => {
-
+        const imgs = this.pw.current.getImgs()
     }
     handleCancel = () => {
 
@@ -135,16 +142,7 @@ class AddupdateProduct extends Component {
                                   name="categoryId"/>
                     </Form.Item>
                     <Form.Item label="上传图片">
-                        <Upload
-                            name="avatar"
-                            listType="picture-card"
-                            className="avatar-uploader"
-                            showUploadList={false}
-                            action="http://localhost:5000/manage/img/upload"
-                            onChange={this.handleChange}
-                        >
-                            {imgs ? <img src={imgs} alt="avatar" style={{width: '100%'}}/> : uploadButton}
-                        </Upload>
+                        <PicturesWall ref={this.pw} imgs={imgs}/>
                     </Form.Item>
                     <Button type="primary" htmlType='submit'>提交</Button>
                 </Form>
