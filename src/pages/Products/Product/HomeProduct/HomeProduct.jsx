@@ -6,13 +6,17 @@ import {
     Button,
     Table,
     message,
-    Pagination
+    Pagination,
+    Space
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons';
 import LinkButton from '../../../../components/LinkButton/LinkButton'
 import productAction from "../../../../store/actions/product";
 import {connect} from "react-redux";
+import {NavLink} from "react-router-dom";
+import {ProductUpOrDown as ProductUpOrDownApi} from '../../../../api/http'
 const Option = Select.Option
+const {Column,} = Table;
 
 /*
 Product的默认子路由组件
@@ -80,6 +84,15 @@ class HomeProduct extends Component {
             },
         ];
     }
+    //对商品上下架处理
+    async ProductUpOrDown(product) {
+        let {_id, status} = product
+        status = status === 1 ? 0 : 1
+        //status ==== 1 说明商品正在卖 要下架
+        await ProductUpOrDownApi(_id, status)
+        await this.getProduct()
+        //强制更新界面
+    }
 
     //获取分页列表
     async getProduct() {
@@ -114,56 +127,74 @@ class HomeProduct extends Component {
         })
     }
 
-    componentWillMount () {
-        this.initColumns()
+    async componentWillMount() {
+        await this.getProduct()
     }
 
-    componentDidMount () {
-        this.getProduct(1)
-    }
+
 
     render() {
 
         // 取出状态数据
-        const {products, total, loading, searchType, searchName,pageSize,pageNum} = this.state
+        //const {products, total, loading, searchType, searchName,pageSize,pageNum,list} = this.state
 
-        const title = (
-            <span>
-                <Select
-                    value= {searchType}
-                    style={{width: 150}}
-                    onChange={value => this.setState({searchType:value})}>
-                  <Option value='productName'>按名称搜索</Option>
-                  <Option value='productDesc'>按描述搜索</Option>
-                </Select>
-                <Input
-                    placeholder='关键字'
-                    style={{width: 150, margin: '0 15px'}}
-                    value={searchName}
-                    onChange={event => this.setState({searchName:event.target.value})}/>
-                <Button type='primary' onClick={this.getSearchProduct.bind(this)}>搜索</Button>
-            </span>
+        const {list, total, pageSize, pageNum, content} = this.props.productList
+        if (!pageSize) return null
+        const goTOAddUpData = (
+            <NavLink to="/product/addupdate">
+                <Button type="primary" icon={<PlusOutlined/>}>
+                    添加商品
+                </Button>
+            </NavLink>
         )
+        const title = (<>
+            <Select placeholder="请选择搜索条件" style={{width: 150}}
+                    onChange={(value) => this.setState({search: value})}>
+                <Option value="1">按名称搜索</Option>
+                <Option value="2">按描述搜索</Option>
+            </Select>
+            <Input placeholder="关键字" style={{width: 150, marginLeft: 15}} value={content}
+                   onChange={(e) => this.setState({content: e.target.value})}/>
+            <Button type="primary" style={{marginLeft: 15}}
+                    onClick={this.getSearchProduct.bind(this)}>搜索</Button>
+        </>)
 
-        const extra = (
-            <Button type='primary' >
-                <PlusOutlined/>
-                添加商品
-            </Button>
-        )
+
         return (
-            <Card title={title} extra={extra}>
-                <Table
-                    bordered
-                    rowKey='_id'
-                    loading={loading}
-                    dataSource={products}
-                    columns={this.columns}
-                    pagination={{
-                        total,
-                        showQuickJumper: true,
-                    }}
-                />
+            <Card title={title} extra={goTOAddUpData}>
+                <Table dataSource={list} bordered pagination={false}>
+                    <Column title="商品名称" dataIndex="name" key="name"/>
+                    <Column title="商品描述" dataIndex="desc" key="desc"/>
+                    <Column title="价格"
+                            dataIndex="price"
+                            key="price"
+                            render={(text, record) => `￥ ${text}`}/>
+                    <Column
+                        title="状态"
+                        width="50px"
+                        key="status"
+                        render={(text, record) => {
+                            return (<Space size="middle" style={{display: 'block'}}>
+                                <Button type="primary" onClick={this.ProductUpOrDown.bind(this, text)}>{
+                                    text.status === 0 ? '下架' : '上架'
+                                }</Button>
+                                <div>{
+                                    text.status === 0 ? '在售' : '已下架'
+                                }</div>
+                            </Space>)
+                        }}/>
+                    <Column
+                        title="操作"
+                        width="50px"
+                        key="operating"
+                        render={(text, record) => (
+                            <Space size="middle">
+                                <Button type="link" onClick={()=>this.props.history.push('/product/detail',text)} >详情</Button>
+                                <Button type="link" onClick={()=>this.props.history.push('/product/addupdate',text)}>修改</Button>
+                            </Space>
+                        )}
+                    />
+                </Table>
                 <Pagination
                     defaultCurrent={1}
                     current={pageNum}

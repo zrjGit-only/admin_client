@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Form, Input, Upload,  Cascader, Button} from "antd";
+import {Card, Form, Input, Upload,  Cascader, Button,message} from "antd";
 import {
     ArrowLeftOutlined, LoadingOutlined, PlusOutlined
 } from '@ant-design/icons';
@@ -7,6 +7,9 @@ import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import categoryAction from "../../../../store/actions/category";
 import './AddupdateProduct.less'
+import PicturesWall  from "../PicturesWall/PicturesWall";
+import RichTextEditor from "../RichTextEditor/RichTextEditor";
+import {reqAddOrUpdateProduct} from "../../../../api/http"
 /*|categoryId    |Y       |string   |分类ID
   |pCategoryId   |Y       |string   |父分类ID
   |name          |Y       |string   |商品名称
@@ -18,8 +21,16 @@ class AddupdateProduct extends Component {
     state = {
         productInfo: {},
         category: [],//二级商品分类
+
     }
 
+    constructor (props) {
+        super(props)
+
+        // 创建用来保存ref标识的标签对象的容器
+        this.pw = React.createRef()
+        this.editor = React.createRef()
+    }
     async componentDidMount() {
         //获取路由传过来的数据
         if (this.props.location.state) {
@@ -69,7 +80,7 @@ class AddupdateProduct extends Component {
                     item.children = category2.map(i=>({
                         label: i.name,
                         value:i._id,
-                        isLeaf: true
+                        isLeaf:true
                     }))
                 }
             }
@@ -83,13 +94,47 @@ class AddupdateProduct extends Component {
     onChange = (a,b) => {
         console.log(a, b);
     }
-    //表单验证成功后的回调
-    onFinish = () => {
+    // 表单验证成功后的回调
+     async onFinish (values)  {
 
-    }
-    handleCancel = () => {
+        // 进行表单验证, 如果通过了, 才发送请求
+        // this.props.form.validateFields(async (error, values) => {
+        //     if (!error) {
 
+                // 1. 收集数据, 并封装成product对象
+                const {name, desc, price, categoryIds} = values
+                let pCategoryId, categoryId
+                if (categoryIds.length===1) {
+                    pCategoryId = '0'
+                    categoryId = categoryIds[0]
+                } else {
+                    pCategoryId = categoryIds[0]
+                    categoryId = categoryIds[1]
+                }
+                const imgs = this.pw.current.getImgs()
+                const detail = this.editor.current.getDetail()
+
+                const product = {name, desc, price, imgs, detail, pCategoryId, categoryId}
+
+                // 如果是更新, 需要添加_id
+                if(this.isUpdate) {
+                    product._id = this.product._id
+                }
+
+                // 2. 调用接口请求函数去添加/更新
+                const result = await reqAddOrUpdateProduct(product)
+
+                // 3. 根据结果提示
+                if (result.status===0) {
+                    message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
+                    this.props.history.goBack()
+                } else {
+                    message.error(`${this.isUpdate ? '更新' : '添加'}商品失败!`)
+                }
+        //     }
+        // })
     }
+
 
     handleChange = () => {
 
@@ -97,10 +142,25 @@ class AddupdateProduct extends Component {
 
 
     render() {
+        const {isUpdate, product} = this
         const {category} = this.state
         if (this.props.location.state) {
-            var {desc, imgs, name, price, detail} = this.state.productInfo
+            var {desc, imgs, name, price, detail,pCategoryId, categoryId} = this.state.productInfo
         }
+        //const {pCategoryId, categoryId} = product
+        // 用来接收级联分类ID的数组
+        const categoryIds = []
+        if(isUpdate) {
+            // 商品是一个一级分类的商品
+            if(pCategoryId==='0') {
+                categoryIds.push(categoryId)
+            } else {
+                // 商品是一个二级分类的商品
+                categoryIds.push(pCategoryId)
+                categoryIds.push(categoryId)
+            }
+        }
+
         //头部添加商品
         const title = (<NavLink to="/product"><ArrowLeftOutlined/>
             &nbsp;&nbsp;添加商品</NavLink>)
@@ -109,13 +169,7 @@ class AddupdateProduct extends Component {
             labelCol: {span: 1.5},
             wrapperCol: {span: 8},
         };
-        //上传按钮
-        const uploadButton = (
-            <div className="LoadingOutlined">
-                {0 ? <LoadingOutlined/> : <PlusOutlined/>}
-                <div style={{marginTop: 8}}>Upload</div>
-            </div>
-        );
+
         return (
             <Card title={title} extra={<a href="#">More</a>}>
                 <Form {...formItemLayout} onFinish={this.onFinish}>
@@ -130,21 +184,15 @@ class AddupdateProduct extends Component {
                         {required: true, message: '请填写商品价格'}, this.validator]} name="price">
                         <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={price && price} name="price"/>
                     </Form.Item>
-                    <Form.Item label="商品分类" rules={[{required: true, message: '请选择商品分类'}]} name="categoryId">
+                    <Form.Item label="商品分类"  rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
                         <Cascader options={category} loadData={this.loadData} onChange={this.onChange} changeOnSelect
                                   name="categoryId"/>
                     </Form.Item>
                     <Form.Item label="上传图片">
-                        <Upload
-                            name="avatar"
-                            listType="picture-card"
-                            className="avatar-uploader"
-                            showUploadList={false}
-                            action="http://localhost:5000/manage/img/upload"
-                            onChange={this.handleChange}
-                        >
-                            {imgs ? <img src={imgs} alt="avatar" style={{width: '100%'}}/> : uploadButton}
-                        </Upload>
+                        <PicturesWall ref={this.pw} imgs={imgs}/>
+                    </Form.Item>
+                    <Form.Item label="商品详情" labelCol={{span: 2}} wrapperCol={{span: 20}}>
+                        <RichTextEditor ref={this.editor} detail={detail}/>
                     </Form.Item>
                     <Button type="primary" htmlType='submit'>提交</Button>
                 </Form>
