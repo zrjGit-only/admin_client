@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a4a1eab-9b1b-4faa-b334-fde00c92e698" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Charts/Bar/Bar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Charts/Bar/Bar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Charts/Line/Line.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Charts/Line/Line.jsx" afterDir="false" />
     </list>
@@ -16,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Less File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -84,7 +85,7 @@
       <updated>1612227223941</updated>
       <workItem from="1612227229119" duration="16425000" />
       <workItem from="1612272496849" duration="24000" />
-      <workItem from="1612313582937" duration="2988000" />
+      <workItem from="1612313582937" duration="3491000" />
     </task>
     <servers />
   </component>

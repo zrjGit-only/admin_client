@@ -22,13 +22,21 @@ function Line(props) {
     }, [isRefresh])
     //更新库存
     const update = () => {
-        sales.forEach(async (item, index) => {
-            await patchChart(index + 1, {sales: item*10-item*2 , stores: item*2 - item*10})
+        sales.forEach((item, index) => {
+            const num = Math.floor(Math.random() * 10 + 20)
+            console.log(item,num);
+            setTimeout(async ()=>{
+                await patchChart(index + 1, {sales: item+num, stores: stores[index]-num})
+            },2000)
+
         })
         setRefresh(!isRefresh)
     }
     const getOption = (sales, stores, name) => {
         return {
+            tooltip: {//提示框组件
+                trigger: 'item'//数据项图形触发
+            },
             legend: {
                 data: ['销量', '库存']
             },
