@@ -186,7 +186,9 @@ class AddupdateProduct extends Component {
                 // 1. 收集数据, 并封装成product对象
                 const {name, desc, price, categoryIds} = values
                 let pCategoryId, categoryId
+
                 if (categoryIds.length===1) {
+
                     pCategoryId = '0'
                     categoryId = categoryIds[0]
                 } else {
@@ -278,7 +280,7 @@ class AddupdateProduct extends Component {
                     <Form.Item label="商品价格" rules={[{required: true, message: '请填写商品价格'}, this.validator]} name="price">
                         <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={price && price} name="price"/>
                     </Form.Item>
-                    <Form.Item label="商品分类"   rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
+                    <Form.Item label="商品分类"  initialValue={categoryIds} rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
                         <Cascader options={category} loadData={this.loadData} onChange={this.onChange} changeOnSelect
                                   name="categoryId"/>
                     </Form.Item>
