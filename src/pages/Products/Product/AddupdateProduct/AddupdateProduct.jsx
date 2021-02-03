@@ -10,6 +10,7 @@ import './AddupdateProduct.less'
 import PicturesWall  from "../PicturesWall/PicturesWall";
 import RichTextEditor from "../RichTextEditor/RichTextEditor";
 import {reqAddOrUpdateProduct} from "../../../../api/http"
+import memoryUtils from "../../../../utils/memoryUtils"
 /*|categoryId    |Y       |string   |分类ID
   |pCategoryId   |Y       |string   |父分类ID
   |name          |Y       |string   |商品名称
@@ -17,19 +18,68 @@ import {reqAddOrUpdateProduct} from "../../../../api/http"
   |price         |N       |string   |商品价格
   |detail        |N       |string   |商品详情
   |imgs          |N       |array   |商品图片名数组*/
+
 class AddupdateProduct extends Component {
     state = {
         productInfo: {},
         category: [],//二级商品分类
-
+        options: [],
     }
+    initOptions = async (categorys) => {
+        // 根据categorys生成options数组
+        const options = categorys.map(c => ({
+            value: c._id,
+            label: c.name,
+            isLeaf: false, // 不是叶子
+        }))
 
+        // 如果是一个二级分类商品的更新
+        const {isUpdate, product} = this
+        const {pCategoryId} = product
+        if(isUpdate && pCategoryId!=='0') {
+            // 获取对应的二级分类列表
+            const subCategorys = await this.getCategorys(pCategoryId)
+            // 生成二级下拉列表的options
+            const childOptions = subCategorys.map(c => ({
+                value: c._id,
+                label: c.name,
+                isLeaf: true
+            }))
+
+            // 找到当前商品对应的一级option对象
+            const targetOption = options.find(option => option.value===pCategoryId)
+
+            // 关联对应的一级option上
+            targetOption.children = childOptions
+        }
+
+
+        // 更新options状态
+        this.setState({
+            options
+        })
+    }
     constructor (props) {
         super(props)
 
         // 创建用来保存ref标识的标签对象的容器
         this.pw = React.createRef()
         this.editor = React.createRef()
+    }
+    componentWillMount () {
+        // 取出携带的state
+        const product = memoryUtils.product  // 如果是添加没值, 否则有值
+        // 保存是否是更新的标识
+        this.isUpdate = !!product._id
+        // 保存商品(如果没有, 保存是{})
+        this.product = product || {}
+    }
+
+    /*
+    在卸载之前清除保存的数据
+    */
+    componentWillUnmount () {
+        memoryUtils.product = {}
     }
     async componentDidMount() {
         //获取路由传过来的数据
@@ -48,6 +98,18 @@ class AddupdateProduct extends Component {
                 isLeaf: false
             }))
         })
+    }
+    getCategorys = async (parentId) => {
+        const result = await reqAddOrUpdateProduct(parentId)   // {status: 0, data: categorys}
+        if (result.status===0) {
+            const categorys = result.data
+            // 如果是一级分类列表
+            if (parentId==='0') {
+                this.initOptions(categorys)
+            } else { // 二级列表
+                return categorys  // 返回二级列表 ==> 当前async函数返回的promsie就会成功且value为categorys
+            }
+        }
     }
     //验证价格的自定义验证
     validator = () => ({
@@ -95,7 +157,7 @@ class AddupdateProduct extends Component {
         console.log(a, b);
     }
     // 表单验证成功后的回调
-     async onFinish (values)  {
+      onFinish = async(values) => {
 
         // 进行表单验证, 如果通过了, 才发送请求
         // this.props.form.validateFields(async (error, values) => {
@@ -104,17 +166,17 @@ class AddupdateProduct extends Component {
                 // 1. 收集数据, 并封装成product对象
                 const {name, desc, price, categoryIds} = values
                 let pCategoryId, categoryId
-                if (categoryIds.length===1) {
-                    pCategoryId = '0'
-                    categoryId = categoryIds[0]
-                } else {
-                    pCategoryId = categoryIds[0]
-                    categoryId = categoryIds[1]
-                }
+                // if (categoryIds.length===1) {
+                //     pCategoryId = '0'
+                //     categoryId = categoryIds[0]
+                // } else {
+                //     pCategoryId = categoryIds[0]
+                //     categoryId = categoryIds[1]
+                // }
                 const imgs = this.pw.current.getImgs()
                 const detail = this.editor.current.getDetail()
 
-                const product = {name, desc, price, imgs, detail, pCategoryId, categoryId}
+                const product = {name, desc, price, imgs, detail,}
 
                 // 如果是更新, 需要添加_id
                 if(this.isUpdate) {
@@ -184,7 +246,7 @@ class AddupdateProduct extends Component {
                         {required: true, message: '请填写商品价格'}, this.validator]} name="price">
                         <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={price && price} name="price"/>
                     </Form.Item>
-                    <Form.Item label="商品分类"  rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
+                    <Form.Item label="商品分类"   rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
                         <Cascader options={category} loadData={this.loadData} onChange={this.onChange} changeOnSelect
                                   name="categoryId"/>
                     </Form.Item>
