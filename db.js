@@ -50,7 +50,6 @@ function generateBook() {
         email: '1@qq.com',
         role_id: 1,
         id: 1
-
     }]
     return {charts, role, user};
 }

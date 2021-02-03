@@ -53,7 +53,7 @@ class Login extends Component {
                 <div className="bg-slides-item" ref="bg" style={{backgroundImage: `url(${bgUrl})`}}/>
                 <section className="login-content">
                     <h2>用户登陆</h2>
-                    <Form className="login-form" onFinish={this.handleSubmit.bind(this)}
+                    <Form className="login-form" onFinish={this.login.bind(this)}
                           initialValues={{"username": "admin", "password": "admin"}}>
                         <Item rules={[
                             //前端验证

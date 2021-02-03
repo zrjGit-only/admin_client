@@ -9,7 +9,8 @@ import {
     ToolOutlined,
     BarChartOutlined,
     LineChartOutlined,
-    PieChartOutlined
+    PieChartOutlined,
+    OrderedListOutlined
 } from '@ant-design/icons';
 
 
@@ -65,6 +66,11 @@ const menuList = [
                 icon: <PieChartOutlined/>
             }
         ]
-    }
+    },
+    {
+        title: '订单管理',
+        key: '/order',
+        icon: <OrderedListOutlined/>,
+    },
 ]
 export default menuList

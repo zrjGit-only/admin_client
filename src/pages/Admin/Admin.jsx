@@ -16,6 +16,7 @@ const Role = lazy(() => import(/*webpackChunkName:"Role"*/"../Role/Role"));
 const Bar = lazy(() => import(/*webpackChunkName:"Bar"*/"../Charts/Bar/Bar"));
 const Line = lazy(() => import(/*webpackChunkName:"Line"*/"../Charts/Line/Line"));
 const Pie = lazy(() => import(/*webpackChunkName:"Pie"*/"../Charts/Pie/Pie"));
+const Order = lazy(() => import(/*webpackChunkName:"Order"*/"../Order/Order"));
 const NotFound = lazy(() => import(/*webpackChunkName:"NotFound"*/"../NotFound/NotFound"));
 
 export default function Admin() {
@@ -34,6 +35,7 @@ export default function Admin() {
                                 <Route path='/charts/bar' component={Bar}/>
                                 <Route path='/charts/pie' component={Pie}/>
                                 <Route path='/charts/line' component={Line}/>
+                                <Route path='/order' component={Order}/>
                                 <Route path='/' component={Home}/>
                                 <Route component={NotFound}/>
                             </Switch>
