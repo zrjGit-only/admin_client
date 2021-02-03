@@ -41,3 +41,4 @@ export const reqAddOrUpdateProduct = (product) => axiosApi.post('/manage/product
 
 // 删除指定名称的图片
 export const reqDeleteImg = (name) => axiosApi.post( '/manage/img/delete', {name}, )
+

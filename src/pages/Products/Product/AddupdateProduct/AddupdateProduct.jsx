@@ -177,42 +177,42 @@ class AddupdateProduct extends Component {
         console.log(a, b);
     }
     // 表单验证成功后的回调
-    onFinish = async(values) => {
+      onFinish = async(values) => {
 
         // 进行表单验证, 如果通过了, 才发送请求
         // this.props.form.validateFields(async (error, values) => {
         //     if (!error) {
 
-        // 1. 收集数据, 并封装成product对象
-        const {name, desc, price, categoryIds} = values
-        //let pCategoryId, categoryId
-        // if (categoryIds.length===1) {
-        //     pCategoryId = '0'
-        //     categoryId = categoryIds[0]
-        // } else {
-        //     pCategoryId = categoryIds[0]
-        //     categoryId = categoryIds[1]
-        // }
-        const imgs = this.pw.current.getImgs()
-        const detail = this.editor.current.getDetail()
+                // 1. 收集数据, 并封装成product对象
+                const {name, desc, price, categoryIds} = values
+                let pCategoryId, categoryId
+                if (categoryIds.length===1) {
+                    pCategoryId = '0'
+                    categoryId = categoryIds[0]
+                } else {
+                    pCategoryId = categoryIds[0]
+                    categoryId = categoryIds[1]
+                }
+                const imgs = this.pw.current.getImgs()
+                const detail = this.editor.current.getDetail()
 
-        const product = {name, desc, price, imgs, detail,}
+                const product = {name, desc, price, imgs, detail,}
 
-        // 如果是更新, 需要添加_id
-        if(this.isUpdate) {
-            product._id = this.product._id
-        }
+                // 如果是更新, 需要添加_id
+                if(this.isUpdate) {
+                    product._id = this.product._id
+                }
 
-        // 2. 调用接口请求函数去添加/更新
-        const result = await reqAddOrUpdateProduct(product)
+                // 2. 调用接口请求函数去添加/更新
+                const result = await reqAddOrUpdateProduct(product)
 
-        // 3. 根据结果提示
-        if (result.status===0) {
-            message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
-            this.props.history.goBack()
-        } else {
-            message.error(`${this.isUpdate ? '更新' : '添加'}商品失败!`)
-        }
+                // 3. 根据结果提示
+                if (result.status===0) {
+                    message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
+                    this.props.history.goBack()
+                } else {
+                    message.error(`${this.isUpdate ? '更新' : '添加'}商品失败!`)
+                }
         //     }
         // })
     }
@@ -248,7 +248,7 @@ class AddupdateProduct extends Component {
         //头部添加商品
 
         const title = (
-            <span>
+           <span>
                 <LinkButton onClick={() => {
                     this.props.history.goBack()
                 }}>
@@ -275,8 +275,7 @@ class AddupdateProduct extends Component {
                         <Input.TextArea placeholder="请输入商品描述" value={desc && desc} autoSize={{minRows: 2, maxRows: 6}}
                                         name="desc"/>
                     </Form.Item>
-                    <Form.Item label="商品价格" rules={[
-                        {required: true, message: '请填写商品价格'}, this.validator]} name="price">
+                    <Form.Item label="商品价格" rules={[{required: true, message: '请填写商品价格'}, this.validator]} name="price">
                         <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={price && price} name="price"/>
                     </Form.Item>
                     <Form.Item label="商品分类"   rules={[{required: true, message: '请选择商品分类'}]} name="categoryId" >
