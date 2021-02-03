@@ -1,23 +1,39 @@
-import React, {useState} from 'react'
-import {Button, Card} from "antd";
-import ReactEcharts from "echarts-for-react";
+import React, {useState, useEffect} from 'react'
+import {connect} from 'react-redux'
+import {Card, Button} from 'antd';
+import ReactEcharts from 'echarts-for-react'
+import chartsAction from "../../../store/actions/charts";
+import {patchChart} from '../../../api/httpMock'
 
-export default function Line() {
-    const [sales, setSales] = useState([500, 200, 360, 100, 100, 200])//销售
-    const [stores, setStores] = useState([1000, 2000, 2500, 2000, 1500, 1000])//库存
-
+function Line(props) {
+    const [sales, setSales] = useState([])//销售
+    const [stores, setStores] = useState([])//库存
+    const [name, setName] = useState([])//商品名
+    const [isRefresh, setRefresh] = useState(false)
+    useEffect(() => {
+        const getChar = async () => {
+            await props.getChartStore()
+        }
+        getChar().then(() => {
+            setName(props.chart.map(item => item.name))
+            setSales(props.chart.map(item => item.sales))
+            setStores(props.chart.map(item => item.stores))
+        })
+    }, [isRefresh])
     //更新库存
     const update = () => {
-        setSales(sales.map(item => item + 30))
-        setStores(stores.map(item => item - 30))
+        sales.forEach(async (item, index) => {
+            await patchChart(index + 1, {sales: item*10-item*2 , stores: item*2 - item*10})
+        })
+        setRefresh(!isRefresh)
     }
-    const getOption = (sales, stores) => {
+    const getOption = (sales, stores, name) => {
         return {
             legend: {
-                data: ['销量', '库存']//图例的数据数组。数组项通常为一个字符串，每一项代表一个系列的 name
+                data: ['销量', '库存']
             },
             xAxis: {
-                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]//直角坐标系 grid 中的 x 轴
+                data: name
             },
             yAxis: {},
             series: [{
@@ -37,36 +53,30 @@ export default function Line() {
             }]
         }
     }
-    const getOption2 = () => {
-        return {
-            legend: {
-                data: ['销售量']
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-            },
-            yAxis: {type: 'value'},
-            series: [{
-                name:'销售量',
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line'
-            }]
-        };
-    }
-
     return (
         <>
             <Card style={{width: "100%"}}>
                 <Button type='primary' onClick={update}>更新</Button>
             </Card>
-            <Card title='销量及库存'>
-                <ReactEcharts option={getOption(sales, stores)}/>
-            </Card>
-            <Card title='销售情况'>
-                <ReactEcharts option={getOption2()}/>
+            <Card title='销量-库存'>
+                <ReactEcharts option={getOption(sales, stores, name)}/>
             </Card>
         </>
     )
+};
+
+function mapStateToProps(state) {
+    return {
+        chart: state.charts.chartsInfo,
+    }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async getChartStore() {
+            await dispatch(chartsAction.getChart())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Line)
