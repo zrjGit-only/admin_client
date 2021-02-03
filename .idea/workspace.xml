@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a4a1eab-9b1b-4faa-b334-fde00c92e698" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/admin_client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Products/Product/PicturesWall/PicturesWall.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Products/Product/RichTextEditor/RichTextEditor.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/AddupdateProduct/AddupdateProduct.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/AddupdateProduct/AddupdateProduct.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/HomeProduct/HomeProduct.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/HomeProduct/HomeProduct.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Charts/Bar/Bar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Charts/Bar/Bar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +23,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1nu5dAtNpFxLeAos3npOhkSdX5o" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,7 +34,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/aaaaaaaaaaaaaaaa/Vue点这里/React后台管理系统/admin_client" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/actions" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -56,6 +47,15 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="ts.external.directory.path" value="D:\WebStorm\WebStorm 2020.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\state" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\api" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -84,6 +84,7 @@
       <updated>1612227223941</updated>
       <workItem from="1612227229119" duration="16425000" />
       <workItem from="1612272496849" duration="24000" />
+      <workItem from="1612313582937" duration="713000" />
     </task>
     <servers />
   </component>

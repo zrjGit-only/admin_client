@@ -18,7 +18,7 @@ function SSider(props) {
                 const c = item.children.find(i => i.key === path)
                 if (c) {
                     openKey = item.key
-                    console.log(c,item.key);
+                    // console.log(c,item.key);
                     // console.log(openKey,path)
                 }
 

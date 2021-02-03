@@ -1,0 +1,40 @@
+{
+  "charts": [
+    {
+      "id": 1,
+      "name":"衬衫",
+      "sales": 500,
+      "stores": 1000
+    },
+    {
+      "id": 2,
+      "name":"羊毛衫",
+      "sales": 200,
+      "stores": 2000
+    },
+    {
+      "id": 3,
+      "name":"雪纺衫",
+      "sales": 360,
+      "stores": 2500
+    },
+    {
+      "id": 4,
+      "name":"裤子",
+      "sales": 100,
+      "stores": 1500
+    },
+    {
+      "id": 5,
+      "name":"高跟鞋",
+      "sales": 200,
+      "stores": 1000
+    },
+    {
+      "id": 6,
+      "name":"袜子",
+      "sales": 260,
+      "stores": 3400
+    }
+  ]
+}

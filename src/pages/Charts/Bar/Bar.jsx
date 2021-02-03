@@ -1,23 +1,35 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {connect} from 'react-redux'
 import {Card, Button} from 'antd';
 import ReactEcharts from 'echarts-for-react'
+import chartsAction from "../../../store/actions/charts";
 
-export default function Bar() {
-    const [sales, setSales] = useState([500, 200, 360, 100, 100, 200])//销售
-    const [stores, setStores] = useState([1000, 2000, 2500, 2000, 1500, 1000])//库存
-
+function Bar(props) {
+    const [sales, setSales] = useState([])//销售
+    const [stores, setStores] = useState([])//库存
+    const [name, setName] = useState([])//商品名
+    useEffect(() => {
+        const getChar = async () => {
+            await props.getChartStore()
+        }
+        getChar().then(() => {
+            setName(props.chart.map(item=>item.name))
+            setSales(props.chart.map(item=>item.sales))
+            setStores(props.chart.map(item=>item.stores))
+        })
+    }, [])
     //更新库存
     const update = () => {
         setSales(sales.map(item => item + 30))
         setStores(stores.map(item => item - 30))
     }
-    const getOption = (sales,stores) => {
+    const getOption = (sales, stores,name) => {
         return {
             legend: {
                 data: ['销量', '库存']
             },
             xAxis: {
-                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+                data: name
             },
             yAxis: {},
             series: [{
@@ -43,8 +55,24 @@ export default function Bar() {
                 <Button type='primary' onClick={update}>更新</Button>
             </Card>
             <Card title='柱状图一'>
-                <ReactEcharts option={getOption(sales,stores)}/>
+                <ReactEcharts option={getOption(sales, stores,name)}/>
             </Card>
         </>
     )
+};
+
+function mapStateToProps(state) {
+    return {
+        chart: state.charts.chartsInfo,
+    }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async getChartStore() {
+            await dispatch(chartsAction.getChart())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bar)

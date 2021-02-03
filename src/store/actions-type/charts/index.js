@@ -1,0 +1,1 @@
+export const GET_CHART_INFO = "get_chart_info"
