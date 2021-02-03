@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import userAction from '../../store/actions/user'
-import {delUserInfo} from '../../api/http'
+// import {delUserInfo} from '../../api/http'
+import {delUserInfo} from '../../api/httpMock'
 import {Button, Card, Popconfirm, Table, Space, message} from "antd";
 import AddOrUpDataUser from './addOrUpdataUser/addOrUpdataUser'
 
@@ -23,7 +24,8 @@ function User(props) {
     //确认删除
     const confirm = async (text) => {
         // console.log(text);
-        await delUserInfo(text._id)
+        // await delUserInfo(text._id)
+        await delUserInfo(text.id)
         message.success('删除成功');
         refresh()
     }
@@ -42,7 +44,7 @@ function User(props) {
         setUser([])
         setIsAddOrUpData(1)
     }}>创建用户</Button>
-    console.log(props.userInfo);
+    // console.log(props.userInfo);
     return (
         <Card title={title} style={{width: '100%'}}>
             <Table dataSource={props.userInfo} rowKey="id">

@@ -73,7 +73,7 @@ function AddOrUpDataUser(props) {
         labelCol: {span: 6},
         wrapperCol: {span: 14},
     };
-    console.log(props.roleInfo);
+    // console.log(props.roleInfo);
     return (
         <Modal title={props.isAddOrUpData === 1 ? '添加用户' : '修改用户'}
                visible={props.isAddOrUpData !== 0}

@@ -20,3 +20,5 @@ export const getUserInfo = () => axiosMock.get('/user')
 export const postUserInfo = (userInfo) => axiosMock.post('/user', userInfo)
 //修改user数据
 export const patchUserInfo = (id,roleInfo) => axiosMock.patch(`/user/${id}`, roleInfo)
+//删除user数据
+export const delUserInfo = (id) => axiosMock.delete(`/user/${id}`)
