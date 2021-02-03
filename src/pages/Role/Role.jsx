@@ -4,7 +4,7 @@ import {Card, Button, Table, Modal, Form, Input, Tree, message} from 'antd';
 import roleAction from "../../store/actions/role";
 import menuList from '../../config/menuConfig'
 // import {upDataRoleInfo, addRoleInfo} from '../../api/http'
-import {postRoleInfo} from '../../api/httpMock'
+import {postRoleInfo,patchRoleInfo} from '../../api/httpMock'
 
 
 const {Column} = Table;
@@ -28,6 +28,7 @@ function Role(props) {
     const rowSelection = {
         selectedRowKeys,
         onChange(selectedRowKeys, selectedRows) {
+            console.log(selectedRowKeys, selectedRows);
             setSelectedRowKeys(selectedRowKeys);//只有id的数组
             setSelectedRows(selectedRows);//有详细的内容的数组,因为后面要取menus
             if (selectedRows.length === 1) {
@@ -39,29 +40,30 @@ function Role(props) {
     };
     //点击model确认按钮
     const handleOk = async (flag) => {
-        if(!roleName){
-            message.warn('请输入正确内容')
-            return
-        }
-        let res
+        // let res
         if (flag === 1) {
             //保存选中的权限 发送请求
             let roleInfo = {
                 id: selectedRows[0].id,
                 menus: selectedKeys,
-                auth_time: "111",
-                auth_name: 'admin'
+                auth_time: Date.now(),
+                auth_name: 'admin',
             }
             // res = await upDataRoleInfo(roleInfo)
+            await patchRoleInfo(roleInfo.id,roleInfo)
         }
         if (flag === 2) {
             if (!roleName) {
                 message.warning('请输入用户名称')
                 return
             } else {
+                let roleInfo = {
+                    name:roleName,
+                    create_time:Date.now()
+                }
                 // res = await addRoleInfo(roleName)
-                res = await postRoleInfo(roleName)
-                console.log(res.msg);
+                await postRoleInfo(roleInfo)
+                // console.log(res.msg);
             }
         }
         // if (res.status === 0) {
@@ -101,10 +103,10 @@ function Role(props) {
             }}>设置角色权限</Button>
         </div>
     )
-    console.log(props.roleInfo);
+    // console.log(props.roleInfo);
     return (
         <Card title={title} style={{width: '100%'}}>
-            <Table rowSelection={rowSelection} dataSource={props.roleInfo}>
+            <Table rowSelection={rowSelection} dataSource={props.roleInfo} rowKey="id">
                 <Column title="角色名称" dataIndex="name" key="name"/>
                 <Column title="创建时间" dataIndex="create_time" key="create_time"/>
                 <Column title="授权时间" dataIndex="auth_time" key="auth_time"/>
