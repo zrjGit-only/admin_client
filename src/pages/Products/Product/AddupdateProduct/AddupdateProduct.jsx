@@ -23,7 +23,7 @@ const { TextArea } = Input
 Product的添加和更新的子路由组件
  */
 class AddupdateProduct extends Component {
-
+    from=React.createRef()
     state = {
         options: [],
     }
@@ -134,41 +134,43 @@ class AddupdateProduct extends Component {
         })
     }
 
-    onFinish  = async (values) => {
+    onFinish  =  async () => {
+         await this.from.current.validateFields().then(values => {
+            // 1. 收集数据, 并封装成product对象
+            const {name, desc, price, categoryIds} = values
+            console.log(values)
+            let pCategoryId, categoryId
+            console.log(categoryIds)
+            if (categoryIds.length===1) {
+                pCategoryId = '0'
+                categoryId = categoryIds[0]
+            } else {
+                pCategoryId = categoryIds[0]
+                categoryId = categoryIds[1]
+            }
 
-         // 1. 收集数据, 并封装成product对象
-         const {name, desc, price, categoryIds} = values
-        console.log(values)
-         let pCategoryId, categoryId
-        console.log(categoryIds)
-         if (categoryIds.length===1) {
-             pCategoryId = '0'
-             categoryId = categoryIds[0]
-         } else {
-             pCategoryId = categoryIds[0]
-             categoryId = categoryIds[1]
-         }
+            const imgs = this.pw.current.getImgs()
+            const detail = this.editor.current.getDetail()
 
-         const imgs = this.pw.current.getImgs()
-         const detail = this.editor.current.getDetail()
+            const product = {name, desc, price, imgs, detail, pCategoryId,categoryId}
+            console.log(typeof product)
+            // 如果是更新, 需要添加_id
+            if(this.isUpdate) {
+                product._id = this.product._id
+            }
 
-         const product = {name, desc, price, imgs, detail, pCategoryId,categoryId}
+            // 2. 调用接口请求函数去添加/更新
+            const result =  reqAddOrUpdateProduct(product)
 
-         // 如果是更新, 需要添加_id
-         if(this.isUpdate) {
-             product._id = this.product._id
-         }
+            // 3. 根据结果提示
+            if (result.status===0) {
+                message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
+                this.props.history.goBack()
+            } else {
+                message.error(`${this.isUpdate ? '更新' : '添加'}商品失败!`)
+            }
+        });
 
-         // 2. 调用接口请求函数去添加/更新
-         const result = await reqAddOrUpdateProduct(product)
-
-         // 3. 根据结果提示
-         if (result.status===0) {
-             message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
-             this.props.history.goBack()
-         } else {
-             message.error(`${this.isUpdate ? '更新' : '添加'}商品失败!`)
-         }
     }
 
     componentDidMount () {
@@ -229,7 +231,8 @@ class AddupdateProduct extends Component {
 
         return (
             <Card title={title}>
-                <Form {...formItemLayout} initialValues={{"name": "", "desc": "","price":"","categoryId":""}} onFinish={this.onFinish.bind(this)}>
+                <Form {...formItemLayout} initialValues={{categoryIds:categoryIds}}
+                      onFinish={this.onFinish.bind(this)} ref={this.from}>
                     <Item label="商品名称"  rules={[{required: true, message: '商品名称不能为空'}]} name='name'>
                        <Input placeholder='请输入商品名称' value={product.name && product.name} name="name"/>
                     </Item>
@@ -240,7 +243,7 @@ class AddupdateProduct extends Component {
                         <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={product.price && product.price} name="price"/>
                     </Item>
                     <Item label="商品分类"
-                          rules={[{required: true, message: '请选择商品分类'}]} name="categoryId">
+                          rules={[{required: true, message: '请选择商品分类'}]} name="categoryIds">
                         <Cascader options={this.state.options} loadData={this.loadData} onChange={this.onChange} changeOnSelect
                                   name="categoryId"/>
                     </Item>
