@@ -15,6 +15,7 @@ import productAction from "../../../../store/actions/product";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import {ProductUpOrDown as ProductUpOrDownApi} from '../../../../api/http'
+import memoryUtils from "../../../../utils/memoryUtils"
 const Option = Select.Option
 const {Column,} = Table;
 
@@ -22,69 +23,20 @@ const {Column,} = Table;
 Product的默认子路由组件
  */
 class HomeProduct extends Component {
+    isUpdate
     state = {
         pageNum: 1,
         pageSize: 3,
         search: '',
-        content: ''
+        content: '',
+        total: 0, // 商品的总数量
+        products: [], // 商品的数组
+        loading: false, // 是否正在加载中
+        searchName: '', // 搜索的关键字
+        searchType: 'productName', // 根据哪个字段搜索
     }
-    // state = {
-    //     total: 0, // 商品的总数量
-    //     products: [], // 商品 的数组
-    //     loading: false, // 是否正在加载中
-    //     searchName: '', // 搜索的关键字
-    //     searchType: 'productName', // 根据哪个字段搜索
-    // };
 
-    /*
-    初始化 table的列的数组
-     */
-    initColumns = () => {
-        this.columns = [
-            {
-                title: '商品名称',
-                dataIndex: 'name',
-            },
-            {
-                title: '商品描述',
-                dataIndex: 'desc',
-            },
-            {
-                title: '价格',
-                dataIndex: 'price',
-                render: (price) => '¥' + price  // 当前指定了对应的属性, 传入的是对应的属性值
-            },
-            {
-                width: 100,
-                title: '状态',
-                // dataIndex: 'status',
-                render: (product) => {
-                    const {status, _id} = product
-                    const newStatus = status===1 ? 2 : 1
-                    return (
-                        <span>
-                            <Button type='primary'>{status===1 ? '下架' : '上架'}</Button>
-                            <span>{status===1 ? '在售' : '已下架'}</span>
-                        </span>
-                    )
-                }
-            },
-            {
-                width: 100,
-                title: '操作',
-                render: (product) => {
-                    return (
-                        <span>
-              {/*将product对象使用state传递给目标路由组件*/}
-                            <LinkButton >详情</LinkButton>
-                            <LinkButton >修改</LinkButton>
-                        </span>
-                    )
-                }
-            },
-        ];
-    }
-    //对商品上下架处理
+
     async ProductUpOrDown(product) {
         let {_id, status} = product
         status = status === 1 ? 0 : 1
@@ -189,8 +141,14 @@ class HomeProduct extends Component {
                         key="operating"
                         render={(text, record) => (
                             <Space size="middle">
-                                <Button type="link" onClick={()=>this.props.history.push('/product/detail',text)} >详情</Button>
-                                <Button type="link" onClick={()=>this.props.history.push('/product/addupdate',text)}>修改</Button>
+                                <Button type="link" onClick={()=>{
+                                    this.props.history.push('/product/detail',text)
+                                    console.log(text)
+                                }} >详情</Button>
+                                <Button type="link" onClick={()=>{
+                                    this.props.history.push('/product/addupdate',text)
+                                    console.log(text)
+                                }}>修改</Button>
                             </Space>
                         )}
                     />
