@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import roleAction from '../../../store/actions/role'
 import {Input, Form, Select, Modal, message} from "antd";
-import {addOrUpDataUserInfo} from '../../../api/http'
+// import {addOrUpDataUserInfo} from '../../../api/http'
+import {postUserInfo,patchUserInfo} from '../../../api/httpMock'
 
 const {Option} = Select;
 
@@ -32,6 +33,7 @@ function AddOrUpDataUser(props) {
 
     //确认增加用户
     const handleOk = async (e) => {
+        console.log('1',username,'2', password,'3', phone, '4',email,'5',roleId);
         if(!(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4-12}$/.test(username)|| /^\d{4-12}$/.test(password)|| /^1[3456789]d{9}$/.test(phone) || /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email))){
             message.warn('请输入正确内容')
             return
@@ -40,15 +42,24 @@ function AddOrUpDataUser(props) {
             message.warn('请不要输入空内容')
             return
         }
+
         const userInfo = {username, password, phone, email, role_id: roleId}
-        userInfo._id = props.user._id ? props.user._id : null
+        if(props.user._id){
+            await patchUserInfo(userInfo)
+        }else{
+            userInfo.id = props.user.id
+            await postUserInfo(userInfo)
+        }
+        message.success(props.user._id ? '修改成功' : '添加成功')
+        props.refresh()
+        /*userInfo._id = props.user._id ? props.user._id : null
         const {status} = await addOrUpDataUserInfo(userInfo)
         if (status !== 0) {
             message.error('网络抖动')
         } else {
             message.success(props.user._id ? '修改成功' : '添加成功')
             props.refresh()
-        }
+        }*/
 
 
     }
@@ -60,6 +71,7 @@ function AddOrUpDataUser(props) {
         labelCol: {span: 6},
         wrapperCol: {span: 14},
     };
+    console.log(props.roleInfo);
     return (
         <Modal title={props.isAddOrUpData === 1 ? '添加用户' : '修改用户'}
                visible={props.isAddOrUpData !== 0}
@@ -112,7 +124,8 @@ function AddOrUpDataUser(props) {
                         }}>
                         {
                             props.roleInfo.map(item => (
-                                <Option value={item._id} key={item._id}>{item.name}</Option>
+                                // <Option value={item._id} key={item._id}>{item.name}</Option>
+                                 <Option value={item.id} key={item.id}>{item.name}</Option>
                             ))
                         }
                     </Select>
@@ -134,7 +147,7 @@ function mapDispatchToProps(dispatch) {
     return {
         async getRoleInfoStore() {
             await dispatch(roleAction.getRoleInfo())
-        }
+        },
     }
 }
 

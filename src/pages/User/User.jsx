@@ -45,7 +45,7 @@ function User(props) {
     console.log(props.userInfo);
     return (
         <Card title={title} style={{width: '100%'}}>
-            <Table dataSource={props.userInfo}>
+            <Table dataSource={props.userInfo} rowKey="id">
                 <Column title="用户名" dataIndex="username" key="username"/>
                 <Column title="邮箱" dataIndex="email" key="email"/>
                 <Column title="电话" dataIndex="phone" key="phone"/>
