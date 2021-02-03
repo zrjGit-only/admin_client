@@ -45,9 +45,9 @@ function AddOrUpDataUser(props) {
 
         let userInfo = {username, password, phone, email, role_id: roleId}
         userInfo.create_time = Date.now()
-        if(props.user._id){
+        if(props.user.id){
             userInfo = JSON.parse(JSON.stringify(userInfo))
-            await patchUserInfo(userInfo)
+            await patchUserInfo(props.user.id,userInfo)
         }else{
             userInfo.id = props.user.id
             await postUserInfo(userInfo)
