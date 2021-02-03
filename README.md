@@ -68,6 +68,10 @@ echarts
 
 ### 4 . 开发日志
 
+#### 2021.02.03
+
+1> 图表管理 用户管理 角色管理模拟数据增删改查(json-server)
+
 #### 2021.02.02
 
 1> product页面调转到addupdateProduct页面，product跳转到商品详情页
