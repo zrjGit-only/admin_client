@@ -24,14 +24,12 @@ function Bar(props) {
     const update = () => {
         sales.forEach((item, index) => {
             const num = Math.floor(Math.random() * 30 + 20)
-            console.log(item,num);
-            setTimeout(async ()=>{
-                await patchChart(index + 1, {sales: item+num, stores: stores[index]-num})
+            console.log(item, num);
+            setTimeout(async () => {
+                await patchChart(index + 1, {sales: item + num, stores: stores[index] - num})
                 setRefresh(!isRefresh)
-            },500)
-
+            }, 500)
         })
-
     }
     const getOption = (sales, stores, name) => {
         return {

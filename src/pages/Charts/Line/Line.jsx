@@ -23,14 +23,13 @@ function Line(props) {
     //更新库存
     const update = () => {
         sales.forEach((item, index) => {
-            const num = Math.floor(Math.random() * 10 + 20)
-            console.log(item,num);
-            setTimeout(async ()=>{
-                await patchChart(index + 1, {sales: item+num, stores: stores[index]-num})
-            },2000)
-
+            const num = Math.floor(Math.random() * 30 + 20)
+            console.log(item, num);
+            setTimeout(async () => {
+                await patchChart(index + 1, {sales: item + num, stores: stores[index] - num})
+                setRefresh(!isRefresh)
+            }, 500)
         })
-        setRefresh(!isRefresh)
     }
     const getOption = (sales, stores, name) => {
         return {

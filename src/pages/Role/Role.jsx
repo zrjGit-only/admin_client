@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {Card, Button, Table, Modal, Form, Input, Tree, message} from 'antd';
 import roleAction from "../../store/actions/role";
 import menuList from '../../config/menuConfig'
-import {upDataRoleInfo, addRoleInfo} from '../../api/http'
+// import {upDataRoleInfo, addRoleInfo} from '../../api/http'
+import {postRoleInfo} from '../../api/httpMock'
 
 
 const {Column} = Table;
@@ -46,28 +47,29 @@ function Role(props) {
         if (flag === 1) {
             //保存选中的权限 发送请求
             let roleInfo = {
-                _id: selectedRows[0]._id,
+                id: selectedRows[0].id,
                 menus: selectedKeys,
                 auth_time: "111",
                 auth_name: 'admin'
             }
-            res = await upDataRoleInfo(roleInfo)
+            // res = await upDataRoleInfo(roleInfo)
         }
         if (flag === 2) {
             if (!roleName) {
                 message.warning('请输入用户名称')
                 return
             } else {
-                res = await addRoleInfo(roleName)
+                // res = await addRoleInfo(roleName)
+                res = await postRoleInfo(roleName)
                 console.log(res.msg);
             }
         }
-        if (res.status === 0) {
+        // if (res.status === 0) {
             message.success('成功')
-        } else {
-            message.error('网络抖动')
-            return
-        }
+        // } else {
+        //     message.error('网络抖动')
+        //     return
+        // }
         //关闭复选框
         setIsModalVisible(0)
         setRefresh(!refresh)
@@ -99,6 +101,7 @@ function Role(props) {
             }}>设置角色权限</Button>
         </div>
     )
+    console.log(props.roleInfo);
     return (
         <Card title={title} style={{width: '100%'}}>
             <Table rowSelection={rowSelection} dataSource={props.roleInfo}>

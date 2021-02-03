@@ -39,7 +39,19 @@ function generateBook() {
             "stores": 2255
         }
     ]
-    return { charts };
+    var role = [{
+        name: '经理',
+        id: 1
+    }]
+    role =  role.map((item, index) => {
+        if (index === role.length - 1) {
+            return {
+                ...item,
+                create_time: Date.now()
+            }
+        }
+    })
+    return {charts, role};
 }
 
 module.exports = generateBook;

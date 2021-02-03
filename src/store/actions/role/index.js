@@ -1,6 +1,7 @@
 import {GET_ROLE_INFO} from '../../actions-type/role'
-import {getRoleInfo} from '../../../api/http'
-import {message} from 'antd';
+// import {getRoleInfo} from '../../../api/http'
+import {getRoleInfo} from '../../../api/httpMock'
+// import {message} from 'antd';
 import dayjs from 'dayjs'
 
 export const get_role_info = function (payload) {
@@ -12,7 +13,7 @@ export const get_role_info = function (payload) {
 
 //eslint-disable-next-line
 export default {
-    getRoleInfo() {
+    /*getRoleInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {
             const productInfo = await getRoleInfo()
@@ -27,6 +28,19 @@ export default {
                 key:item._id
             }))
             dispatch(get_role_info(productInfo.data))
+        }
+    },*/
+    getRoleInfo() {
+        //因为要传参所以返回需要的函数,外部函数用来接收参数
+        return async (dispatch) => {
+            let productInfo = await getRoleInfo()
+            productInfo = productInfo.map(item=>({
+                ...item,
+                create_time:dayjs(item.create_time).format("YYYY-MM-DD HH:mm:ss"),
+                auth_time:item.auth_time?dayjs(item.auth_time).format("YYYY-MM-DD, HH:mm:ss"):null,
+                key:item._id
+            }))
+            dispatch(get_role_info(productInfo))
         }
     }
 }
