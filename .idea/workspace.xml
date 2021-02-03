@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a4a1eab-9b1b-4faa-b334-fde00c92e698" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/category/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/product/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/product/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/state/category/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state/category/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/state/product/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/state/product/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1612227223941</updated>
       <workItem from="1612227229119" duration="16425000" />
+      <workItem from="1612314370933" duration="792000" />
     </task>
     <servers />
   </component>
