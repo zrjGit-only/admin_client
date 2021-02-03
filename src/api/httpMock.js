@@ -13,3 +13,10 @@ export const getRoleInfo = () => axiosMock.get('/role')
 export const postRoleInfo = (roleInfo) => axiosMock.post('/role', {roleInfo})
 //修改role数据
 export const patchRoleInfo = (id,roleInfo) => axiosMock.patch(`/role/${id}`, roleInfo)
+
+//获取user数据
+export const getUserInfo = () => axiosMock.get('/user')
+//添加user数据
+export const postUserInfo = (roleInfo) => axiosMock.post('/role', {roleInfo})
+//修改user数据
+export const patchUserInfo = (id,roleInfo) => axiosMock.patch(`/role/${id}`, roleInfo)

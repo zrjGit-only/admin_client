@@ -1,5 +1,6 @@
 import {GET_USER_INFO} from '../../actions-type/user'
-import {getUserInfo} from '../../../api/http'
+// import {getUserInfo} from '../../../api/http'
+import {getUserInfo,getRoleInfo} from '../../../api/httpMock'
 import dayjs from 'dayjs'
 import {LOGIN} from '../../actions-type/user'
 import {login} from '../../../api/http'
@@ -21,13 +22,30 @@ export const user_info = function (payload) {
 
 //eslint-disable-next-line
 export default {
-    //获取用户信息
+    /*//获取用户信息
     getUserInfo() {
         //因为要传参所以返回需要的函数,外部函数用来接收参数
         return async (dispatch) => {
             const userInfo = await getUserInfo()
             const res = userInfo.data.users.map(item => {
                 const role = userInfo.data.roles.find(i => i._id === item.role_id)
+                return {
+                    ...item,
+                    create_time: dayjs().format("YYYY-MM-DD, HH:mm:ss"),
+                    role: role ? role.name : ''
+                }
+            })
+            dispatch(get_user_info(res))
+        }
+    },*/
+    //获取用户信息
+    getUserInfo() {
+        //因为要传参所以返回需要的函数,外部函数用来接收参数
+        return async (dispatch) => {
+            const userInfo = await getUserInfo()
+            const roleInfo = await getRoleInfo()
+            const res = userInfo.map(item => {
+                const role = roleInfo.find(i => i.id === item.role_id)
                 return {
                     ...item,
                     create_time: dayjs().format("YYYY-MM-DD, HH:mm:ss"),

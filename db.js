@@ -43,7 +43,16 @@ function generateBook() {
         name: '经理',
         id: 1
     }]
-    return {charts, role};
+    var user = [{
+        username: '张三',
+        password: '123',
+        phone: '15531036305',
+        email: '1@qq.com',
+        role_id: 1,
+        id: 1
+
+    }]
+    return {charts, role, user};
 }
 
 module.exports = generateBook;

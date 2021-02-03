@@ -42,6 +42,7 @@ function User(props) {
         setUser([])
         setIsAddOrUpData(1)
     }}>创建用户</Button>
+    console.log(props.userInfo);
     return (
         <Card title={title} style={{width: '100%'}}>
             <Table dataSource={props.userInfo}>
