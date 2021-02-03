@@ -48,7 +48,7 @@ export default {
                 const role = roleInfo.find(i => i.id === item.role_id)
                 return {
                     ...item,
-                    create_time: dayjs().format("YYYY-MM-DD, HH:mm:ss"),
+                    create_time: dayjs(item.create_time).format("YYYY-MM-DD, HH:mm:ss"),
                     role: role ? role.name : ''
                 }
             })
