@@ -217,7 +217,7 @@ class AddupdateProduct extends Component {
             wrapperCol: { span: 8 }, // 右侧包裹的宽度
         }
 
-        // 头部左侧标题
+        // 头部 左侧标题
         const title = (
             <span>
                 <LinkButton onClick={() => this.props.history.goBack()}>
