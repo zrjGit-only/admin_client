@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'antd';
+import {Card} from 'antd';
 import {
     QuestionCircleOutlined,
     ArrowUpOutlined,
@@ -7,192 +7,185 @@ import {
 } from '@ant-design/icons';
 import './Home.less'
 import {
-    G2,
     Chart,
     Geom,
     Axis,
     Tooltip,
     Legend,
-    Util
 } from "bizcharts"
+
 const data = [
     {
         month: "Jan",
-        city: "Tokyo",
+        city: "A",
         temperature: 7
     },
     {
         month: "Jan",
-        city: "London",
+        city: "B",
         temperature: 3.9
     },
     {
         month: "Feb",
-        city: "Tokyo",
+        city: "A",
         temperature: 6.9
     },
     {
         month: "Feb",
-        city: "London",
+        city: "B",
         temperature: 4.2
     },
     {
         month: "Mar",
-        city: "Tokyo",
+        city: "A",
         temperature: 9.5
     },
     {
         month: "Mar",
-        city: "London",
+        city: "B",
         temperature: 5.7
     },
     {
         month: "Apr",
-        city: "Tokyo",
+        city: "A",
         temperature: 14.5
     },
     {
         month: "Apr",
-        city: "London",
+        city: "B",
         temperature: 8.5
     },
     {
         month: "May",
-        city: "Tokyo",
+        city: "A",
         temperature: 18.4
     },
     {
         month: "May",
-        city: "London",
+        city: "B",
         temperature: 11.9
     },
     {
         month: "Jun",
-        city: "Tokyo",
+        city: "A",
         temperature: 21.5
     },
     {
         month: "Jun",
-        city: "London",
+        city: "B",
         temperature: 15.2
     },
     {
         month: "Jul",
-        city: "Tokyo",
+        city: "A",
         temperature: 25.2
     },
     {
         month: "Jul",
-        city: "London",
+        city: "B",
         temperature: 17
     },
     {
         month: "Aug",
-        city: "Tokyo",
+        city: "A",
         temperature: 26.5
     },
     {
         month: "Aug",
-        city: "London",
+        city: "B",
         temperature: 16.6
     },
     {
         month: "Sep",
-        city: "Tokyo",
+        city: "A",
         temperature: 23.3
     },
     {
         month: "Sep",
-        city: "London",
+        city: "B",
         temperature: 14.2
     },
     {
         month: "Oct",
-        city: "Tokyo",
+        city: "A",
         temperature: 18.3
     },
     {
         month: "Oct",
-        city: "London",
+        city: "B",
         temperature: 10.3
     },
     {
         month: "Nov",
-        city: "Tokyo",
+        city: "A",
         temperature: 13.9
     },
     {
         month: "Nov",
-        city: "London",
+        city: "B",
         temperature: 6.6
     },
     {
         month: "Dec",
-        city: "Tokyo",
+        city: "A",
         temperature: 9.6
     },
     {
         month: "Dec",
-        city: "London",
+        city: "B",
         temperature: 4.8
     }
 ];
-
 export default function Home() {
     const cols = {
+        //month:字段名
         month: {
             range: [0, 1]
         }
     }
     return (
-        <div>
-            <Card title="商品总量" extra={<QuestionCircleOutlined />} classNameName="card1">
+        <div className="home">
+            <Card title="商品总量" extra={<QuestionCircleOutlined/>} className="card1">
                 <h1>1,128,163&nbsp;<span>个</span></h1>
-                <span>周同比 15%</span>&nbsp;<ArrowUpOutlined style={{color:'red'}}/><br/>
-                <span>日同比 10%</span>&nbsp;<ArrowDownOutlined style={{color:'green'}}/>
+                <span>周同比 15%</span>&nbsp;<ArrowUpOutlined style={{color: 'red'}}/><br/>
+                <span>日同比 10%</span>&nbsp;<ArrowDownOutlined style={{color: 'green'}}/>
             </Card>
-            <Chart className="chart" data={data} scale={cols} autoFit onAxisLabelClick={console.log}>
-                <Legend/>
+            {/*scale : 配置图标的比例 autoFit : 图表大小自适应，对外层容器的宽和高都会适应*/}
+            <Chart className="chart" data={data} scale={cols} autoFit>
+                <Legend marker={{
+                    symbol: (x, y, radius) => {
+                        const r = radius / 2;
+                        return [
+                            ['M', x - radius, y],
+                            ['A', r, r, 0, 0, 1, x, y],
+                            ['A', r, r, 0, 0, 0, x + radius, y],
+                        ]
+                    }
+                }}/>
                 <Axis name="month"/>
                 <Axis
                     name="temperature"
                     label={{
-                        formatter: val => `${val}°C`
+                        formatter: val => `${val}万个`
                     }}
                 />
+                {/*crosshairs : 类型`x` 表示 x 轴上的辅助线，`y` 表示 y 轴上的辅助项*/}
                 <Tooltip
-                    crosshairs={{
-                        type: "y"
+                    g2-tooltip={{
+                        boxShadow: 'none',
+                        color: '#fff',
+                        backgroundColor: '#222'
                     }}
-                    itemTpl={`
-              <tr data-index={index}>'
-                <td><span style="background-color:{color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;"></span></td>
-                <td>{name}</td>
-                <td>{value}</td>
-              </tr>
-           `}
-
-                >
-                    {
-                        (title, items) => {
-                            // 配置了 className="g2-tooltip-list" 则会将模版中的内容渲染进来
-                            // 您也可以根据 items 自行渲染
-                            return (<table>
-                                <thead>
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th>名称</th>
-                                    <th>值</th>
-                                </tr>
-                                </thead>
-                                <tbody
-                                    className="g2-tooltip-list"
-                                >
-                                </tbody>
-                            </table>);
-                        }
-                    }
-                </Tooltip>
+                    crosshairs={{
+                        type: "xy"
+                    }}
+                    style={{
+                        color: 'red'
+                    }}
+                />
+                {/*几何标记对象，决定创建图表的类型*/}
+                {/*shape : 将数据值映射到图形的形状上的方法*/}
+                {/*position : 确定 x 轴和 y 轴的数据字段*/}
                 <Geom
                     type="line"
                     position="month*temperature"
