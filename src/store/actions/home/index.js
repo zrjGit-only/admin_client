@@ -1,5 +1,5 @@
-import {GET_BIZ_CHART_LINE_INFO,GET_BIZ_CHART_BAR} from '../../actions-type/home'
-import {getBizChartLine,getBizChartBar} from '../../../api/httpMock'
+import {GET_BIZ_CHART_LINE_INFO,GET_BIZ_CHART_PIE_ACCESS,GET_BIZ_CHART_BAR_SALES} from '../../actions-type/home'
+import {getBizChartLine,getBizChartPieAccess,getBizChartBarSales} from '../../../api/httpMock'
 
 export const get_biz_chart_line = function (payload) {
     return {
@@ -7,9 +7,15 @@ export const get_biz_chart_line = function (payload) {
         payload
     }
 }
-export const get_biz_chart_bar = function (payload) {
+export const get_biz_chart_pie_access = function (payload) {
     return {
-        type: GET_BIZ_CHART_BAR,
+        type: GET_BIZ_CHART_PIE_ACCESS,
+        payload
+    }
+}
+export const get_biz_chart_bar_sales = function (payload) {
+    return {
+        type: GET_BIZ_CHART_BAR_SALES,
         payload
     }
 }
@@ -21,10 +27,16 @@ export default {
             dispatch(get_biz_chart_line(chart))
         }
     },
-    getBizChartBar() {
+    getBizChartPieAccess() {
         return async (dispatch) => {
-            const chart = await getBizChartBar()
-            dispatch(get_biz_chart_bar(chart))
+            const chart = await getBizChartPieAccess()
+            dispatch(get_biz_chart_pie_access(chart))
+        }
+    },
+    getBizChartBarSales() {
+        return async (dispatch) => {
+            const chart = await getBizChartBarSales()
+            dispatch(get_biz_chart_bar_sales(chart))
         }
     },
 

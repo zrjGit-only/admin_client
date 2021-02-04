@@ -1,5 +1,5 @@
 import bizCharts from '../../state/home'
-import {GET_BIZ_CHART_LINE_INFO,GET_BIZ_CHART_BAR} from '../../actions-type/home'
+import {GET_BIZ_CHART_LINE_INFO,GET_BIZ_CHART_PIE_ACCESS,GET_BIZ_CHART_BAR_SALES} from '../../actions-type/home'
 
 export default function (prevState = bizCharts, action) {
     prevState = JSON.parse(JSON.stringify(prevState));
@@ -7,8 +7,11 @@ export default function (prevState = bizCharts, action) {
         case GET_BIZ_CHART_LINE_INFO:
             prevState.bizLineInfo = action.payload;
             break;
-        case GET_BIZ_CHART_BAR:
-            prevState.bizBarInfo = action.payload;
+        case GET_BIZ_CHART_PIE_ACCESS:
+            prevState.bizPieAccessInfo = action.payload;
+            break;
+        case GET_BIZ_CHART_BAR_SALES:
+            prevState.bizBarSalesInfo = action.payload;
             break;
     }
     return prevState

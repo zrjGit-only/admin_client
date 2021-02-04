@@ -1,4 +1,5 @@
 export default {
     bizLineInfo:[],
-    bizBarInfo:[]
+    bizPieAccessInfo:[],
+    bizBarSalesInfo:[]
 }

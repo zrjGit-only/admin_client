@@ -12,6 +12,7 @@ import chartsAction from "../../store/actions/charts";
 import Line from "./Line";
 import dayjs from "dayjs";
 import Sales from "./Sales";
+import Access from "./Access";
 
 const {RangePicker} = DatePicker
 
@@ -21,6 +22,7 @@ function Home(props) {
     useEffect(() => {
         const getCharts = async () => {
             await props.getChartsStore()
+            await props.getBizChartPieAccessStore()
         }
         getCharts().then(() => {
             console.log(props.chart);
@@ -42,8 +44,8 @@ function Home(props) {
         },
     ];
     const contentListNoTitle = {
-        Access: <p><Sales/></p>,
-        Sales: <p>访问量</p>,
+        Access: <div><Sales/></div>,
+        Sales: <div><Access bizBarSalesInfo={props.bizBarSalesInfo}/></div>,
     };
     const onTabChange = (key, type) => {
         console.log(key, type);
@@ -94,18 +96,18 @@ function Home(props) {
 
 function mapStateToProps(state) {
     return {
-        bizChartInfo: state.home.bizChartInfo,
+        bizBarSalesInfo: state.home.bizBarSalesInfo,
         chart: state.charts.chartsInfo,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        async getBizChartInfoStore() {
-            await dispatch(homeAction.getBizChart())
-        },
         async getChartsStore() {
             await dispatch(chartsAction.getChart())
+        },
+        async getBizChartPieAccessStore() {
+            await dispatch(homeAction.getBizChartPieAccess())
         }
     }
 }

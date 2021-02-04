@@ -78,18 +78,30 @@ function generateBook() {
         i++
     }
 
-    var bizBar = []
+    var bizBarSales = []
     for (let sale = 0; sale < 12; sale++) {
         let month = `${sale + 1}月`
-        let s = sale + Math.random() * 100 + 1;
+        let s = sale + Math.random() * 1000 + 1;
 
-        bizBar.push({
+        bizBarSales.push({
             id: sale,
             month,
             sales: s
         });
     }
-    return {charts, role, user, bizLine, bizBar};
+
+    var bizPieAccess = []
+    for (let access = 0; access < 12; access++) {
+        let month = `${access + 1}月`
+        let s = access + Math.random() * 100 + 1;
+
+        bizPieAccess.push({
+            id: access,
+            month,
+            sales: s
+        });
+    }
+    return {charts, role, user, bizLine, bizPieAccess,bizBarSales};
 }
 
 module.exports = generateBook;

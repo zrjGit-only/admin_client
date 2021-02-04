@@ -1,23 +1,24 @@
 import React, {useEffect} from 'react'
-import {connect} from "react-redux";
-import {Card,Timeline } from 'antd';
+import {Card, Timeline} from 'antd';
 import {
     ReloadOutlined
 } from '@ant-design/icons';
 import {Chart, Interval, Tooltip} from 'bizcharts';
 import homeAction from "../../store/actions/home";
+import {connect} from "react-redux";
 
 function Sales(props) {
     useEffect(() => {
-        const getBizChartBar = async () => {
-            await props.getBizChartBarStore()
+        const getBizChartBarSales = async () => {
+            await props.getBizChartBarSalesStore()
         }
-        getBizChartBar()
+        getBizChartBarSales()
     }, [])
     return (
         <>
-            <Card title="访问趋势" extra={<ReloadOutlined onClick={props.getBizChartBarStore}/>} style={{width: '48%', float: 'left'}}>
-                <Chart height={400} autoFit data={props.bizBarInfo} interactions={['active-region']}
+            <Card title="访问趋势" extra={<ReloadOutlined onClick={props.getBizChartBarSalesStore}/>}
+                  style={{width: '48%', float: 'left'}}>
+                <Chart height={400} autoFit data={props.bizPieAccessInfo} interactions={['active-region']}
                        padding={[30, 30, 30, 50]}>
                     <Interval position="month*sales"/>
                     <Tooltip shared/>
@@ -25,6 +26,7 @@ function Sales(props) {
             </Card>
             <Card title="任务" extra={<ReloadOutlined/>} style={{width: '48%', float: 'right'}}>
                 <Timeline>
+                    <Timeline.Item color="green">图表管理 用户管理 角色管理模拟数据(json-server) 2021.02.03</Timeline.Item>
                     <Timeline.Item color="green">
                         <p>图片上传 2021.02.02</p>
                         <p>富文本编辑器</p>
@@ -54,16 +56,18 @@ function Sales(props) {
 
 function mapStateToProps(state) {
     return {
-        bizBarInfo: state.home.bizBarInfo,
+        bizPieAccessInfo: state.home.bizPieAccessInfo,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        async getBizChartBarStore() {
-            await dispatch(homeAction.getBizChartBar())
-        }
+
+        async getBizChartBarSalesStore() {
+            await dispatch(homeAction.getBizChartBarSales())
+        },
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sales);

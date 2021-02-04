@@ -3,8 +3,10 @@ import axiosMock from './axiosMock'
 // mockjs
 //获取首页折线图信息
 export const getBizChartLine = () => axiosMock.get(`/bizLine`)
-//获取首页柱状图信息
-export const getBizChartBar = () => axiosMock.get(`/bizBar`)
+//获取首页饼状图销售信息
+export const getBizChartPieAccess = () => axiosMock.get(`/bizPieAccess`)
+//获取首页柱状图访问信息
+export const getBizChartBarSales = () => axiosMock.get(`/bizBarSales`)
 
 //获取chart数据
 export const getChart = () => axiosMock.get(`/charts`)
