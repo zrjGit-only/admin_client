@@ -1,51 +1,42 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {connect} from "react-redux";
 import {Card} from 'antd';
 import {
     ReloadOutlined
 } from '@ant-design/icons';
 import {Chart, Interval, Tooltip} from 'bizcharts';
+import homeAction from "../../store/actions/home";
 
-export default function Sales() {
-    const data = [
-        {
-            year: "1951 年",
-            sales: 38
-        },
-        {
-            year: "1952 年",
-            sales: 52
-        },
-        {
-            year: "1956 年",
-            sales: 61
-        },
-        {
-            year: "1957 年",
-            sales: 145
-        },
-        {
-            year: "1958 年",
-            sales: 48
-        },
-        {
-            year: "1959 年",
-            sales: 38
-        },
-        {
-            year: "1960 年",
-            sales: 38
-        },
-        {
-            year: "1962 年",
-            sales: 38
+function Sales(props) {
+    useEffect(() => {
+        const getBizChartBar = async () => {
+           await props.getBizChartBarStore()
         }
-    ];
+        getBizChartBar()
+    }, [])
+    console.log(props.bizBarInfo);
     return (
         <Card title="访问趋势" extra={<ReloadOutlined/>} style={{width: '50%', marginRight: 30}}>
-            <Chart height={400} autoFit data={data} interactions={['active-region']} padding={[30, 30, 30, 50]}>
-                <Interval position="year*sales"/>
+            <Chart height={400} autoFit data={props.bizBarInfo} interactions={['active-region']} padding={[30, 30, 30, 50]}>
+                <Interval position="month*sales"/>
                 <Tooltip shared/>
             </Chart>
         </Card>
     )
 }
+
+function mapStateToProps(state) {
+    return {
+        bizBarInfo: state.home.bizBarInfo,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async getBizChartBarStore() {
+            await dispatch(homeAction.getBizChartBar())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sales);

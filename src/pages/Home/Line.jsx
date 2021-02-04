@@ -5,7 +5,10 @@ import {Axis, Chart, Geom, Legend, Tooltip} from "bizcharts";
 
 function Line(props) {
     useEffect(() => {
-        props.getBizChartInfoStore()
+        const getBizChartLine = async () => {
+            await props.getBizChartLineStore()
+        }
+        getBizChartLine()
     }, [])
     const cols = {
         //month:字段名
@@ -15,7 +18,7 @@ function Line(props) {
     }
     return (
         // scale : 配置图标的比例 autoFit : 图表大小自适应，对外层容器的宽和高都会适应
-        <Chart className="chart" data={props.bizChartInfo} scale={cols} autoFit>
+        <Chart className="chart" data={props.bizLineInfo} scale={cols} autoFit>
             {/*分类图例适用，图例项的 marker 图标的配置*/}
             <Legend marker={{
                 symbol: (x, y, radius) => {
@@ -75,14 +78,14 @@ function Line(props) {
 
 function mapStateToProps(state) {
     return {
-        bizChartInfo: state.home.bizChartInfo,
+        bizLineInfo: state.home.bizLineInfo,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        async getBizChartInfoStore() {
-            await dispatch(homeAction.getBizChart())
+        async getBizChartLineStore() {
+            await dispatch(homeAction.getBizChartLine())
         }
     }
 }

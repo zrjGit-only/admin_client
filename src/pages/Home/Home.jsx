@@ -17,7 +17,7 @@ const {RangePicker} = DatePicker
 
 function Home(props) {
     const [store, setStore] = useState(0)
-    const [noTitleKey, setNoTitleKey] = useState('Sales')
+    const [noTitleKey, setNoTitleKey] = useState('Access')
     useEffect(() => {
         const getCharts = async () => {
             await props.getChartsStore()
@@ -33,17 +33,17 @@ function Home(props) {
     const dateFormat = 'YYYY/MM/DD';
     const tabListNoTitle = [
         {
+            key: 'Access',
+            tab: '访问量',
+        },
+        {
             key: 'Sales',
             tab: '销售量',
         },
-        {
-            key: 'access',
-            tab: '访问量',
-        }
     ];
     const contentListNoTitle = {
-        Sales: <p><Sales/></p>,
-        access: <p>访问量</p>,
+        Access: <p><Sales/></p>,
+        Sales: <p>访问量</p>,
     };
     const onTabChange = (key, type) => {
         console.log(key, type);
@@ -78,8 +78,8 @@ function Home(props) {
                 tabList={tabListNoTitle}
                 activeTabKey={noTitleKey}
                 extra={<RangePicker
-                        defaultValue={[dayjs('2019/01/01', dateFormat), dayjs('2019/06/01', dateFormat)]}
-                        format={dateFormat}/>}
+                    defaultValue={[dayjs('2019/01/01', dateFormat), dayjs('2019/06/01', dateFormat)]}
+                    format={dateFormat}/>}
                 onTabChange={key => {
                     onTabChange(key, 'noTitleKey');
                 }}

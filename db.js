@@ -51,23 +51,24 @@ function generateBook() {
         role_id: 1,
         id: 1
     }]
-    var bizChats = []
-    var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    var i=0
-    while(i<3){
-        for (var id = 0; id < 12; id++) {
-            var month = m[id]
-            var a = id + Math.random() * 5 + 1;
-            var city
+
+    var bizLine = []
+    var m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    let i = 0
+    while (i < 3) {
+        for (let id = 0; id < 12; id++) {
+            let month = m[id]
+            let a = id + Math.random() * 5 + 1;
+            let city
             if (i === 0) {
                 city = '北京'
-            } else if(i===1) {
+            } else if (i === 1) {
                 city = '上海'
-            }else{
+            } else {
                 city = '杭州'
             }
 
-            bizChats.push({
+            bizLine.push({
                 id,
                 month,
                 a,
@@ -77,7 +78,18 @@ function generateBook() {
         i++
     }
 
-    return {charts, role, user, bizChats};
+    var bizBar = []
+    for (let sale = 0; sale < 12; sale++) {
+        let month = `${sale + 1}月`
+        let s = sale + Math.random() * 100 + 1;
+
+        bizBar.push({
+            id: sale,
+            month,
+            sales: s
+        });
+    }
+    return {charts, role, user, bizLine, bizBar};
 }
 
 module.exports = generateBook;
