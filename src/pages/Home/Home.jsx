@@ -17,122 +17,122 @@ import {
 const data = [
     {
         month: "Jan",
-        city: "A",
+        city: "北京",
         temperature: 7
     },
     {
         month: "Jan",
-        city: "B",
+        city: "上海",
         temperature: 3.9
     },
     {
         month: "Feb",
-        city: "A",
+        city: "北京",
         temperature: 6.9
     },
     {
         month: "Feb",
-        city: "B",
+        city: "上海",
         temperature: 4.2
     },
     {
         month: "Mar",
-        city: "A",
+        city: "北京",
         temperature: 9.5
     },
     {
         month: "Mar",
-        city: "B",
+        city: "上海",
         temperature: 5.7
     },
     {
         month: "Apr",
-        city: "A",
+        city: "北京",
         temperature: 14.5
     },
     {
         month: "Apr",
-        city: "B",
+        city: "上海",
         temperature: 8.5
     },
     {
         month: "May",
-        city: "A",
+        city: "北京",
         temperature: 18.4
     },
     {
         month: "May",
-        city: "B",
+        city: "上海",
         temperature: 11.9
     },
     {
         month: "Jun",
-        city: "A",
+        city: "北京",
         temperature: 21.5
     },
     {
         month: "Jun",
-        city: "B",
+        city: "上海",
         temperature: 15.2
     },
     {
         month: "Jul",
-        city: "A",
+        city: "北京",
         temperature: 25.2
     },
     {
         month: "Jul",
-        city: "B",
+        city: "上海",
         temperature: 17
     },
     {
         month: "Aug",
-        city: "A",
+        city: "北京",
         temperature: 26.5
     },
     {
         month: "Aug",
-        city: "B",
+        city: "上海",
         temperature: 16.6
     },
     {
         month: "Sep",
-        city: "A",
+        city: "北京",
         temperature: 23.3
     },
     {
         month: "Sep",
-        city: "B",
+        city: "上海",
         temperature: 14.2
     },
     {
         month: "Oct",
-        city: "A",
+        city: "北京",
         temperature: 18.3
     },
     {
         month: "Oct",
-        city: "B",
+        city: "上海",
         temperature: 10.3
     },
     {
         month: "Nov",
-        city: "A",
+        city: "北京",
         temperature: 13.9
     },
     {
         month: "Nov",
-        city: "B",
+        city: "上海",
         temperature: 6.6
     },
     {
         month: "Dec",
-        city: "A",
+        city: "北京",
         temperature: 9.6
     },
     {
         month: "Dec",
-        city: "B",
+        city: "上海",
         temperature: 4.8
     }
 ];
@@ -152,6 +152,7 @@ export default function Home() {
             </Card>
             {/*scale : 配置图标的比例 autoFit : 图表大小自适应，对外层容器的宽和高都会适应*/}
             <Chart className="chart" data={data} scale={cols} autoFit>
+                {/*分类图例适用，图例项的 marker 图标的配置*/}
                 <Legend marker={{
                     symbol: (x, y, radius) => {
                         const r = radius / 2;

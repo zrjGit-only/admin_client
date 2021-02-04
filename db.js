@@ -51,7 +51,26 @@ function generateBook() {
         role_id: 1,
         id: 1
     }]
-    return {charts, role, user};
+    var bizChats = []
+
+    for (var id = 1; id <= 12; id++) {
+        var month = Mock.Random.date('MM')
+        var temperature = Math.floor(Math.random() * 20 + 1);
+        var city
+        if(id%2===0){
+            city = '北京'
+        }else{
+            city = '上海'
+        }
+
+        bizChats.push({
+            month,
+            temperature,
+            city
+        });
+    }
+
+    return {charts, role, user, bizChats};
 }
 
 module.exports = generateBook;

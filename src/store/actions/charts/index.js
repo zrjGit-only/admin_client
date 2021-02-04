@@ -1,6 +1,5 @@
 import {GET_CHART_INFO} from '../../actions-type/charts'
 import {getChart} from '../../../api/httpMock'
-import {message} from 'antd';
 
 export const get_chart = function (payload) {
     return {
