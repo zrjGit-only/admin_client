@@ -32,7 +32,7 @@ class Login extends Component {
         }, 5000)
     }
 
-    async handleSubmit(values) {
+    async login(values) {
         const {username, password} = values
         const {status, msg} = await this.props.userLoginStore(username, password)
         if (status === 0) {

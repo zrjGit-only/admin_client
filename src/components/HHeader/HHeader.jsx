@@ -79,13 +79,13 @@ function HHeader(props) {
         }
     }, [])
 
-
-
+    console.log(JSON.parse(localStorage.sph_admin_login).data.username)
+    const username=JSON.parse(localStorage.sph_admin_login).data.username
     return (
         <div className='container'>
             <div className="admin">
                 <p>
-                    <span>欢迎 data.username</span>
+                    <span>欢迎 {username ? username : '请登录'}</span>
                     <Button
                         type="link"
                         onClick={confirm}
