@@ -134,8 +134,8 @@ class AddupdateProduct extends Component {
         })
     }
 
-    onFinish  =  async () => {
-        await this.from.current.validateFields().then(values => {
+    onFinish  =  () => {
+         this.from.current.validateFields().then(values => {
             // 1. 收集数据, 并封装成product对象
             const {name, desc, price, categoryIds} = values
             console.log(values)
@@ -161,9 +161,10 @@ class AddupdateProduct extends Component {
 
             // 2. 调用接口请求函数去添加/更新
             const result =  reqAddOrUpdateProduct(product)
+            console.log(result)
 
             // 3. 根据结果提示
-            if (result.status===0) {
+            if (result) {
                 message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
                 this.props.history.goBack()
             } else {

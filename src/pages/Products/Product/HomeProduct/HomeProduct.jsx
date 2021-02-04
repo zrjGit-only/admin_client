@@ -141,14 +141,6 @@ class HomeProduct extends Component {
                             <Space size="middle">
                                 <Button type="link" onClick={()=>this.props.history.push('/product/detail',text)} >详情</Button>
                                 <Button type="link" onClick={()=>this.props.history.push('/product/addupdate',text)}>修改</Button>
-                                <Button type="link" onClick={()=>{
-                                    this.props.history.push('/product/detail',text)
-                                    console.log(text)
-                                }} >详情</Button>
-                                <Button type="link" onClick={()=>{
-                                    this.props.history.push('/product/addupdate',text)
-                                    console.log(text)
-                                }}>修改</Button>
                             </Space>
                         )}
                     />
