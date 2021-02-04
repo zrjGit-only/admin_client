@@ -3,40 +3,40 @@ let Mock = require("mockjs");
 function generateBook() {
     var charts = [
         {
-            "stores": 3894,
+            "stores": 38940,
             "name": "针织衫",
-            "sales": 461,
+            "sales": 4601,
             "id": 1
         },
         {
             "id": 2,
             "name": "羊毛衫",
-            "sales": 155,
-            "stores": 984
+            "sales": 1550,
+            "stores": 9840
         },
         {
             "id": 3,
             "name": "雪纺衫",
-            "sales": 258,
-            "stores": 2510
+            "sales": 2580,
+            "stores": 25100
         },
         {
             "id": 4,
             "name": "裤子",
-            "sales": 560,
-            "stores": 5247
+            "sales": 5600,
+            "stores": 52470
         },
         {
             "id": 5,
             "name": "高跟鞋",
-            "sales": 621,
-            "stores": 5970
+            "sales": 6210,
+            "stores": 59700
         },
         {
             "id": 6,
             "name": "袜子",
-            "sales": 267,
-            "stores": 2255
+            "sales": 2670,
+            "stores": 22550
         }
     ]
     var role = [{
