@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux'
-import {Card, Statistic,DatePicker,} from 'antd';
+import {Card, Statistic, DatePicker,} from 'antd';
 import {
     QuestionCircleOutlined,
     ArrowUpOutlined,
@@ -11,6 +11,8 @@ import homeAction from "../../store/actions/home";
 import chartsAction from "../../store/actions/charts";
 import Line from "./Line";
 import dayjs from "dayjs";
+import Sales from "./Sales";
+
 const {RangePicker} = DatePicker
 
 function Home(props) {
@@ -40,7 +42,7 @@ function Home(props) {
         }
     ];
     const contentListNoTitle = {
-        Sales: <p>销售量</p>,
+        Sales: <p><Sales/></p>,
         access: <p>访问量</p>,
     };
     const onTabChange = (key, type) => {
@@ -76,9 +78,8 @@ function Home(props) {
                 tabList={tabListNoTitle}
                 activeTabKey={noTitleKey}
                 extra={<RangePicker
-                    defaultValue={[dayjs('2019/01/01', dateFormat), dayjs('2019/06/01', dateFormat)]}
-                    format={dateFormat}
-                />}
+                        defaultValue={[dayjs('2019/01/01', dateFormat), dayjs('2019/06/01', dateFormat)]}
+                        format={dateFormat}/>}
                 onTabChange={key => {
                     onTabChange(key, 'noTitleKey');
                 }}
