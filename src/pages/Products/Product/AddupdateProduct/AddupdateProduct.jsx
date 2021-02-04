@@ -265,14 +265,3 @@ class AddupdateProduct extends Component {
 export default(AddupdateProduct)
 
 
-/*
-1. 子组件调用父组件的方法: 将父组件的方法以函数属性的形式传递给子组件, 子组件就可以调用
-2. 父组件调用子组件的方法: 在父组件中通过ref得到子组件标签对象(也就是组件对象), 调用其方法
- */
-
-/*
-使用ref
-1. 创建ref容器: thi.pw = React.createRef()
-2. 将ref容器交给需要获取的标签元素: <PictureWall ref={this.pw} />
-3. 通过ref容器读取标签元素: this.pw.current
- */
