@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import {connect} from 'react-redux'
 import {Card} from 'antd';
 import {
     QuestionCircleOutlined,
@@ -13,136 +14,19 @@ import {
     Tooltip,
     Legend,
 } from "bizcharts"
+import homeAction from "../../store/actions/home";
 
-const data = [
-    {
-        month: "Jan",
-        city: "北京",
-        temperature: 7
-    },
-    {
-        month: "Jan",
-        city: "上海",
-        temperature: 3.9
-    },
-    {
-        month: "Feb",
-        city: "北京",
-        temperature: 6.9
-    },
-    {
-        month: "Feb",
-        city: "上海",
-        temperature: 4.2
-    },
-    {
-        month: "Mar",
-        city: "北京",
-        temperature: 9.5
-    },
-    {
-        month: "Mar",
-        city: "上海",
-        temperature: 5.7
-    },
-    {
-        month: "Apr",
-        city: "北京",
-        temperature: 14.5
-    },
-    {
-        month: "Apr",
-        city: "上海",
-        temperature: 8.5
-    },
-    {
-        month: "May",
-        city: "北京",
-        temperature: 18.4
-    },
-    {
-        month: "May",
-        city: "上海",
-        temperature: 11.9
-    },
-    {
-        month: "Jun",
-        city: "北京",
-        temperature: 21.5
-    },
-    {
-        month: "Jun",
-        city: "上海",
-        temperature: 15.2
-    },
-    {
-        month: "Jul",
-        city: "北京",
-        temperature: 25.2
-    },
-    {
-        month: "Jul",
-        city: "上海",
-        temperature: 17
-    },
-    {
-        month: "Aug",
-        city: "北京",
-        temperature: 26.5
-    },
-    {
-        month: "Aug",
-        city: "上海",
-        temperature: 16.6
-    },
-    {
-        month: "Sep",
-        city: "北京",
-        temperature: 23.3
-    },
-    {
-        month: "Sep",
-        city: "上海",
-        temperature: 14.2
-    },
-    {
-        month: "Oct",
-        city: "北京",
-        temperature: 18.3
-    },
-    {
-        month: "Oct",
-        city: "上海",
-        temperature: 10.3
-    },
-    {
-        month: "Nov",
-        city: "北京",
-        temperature: 13.9
-    },
-    {
-        month: "Nov",
-        city: "上海",
-        temperature: 6.6
-    },
-    {
-        month: "Dec",
-        city: "北京",
-        temperature: 9.6
-    },
-    {
-        month: "Dec",
-        city: "上海",
-        temperature: 4.8
-    }
-];
-export default function Home() {
+function Home(props) {
+    useEffect(()=>{
+        props.getBizChartInfoStore()
+    },[])
     const cols = {
         //month:字段名
         month: {
             range: [0, 1]
         }
     }
+    console.log(props.bizChartInfo);
     return (
         <div className="home">
             <Card title="商品总量" extra={<QuestionCircleOutlined/>} className="card1">
@@ -151,7 +35,7 @@ export default function Home() {
                 <span>日同比 10%</span>&nbsp;<ArrowDownOutlined style={{color: 'green'}}/>
             </Card>
             {/*scale : 配置图标的比例 autoFit : 图表大小自适应，对外层容器的宽和高都会适应*/}
-            <Chart className="chart" data={data} scale={cols} autoFit>
+            <Chart className="chart" data={props.bizChartInfo} scale={cols} autoFit>
                 {/*分类图例适用，图例项的 marker 图标的配置*/}
                 <Legend marker={{
                     symbol: (x, y, radius) => {
@@ -209,3 +93,18 @@ export default function Home() {
         </div>
     )
 }
+function mapStateToProps(state) {
+    return {
+        bizChartInfo: state.home.bizChartInfo,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        async getBizChartInfoStore(parentId) {
+            await dispatch(homeAction.getBizChart())
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

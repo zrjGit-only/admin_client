@@ -52,18 +52,19 @@ function generateBook() {
         id: 1
     }]
     var bizChats = []
-
-    for (var id = 1; id <= 12; id++) {
-        var month = Mock.Random.date('MM')
-        var temperature = Math.floor(Math.random() * 20 + 1);
+    var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    for (var id = 0; id < 12; id++) {
+        var month = m[id]
+        var temperature = id + Math.random() * 5 + 1;
         var city
-        if(id%2===0){
+        if (id % 2 === 0) {
             city = '北京'
-        }else{
+        } else {
             city = '上海'
         }
 
         bizChats.push({
+            id,
             month,
             temperature,
             city
