@@ -14,6 +14,7 @@ import productAction from "../../../../store/actions/product";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
 import {ProductUpOrDown as ProductUpOrDownApi} from '../../../../api/http'
+import memoryUtils from "../../../../utils/memoryUtils"
 const Option = Select.Option
 const {Column,} = Table;
 
@@ -83,6 +84,16 @@ class HomeProduct extends Component {
 
 
 
+    /*
+    显示修改商品界面
+     */
+    showUpdate = (product) => {
+        // 缓存product对象 ==> 给detail组件使用
+        memoryUtils.product = product
+        this.props.history.push('/product/addupdate')
+    }
+
+
     render() {
 
         // 取出状态数据
@@ -140,7 +151,7 @@ class HomeProduct extends Component {
                         render={(text, record) => (
                             <Space size="middle">
                                 <Button type="link" onClick={()=>this.props.history.push('/product/detail',text)} >详情</Button>
-                                <Button type="link" onClick={()=>this.props.history.push('/product/addupdate',text)}>修改</Button>
+                                <Button type="link" onClick={() => this.showUpdate(text)}>修改</Button>
                             </Space>
                         )}
                     />

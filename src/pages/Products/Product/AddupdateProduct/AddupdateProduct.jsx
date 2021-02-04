@@ -46,6 +46,7 @@ class AddupdateProduct extends Component {
 
         // 如果是一个二级分类商品的更新
         const {isUpdate, product} = this
+        console.log(product)
         const {pCategoryId} = product
         if(isUpdate && pCategoryId!=='0') {
             // 获取对应的二级分类列表
@@ -138,9 +139,9 @@ class AddupdateProduct extends Component {
          this.from.current.validateFields().then(values => {
             // 1. 收集数据, 并封装成product对象
             const {name, desc, price, categoryIds} = values
-            console.log(values)
+            // console.log(values)
             let pCategoryId, categoryId
-            console.log(categoryIds)
+            // console.log(categoryIds)
             if (categoryIds.length===1) {
                 pCategoryId = '0'
                 categoryId = categoryIds[0]
@@ -153,15 +154,14 @@ class AddupdateProduct extends Component {
             const detail = this.editor.current.getDetail()
 
             const product = {name, desc, price, imgs, detail, pCategoryId,categoryId}
-            console.log( product)
+
             // 如果是更新, 需要添加_id
             if(this.isUpdate) {
                 product._id = this.product._id
             }
-
+            console.log(this.isUpdate)
             // 2. 调用接口请求函数去添加/更新
             const result =  reqAddOrUpdateProduct(product)
-            console.log(result)
 
             // 3. 根据结果提示
             if (result) {
@@ -220,28 +220,27 @@ class AddupdateProduct extends Component {
         // 头部左侧标题
         const title = (
             <span>
-        <LinkButton onClick={() => this.props.history.goBack()}>
-          <ArrowLeftOutlined type='arrow-left' style={{fontSize: 20}}/>
-          <span>{isUpdate ? '修改商品' : '添加商品'}</span>
-        </LinkButton>
-
-      </span>
+                <LinkButton onClick={() => this.props.history.goBack()}>
+                  <ArrowLeftOutlined type='arrow-left' style={{fontSize: 20}}/>
+                  <span>{isUpdate ? '修改商品' : '添加商品'}</span>
+                </LinkButton>
+            </span>
         )
 
 
 
         return (
             <Card title={title}>
-                <Form {...formItemLayout} initialValues={{categoryIds:categoryIds}}
-                      onFinish={this.onFinish.bind(this)} ref={this.from}>
+                <Form {...formItemLayout} onFinish={this.onFinish.bind(this)} ref={this.from}
+                      initialValues={{categoryIds:categoryIds,name:product.name,desc:product.desc,price:product.price}}>
                     <Item label="商品名称"  rules={[{required: true, message: '商品名称不能为空'}]} name='name'>
-                        <Input placeholder='请输入商品名称' value={product.name && product.name} name="name"/>
+                        <Input placeholder='请输入商品名称' value={ product.name} name="name"/>
                     </Item>
                     <Item label="商品描述" rules={[{required: true, message: '商品描述不能为空'}]} name="desc">
-                        <Input.TextArea placeholder="请输入商品描述" value={product.desc && product.desc} autoSize={{minRows: 2, maxRows: 6}} name="desc"/>
+                        <Input.TextArea placeholder="请输入商品描述"  value={ product.desc} autoSize={{minRows: 2, maxRows: 6}} name="desc"/>
                     </Item>
                     <Item label="商品价格" rules={[{required: true, message: '请填写商品价格'}, this.validator]} name="price">
-                        <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={product.price && product.price} name="price"/>
+                        <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={ product.price} name="price"/>
                     </Item>
                     <Item label="商品分类"
                           rules={[{required: true, message: '请选择商品分类'}]} name="categoryIds">
