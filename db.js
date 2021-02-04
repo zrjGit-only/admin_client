@@ -53,22 +53,28 @@ function generateBook() {
     }]
     var bizChats = []
     var m = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    for (var id = 0; id < 12; id++) {
-        var month = m[id]
-        var temperature = id + Math.random() * 5 + 1;
-        var city
-        if (id % 2 === 0) {
-            city = '北京'
-        } else {
-            city = '上海'
-        }
+    var i=0
+    while(i<3){
+        for (var id = 0; id < 12; id++) {
+            var month = m[id]
+            var a = id + Math.random() * 5 + 1;
+            var city
+            if (i === 0) {
+                city = '北京'
+            } else if(i===1) {
+                city = '上海'
+            }else{
+                city = '杭州'
+            }
 
-        bizChats.push({
-            id,
-            month,
-            temperature,
-            city
-        });
+            bizChats.push({
+                id,
+                month,
+                a,
+                city
+            });
+        }
+        i++
     }
 
     return {charts, role, user, bizChats};
