@@ -8,7 +8,7 @@ import {
     message
 } from 'antd'
 import {
-    ArrowLeftOutlined, LoadingOutlined, PlusOutlined
+    ArrowLeftOutlined,
 } from '@ant-design/icons';
 import PicturesWall from '../PicturesWall/PicturesWall'
 import RichTextEditor from '../RichTextEditor/RichTextEditor'
@@ -17,7 +17,6 @@ import {getCategory, reqAddOrUpdateProduct} from '../../../../api/http'
 import memoryUtils from "../../../../utils/memoryUtils";
 
 const {Item} = Form
-const { TextArea } = Input
 
 /*
 Product的添加和更新的子路由组件
@@ -217,7 +216,7 @@ class AddupdateProduct extends Component {
             wrapperCol: { span: 8 }, // 右侧包裹的宽度
         }
 
-        // 头部 左侧标题
+        // 头部左侧标题
         const title = (
             <span>
                 <LinkButton onClick={() => this.props.history.goBack()}>
@@ -226,8 +225,6 @@ class AddupdateProduct extends Component {
                 </LinkButton>
             </span>
         )
-
-
 
         return (
             <Card title={title}>
