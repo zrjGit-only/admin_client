@@ -8,7 +8,7 @@ import {
     message
 } from 'antd'
 import {
-    ArrowLeftOutlined, LoadingOutlined, PlusOutlined
+    ArrowLeftOutlined,
 } from '@ant-design/icons';
 import PicturesWall from '../PicturesWall/PicturesWall'
 import RichTextEditor from '../RichTextEditor/RichTextEditor'
@@ -17,7 +17,6 @@ import {getCategory, reqAddOrUpdateProduct} from '../../../../api/http'
 import memoryUtils from "../../../../utils/memoryUtils";
 
 const {Item} = Form
-const { TextArea } = Input
 
 /*
 Product的添加和更新的子路由组件
@@ -46,6 +45,7 @@ class AddupdateProduct extends Component {
 
         // 如果是一个二级分类商品的更新
         const {isUpdate, product} = this
+        console.log(product)
         const {pCategoryId} = product
         if(isUpdate && pCategoryId!=='0') {
             // 获取对应的二级分类列表
@@ -134,13 +134,13 @@ class AddupdateProduct extends Component {
         })
     }
 
-    onFinish  =  async () => {
-        await this.from.current.validateFields().then(values => {
+    onFinish  =  () => {
+         this.from.current.validateFields().then(values => {
             // 1. 收集数据, 并封装成product对象
             const {name, desc, price, categoryIds} = values
-            console.log(values)
+            // console.log(values)
             let pCategoryId, categoryId
-            console.log(categoryIds)
+            // console.log(categoryIds)
             if (categoryIds.length===1) {
                 pCategoryId = '0'
                 categoryId = categoryIds[0]
@@ -153,17 +153,17 @@ class AddupdateProduct extends Component {
             const detail = this.editor.current.getDetail()
 
             const product = {name, desc, price, imgs, detail, pCategoryId,categoryId}
-            console.log( product)
+
             // 如果是更新, 需要添加_id
             if(this.isUpdate) {
                 product._id = this.product._id
             }
-
+            console.log(this.isUpdate)
             // 2. 调用接口请求函数去添加/更新
             const result =  reqAddOrUpdateProduct(product)
 
             // 3. 根据结果提示
-            if (result.status===0) {
+            if (result) {
                 message.success(`${this.isUpdate ? '更新' : '添加'}商品成功!`)
                 this.props.history.goBack()
             } else {
@@ -219,28 +219,25 @@ class AddupdateProduct extends Component {
         // 头部左侧标题
         const title = (
             <span>
-        <LinkButton onClick={() => this.props.history.goBack()}>
-          <ArrowLeftOutlined type='arrow-left' style={{fontSize: 20}}/>
-          <span>{isUpdate ? '修改商品' : '添加商品'}</span>
-        </LinkButton>
-
-      </span>
+                <LinkButton onClick={() => this.props.history.goBack()}>
+                  <ArrowLeftOutlined type='arrow-left' style={{fontSize: 20}}/>
+                  <span>{isUpdate ? '修改商品' : '添加商品'}</span>
+                </LinkButton>
+            </span>
         )
-
-
 
         return (
             <Card title={title}>
-                <Form {...formItemLayout} initialValues={{categoryIds:categoryIds}}
-                      onFinish={this.onFinish.bind(this)} ref={this.from}>
+                <Form {...formItemLayout} onFinish={this.onFinish.bind(this)} ref={this.from}
+                      initialValues={{categoryIds:categoryIds,name:product.name,desc:product.desc,price:product.price}}>
                     <Item label="商品名称"  rules={[{required: true, message: '商品名称不能为空'}]} name='name'>
-                        <Input placeholder='请输入商品名称' value={product.name && product.name} name="name"/>
+                        <Input placeholder='请输入商品名称' value={ product.name} name="name"/>
                     </Item>
                     <Item label="商品描述" rules={[{required: true, message: '商品描述不能为空'}]} name="desc">
-                        <Input.TextArea placeholder="请输入商品描述" value={product.desc && product.desc} autoSize={{minRows: 2, maxRows: 6}} name="desc"/>
+                        <Input.TextArea placeholder="请输入商品描述"  value={ product.desc} autoSize={{minRows: 2, maxRows: 6}} name="desc"/>
                     </Item>
                     <Item label="商品价格" rules={[{required: true, message: '请填写商品价格'}, this.validator]} name="price">
-                        <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={product.price && product.price} name="price"/>
+                        <Input type="number" addonAfter="元" placeholder="请输入商品价格" value={ product.price} name="price"/>
                     </Item>
                     <Item label="商品分类"
                           rules={[{required: true, message: '请选择商品分类'}]} name="categoryIds">
@@ -265,14 +262,3 @@ class AddupdateProduct extends Component {
 export default(AddupdateProduct)
 
 
-/*
-1. 子组件调用父组件的方法: 将父组件的方法以函数属性的形式传递给子组件, 子组件就可以调用
-2. 父组件调用子组件的方法: 在父组件中通过ref得到子组件标签对象(也就是组件对象), 调用其方法
- */
-
-/*
-使用ref
-1. 创建ref容器: thi.pw = React.createRef()
-2. 将ref容器交给需要获取的标签元素: <PictureWall ref={this.pw} />
-3. 通过ref容器读取标签元素: this.pw.current
- */
