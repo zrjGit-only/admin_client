@@ -101,7 +101,22 @@ function generateBook() {
             sales: s
         });
     }
-    return {charts, role, user, bizLine, bizPieAccess,bizBarSales};
+
+    var orderList = Mock.mock({
+        'orderList|100000': [{
+            'id|+1': 1,
+            'avatar': '@image("50x50", "@color", "#FFF", "png", "!")',
+            'uname': '@cname',
+            'pname': '@csentence(2, 6)',
+            'price': Math.random() * 100,
+            'num': Math.floor(Math.random() * 10),
+            'desc': '@cword(10,30)',
+            'order_time': '@date("yyyy-MM-dd HH:mm:ss")'//文本内容
+        }]
+    })
+    return {charts, role, user, bizLine, bizPieAccess, bizBarSales,orderList: orderList.orderList};
+
+
 }
 
 module.exports = generateBook;

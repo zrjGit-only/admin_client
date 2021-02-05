@@ -1,0 +1,1 @@
+export const GET_ORDER_LIST = "get_order_list"

@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1a4a1eab-9b1b-4faa-b334-fde00c92e698" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HHeader/HHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HHeader/HHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/httpMock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/httpMock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Order/Order.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Order/Order.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +24,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1nu5dAtNpFxLeAos3npOhkSdX5o" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -31,7 +35,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/actions" />
     <property name="list.type.of.created.stylesheet" value="Less" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -47,6 +51,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\actions-type" />
+      <recent name="C:\Users\14012\Desktop\admin_client\src\store\reducers" />
       <recent name="C:\Users\Administrator\Desktop\admin\admin_client\src\utils" />
     </key>
   </component>
@@ -79,7 +86,7 @@
       <workItem from="1612314370933" duration="20612000" />
       <workItem from="1612359399325" duration="3404000" />
       <workItem from="1612363033086" duration="23586000" />
-      <workItem from="1612486331049" duration="7404000" />
+      <workItem from="1612486331049" duration="12826000" />
     </task>
     <servers />
   </component>

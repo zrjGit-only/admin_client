@@ -5,6 +5,7 @@ import product from './product'
 import charts from './charts'
 import role from './role'
 import home from './home'
+import order from './order'
 
 export default combineReducers({
     user,
@@ -12,5 +13,6 @@ export default combineReducers({
     product,
     charts,
     role,
-    home
+    home,
+    order
 })
