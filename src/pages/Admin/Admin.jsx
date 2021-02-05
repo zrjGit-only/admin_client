@@ -21,9 +21,9 @@ const NotFound = lazy(() => import(/*webpackChunkName:"NotFound"*/"../NotFound/N
 
 export default function Admin() {
         return (
-            <Layout style={{height:'100%'}}>
-                <SSider />
-                <Layout>
+            <Layout style={{minHeight:'100%'}}>
+                <SSider/>
+                <Layout className="right">
                     <HHeader/>
                     <Content style={{ margin: '24px 16px 0' ,background:'#fff'}}>
                         <Suspense fallback={<h1>加载中……</h1>}>

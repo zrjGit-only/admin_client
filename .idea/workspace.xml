@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a4a1eab-9b1b-4faa-b334-fde00c92e698" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/Products/Product/AddupdateProduct/AddupdateProduct.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products/Product/AddupdateProduct/AddupdateProduct.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Order/Order.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HHeader/HHeader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HHeader/HHeader.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SSider/SSider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SSider/SSider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SSider/SSider.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SSider/SSider.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin/Admin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Admin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin/Admin.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin/Admin.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Order/Order.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,16 +85,11 @@
       <workItem from="1612314370933" duration="20612000" />
       <workItem from="1612359399325" duration="3404000" />
       <workItem from="1612363033086" duration="23586000" />
+      <workItem from="1612486331049" duration="2815000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1612333321606">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1612333321606" />
   </component>
 </project>

@@ -2,6 +2,7 @@ import React from 'react'
 import {withRouter, NavLink} from "react-router-dom"
 import {Layout, Menu} from 'antd';
 import menuList from '../../config/menuConfig'
+import './SSider.less'
 
 const {SubMenu} = Menu;
 const {Sider} = Layout;
@@ -42,7 +43,7 @@ function SSider(props) {
 
     let menu = list(menuList)
     return (
-        <Sider>
+        <Sider  className="sider">
             <h2 className="logo">
                 React后台管理
             </h2>
