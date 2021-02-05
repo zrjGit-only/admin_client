@@ -78,7 +78,6 @@ function HHeader(props) {
             clearInterval(inter)
         }
     }, [])
-    console.log(JSON.parse(localStorage.getItem(SPH_ADMIN_LOGIN)));
     const username=JSON.parse(localStorage.getItem(SPH_ADMIN_LOGIN))[0].item.username
     return (
         <div className='container'>
